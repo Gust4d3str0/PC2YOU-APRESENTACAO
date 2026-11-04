@@ -1,0 +1,14 @@
+[
+  {"id": "gpu-pix", "label": "GPU com cupom e PIX",
+   "text": "🔥 Placa de Vídeo RTX 5060 Ti 8GB Gigabyte\n\nDe R$ 3.299,90\nPor R$ 2.789,00 no PIX\n\nCupom: GPU10\n\nKaBuM\nhttps://www.kabum.com.br/produto/12345"},
+  {"id": "cpu-simple", "label": "CPU simples (loja no texto)",
+   "text": "Processador AMD Ryzen 7 7800X3D\nPor R$ 1.899,00\nPichau\nhttps://www.pichau.com.br/processador-amd-ryzen-7-7800x3d-am5-4-2ghz-100-100000910wof"},
+  {"id": "cpu-no-brand", "label": "CPU sem a marca (cai para Medium)",
+   "text": "Ryzen 7 7800X3D por R$ 2.399\nCupom AMD100\nPichau"},
+  {"id": "ssd-installments", "label": "SSD com parcelas (ignoradas)",
+   "text": "SSD NVMe Kingston NV3 1TB por R$ 489,90 no PIX ou 12x de R$ 49,90. Frete R$ 20,00\nhttps://www.amazon.com.br/dp/B0ABCDEFGH"},
+  {"id": "multiple", "label": "Dois produtos (conflito)",
+   "text": "Kit Upgrade Ryzen 5 5600 + B550M por R$ 1.499,00\nKaBuM"},
+  {"id": "noise", "label": "Mensagem sem promoção (filtrada)",
+   "text": "Bom dia, pessoal! Como vocês estão?"}
+]

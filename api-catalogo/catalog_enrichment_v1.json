@@ -1,0 +1,557 @@
+[
+  {
+    "id": "ryzen-5-5500x3d",
+    "name": "AMD Ryzen 5 5500X3D",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 5 5500X3D para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 6,
+      "threads": 12,
+      "socket": "AM4"
+    },
+    "compatibility": {
+      "socket": "AM4"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-5-7500f",
+    "name": "AMD Ryzen 5 7500F",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 5 7500F para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 6,
+      "threads": 12,
+      "socket": "AM5"
+    },
+    "compatibility": {
+      "socket": "AM5"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-5-8400f",
+    "name": "AMD Ryzen 5 8400F",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 5 8400F para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 6,
+      "threads": 12,
+      "socket": "AM5"
+    },
+    "compatibility": {
+      "socket": "AM5"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-7-5800x3d",
+    "name": "AMD Ryzen 7 5800X3D",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 7 5800X3D para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 8,
+      "threads": 16,
+      "socket": "AM4"
+    },
+    "compatibility": {
+      "socket": "AM4"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-5-8600g",
+    "name": "AMD Ryzen 5 8600G",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 5 8600G para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 6,
+      "threads": 12,
+      "socket": "AM5"
+    },
+    "compatibility": {
+      "socket": "AM5"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-7-5700",
+    "name": "AMD Ryzen 7 5700",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 7 5700 para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 8,
+      "threads": 16,
+      "socket": "AM4"
+    },
+    "compatibility": {
+      "socket": "AM4"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-7-5800xt",
+    "name": "AMD Ryzen 7 5800XT",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 7 5800XT para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 8,
+      "threads": 16,
+      "socket": "AM4"
+    },
+    "compatibility": {
+      "socket": "AM4"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-7-7700",
+    "name": "AMD Ryzen 7 7700",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 7 7700 para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 8,
+      "threads": 16,
+      "socket": "AM5"
+    },
+    "compatibility": {
+      "socket": "AM5"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-9-7900",
+    "name": "AMD Ryzen 9 7900",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 9 7900 para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 12,
+      "threads": 24,
+      "socket": "AM5"
+    },
+    "compatibility": {
+      "socket": "AM5"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-5-9600x",
+    "name": "AMD Ryzen 5 9600X",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 5 9600X para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 6,
+      "threads": 12,
+      "socket": "AM5"
+    },
+    "compatibility": {
+      "socket": "AM5"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-7-9700x",
+    "name": "AMD Ryzen 7 9700X",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 7 9700X para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 8,
+      "threads": 16,
+      "socket": "AM5"
+    },
+    "compatibility": {
+      "socket": "AM5"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "ryzen-9-5900xt",
+    "name": "AMD Ryzen 9 5900XT",
+    "category": "cpu",
+    "brand": "AMD",
+    "image": "/components/default-cpu.svg",
+    "description": "AMD Ryzen 9 5900XT para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 16,
+      "threads": 32,
+      "socket": "AM4"
+    },
+    "compatibility": {
+      "socket": "AM4"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "intel-i5-14600kf",
+    "name": "Intel Core i5-14600KF",
+    "category": "cpu",
+    "brand": "Intel",
+    "image": "/components/default-cpu.svg",
+    "description": "Intel Core i5-14600KF para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 14,
+      "threads": 20,
+      "socket": "LGA1700"
+    },
+    "compatibility": {
+      "socket": "LGA1700"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "intel-i7-14700kf",
+    "name": "Intel Core i7-14700KF",
+    "category": "cpu",
+    "brand": "Intel",
+    "image": "/components/default-cpu.svg",
+    "description": "Intel Core i7-14700KF para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "cores": 20,
+      "threads": 28,
+      "socket": "LGA1700"
+    },
+    "compatibility": {
+      "socket": "LGA1700"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  },
+  {
+    "id": "rtx-5050-8gb",
+    "name": "GeForce RTX 5050 8GB",
+    "category": "gpu",
+    "brand": "NVIDIA",
+    "image": "/components/default-gpu.svg",
+    "description": "GeForce RTX 5050 8GB. Dimensoes e refrigeracao variam conforme o fabricante da placa.",
+    "technical_specs": {
+      "memory": "8GB"
+    },
+    "compatibility": {},
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "gpu-model-and-vram-class"
+  },
+  {
+    "id": "rtx-5060-8gb",
+    "name": "GeForce RTX 5060 8GB",
+    "category": "gpu",
+    "brand": "NVIDIA",
+    "image": "/components/default-gpu.svg",
+    "description": "GeForce RTX 5060 8GB. Dimensoes e refrigeracao variam conforme o fabricante da placa.",
+    "technical_specs": {
+      "memory": "8GB"
+    },
+    "compatibility": {},
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "gpu-model-and-vram-class"
+  },
+  {
+    "id": "rtx-5060-ti-8gb",
+    "name": "GeForce RTX 5060 Ti 8GB",
+    "category": "gpu",
+    "brand": "NVIDIA",
+    "image": "/components/default-gpu.svg",
+    "description": "GeForce RTX 5060 Ti 8GB. Dimensoes e refrigeracao variam conforme o fabricante da placa.",
+    "technical_specs": {
+      "memory": "8GB"
+    },
+    "compatibility": {},
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "gpu-model-and-vram-class"
+  },
+  {
+    "id": "rtx-5060-ti-16gb",
+    "name": "GeForce RTX 5060 Ti 16GB",
+    "category": "gpu",
+    "brand": "NVIDIA",
+    "image": "/components/default-gpu.svg",
+    "description": "GeForce RTX 5060 Ti 16GB. Dimensoes e refrigeracao variam conforme o fabricante da placa.",
+    "technical_specs": {
+      "memory": "16GB"
+    },
+    "compatibility": {},
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "gpu-model-and-vram-class"
+  },
+  {
+    "id": "rx-9060-xt-16gb",
+    "name": "Radeon RX 9060 XT 16GB",
+    "category": "gpu",
+    "brand": "AMD",
+    "image": "/components/default-gpu.svg",
+    "description": "Radeon RX 9060 XT 16GB. Dimensoes e refrigeracao variam conforme o fabricante da placa.",
+    "technical_specs": {
+      "memory": "16GB"
+    },
+    "compatibility": {},
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "gpu-model-and-vram-class"
+  },
+  {
+    "id": "rx-9070-xt-16gb",
+    "name": "Radeon RX 9070 XT 16GB",
+    "category": "gpu",
+    "brand": "AMD",
+    "image": "/components/default-gpu.svg",
+    "description": "Radeon RX 9070 XT 16GB. Dimensoes e refrigeracao variam conforme o fabricante da placa.",
+    "technical_specs": {
+      "memory": "16GB"
+    },
+    "compatibility": {},
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "gpu-model-and-vram-class"
+  },
+  {
+    "id": "a520m-am4-ddr4",
+    "name": "Placa-mae A520M AM4 DDR4 (classe)",
+    "category": "motherboard",
+    "brand": "",
+    "image": "/components/default-motherboard.svg",
+    "description": "Classe por chipset, tipo de memoria e formato. Recursos adicionais e suporte de BIOS dependem do modelo comercial.",
+    "technical_specs": {
+      "socket": "AM4",
+      "memory_type": "DDR4",
+      "form_factor": "Micro-ATX"
+    },
+    "compatibility": {
+      "socket": "AM4",
+      "memory_type": "DDR4",
+      "form_factor": "Micro-ATX"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "chipset-memory-form-factor-class"
+  },
+  {
+    "id": "b450m-am4-ddr4",
+    "name": "Placa-mae B450M AM4 DDR4 (classe)",
+    "category": "motherboard",
+    "brand": "",
+    "image": "/components/default-motherboard.svg",
+    "description": "Classe por chipset, tipo de memoria e formato. Recursos adicionais e suporte de BIOS dependem do modelo comercial.",
+    "technical_specs": {
+      "socket": "AM4",
+      "memory_type": "DDR4",
+      "form_factor": "Micro-ATX"
+    },
+    "compatibility": {
+      "socket": "AM4",
+      "memory_type": "DDR4",
+      "form_factor": "Micro-ATX"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "chipset-memory-form-factor-class"
+  },
+  {
+    "id": "b760m-lga1700-ddr4",
+    "name": "Placa-mae B760M LGA1700 DDR4 (classe)",
+    "category": "motherboard",
+    "brand": "",
+    "image": "/components/default-motherboard.svg",
+    "description": "Classe por chipset, tipo de memoria e formato. Recursos adicionais e suporte de BIOS dependem do modelo comercial.",
+    "technical_specs": {
+      "socket": "LGA1700",
+      "memory_type": "DDR4",
+      "form_factor": "Micro-ATX"
+    },
+    "compatibility": {
+      "socket": "LGA1700",
+      "memory_type": "DDR4",
+      "form_factor": "Micro-ATX"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "chipset-memory-form-factor-class"
+  },
+  {
+    "id": "b760m-lga1700-ddr5",
+    "name": "Placa-mae B760M LGA1700 DDR5 (classe)",
+    "category": "motherboard",
+    "brand": "",
+    "image": "/components/default-motherboard.svg",
+    "description": "Classe por chipset, tipo de memoria e formato. Recursos adicionais e suporte de BIOS dependem do modelo comercial.",
+    "technical_specs": {
+      "socket": "LGA1700",
+      "memory_type": "DDR5",
+      "form_factor": "Micro-ATX"
+    },
+    "compatibility": {
+      "socket": "LGA1700",
+      "memory_type": "DDR5",
+      "form_factor": "Micro-ATX"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "chipset-memory-form-factor-class"
+  },
+  {
+    "id": "b850m-am5-ddr5",
+    "name": "Placa-mae B850M AM5 DDR5 (classe)",
+    "category": "motherboard",
+    "brand": "",
+    "image": "/components/default-motherboard.svg",
+    "description": "Classe por chipset, tipo de memoria e formato. Recursos adicionais e suporte de BIOS dependem do modelo comercial.",
+    "technical_specs": {
+      "socket": "AM5",
+      "memory_type": "DDR5",
+      "form_factor": "Micro-ATX"
+    },
+    "compatibility": {
+      "socket": "AM5",
+      "memory_type": "DDR5",
+      "form_factor": "Micro-ATX"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "chipset-memory-form-factor-class"
+  },
+  {
+    "id": "b840m-am5-ddr5",
+    "name": "Placa-mae B840M AM5 DDR5 (classe)",
+    "category": "motherboard",
+    "brand": "",
+    "image": "/components/default-motherboard.svg",
+    "description": "Classe por chipset, tipo de memoria e formato. Recursos adicionais e suporte de BIOS dependem do modelo comercial.",
+    "technical_specs": {
+      "socket": "AM5",
+      "memory_type": "DDR5",
+      "form_factor": "Micro-ATX"
+    },
+    "compatibility": {
+      "socket": "AM5",
+      "memory_type": "DDR5",
+      "form_factor": "Micro-ATX"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "chipset-memory-form-factor-class"
+  },
+  {
+    "id": "ssd-wd-green-wds200t5g0a-2tb",
+    "name": "SSD WD Green WDS200T5G0A 2TB SATA",
+    "category": "storage",
+    "brand": "Western Digital",
+    "image": "/components/default-storage.svg",
+    "description": "SSD WD Green WDS200T5G0A 2TB SATA para montagem de PCs. Consulte as especificacoes complementares do fabricante.",
+    "technical_specs": {
+      "capacity": "2TB",
+      "interface": "SATA",
+      "form_factor": "2.5 pol"
+    },
+    "compatibility": {
+      "interface": "SATA"
+    },
+    "prices": [],
+    "price_history": [],
+    "benchmark": {},
+    "catalog_origin": "enrichment-v1",
+    "identity_scope": "model"
+  }
+]

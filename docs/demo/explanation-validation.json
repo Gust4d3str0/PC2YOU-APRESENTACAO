@@ -1,0 +1,13 @@
+{
+  "status": 200,
+  "response": {
+    "mode": "beginner",
+    "explanation": "O seu computador foi montado com peças que combinam muito bem entre si, funcionando como uma engrenagem afinada para rodar seus jogos em alta velocidade. O processador e a placa de vídeo trabalham juntos sem travar, garantindo que a imagem na tela fique bem fluida. De forma geral, o conjunto está pronto para uso e entrega um excelente desempenho para o que você precisa.",
+    "metadata": {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "cached": false,
+      "prompt_version": "ai-explain-v1.0"
+    }
+  }
+}

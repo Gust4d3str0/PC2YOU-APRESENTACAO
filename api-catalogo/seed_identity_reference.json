@@ -1,0 +1,291 @@
+{
+  "ryzen-5-7600": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7600.html",
+      "https://www.amd.com/content/dam/amd/en/documents/partner-hub/ryzen/amd-ryzen-7000-series-65w-how-to-sell-guide-generational.pdf"
+    ],
+    "expected": {
+      "name": "AMD Ryzen 5 7600",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 6,
+      "technical_specs.threads": 12,
+      "technical_specs.base_clock": "3.8GHz",
+      "technical_specs.boost_clock": "5.1GHz",
+      "technical_specs.tdp_watts": 65,
+      "technical_specs.socket": "AM5",
+      "technical_specs.architecture": "Zen 4",
+      "compatibility.socket": "AM5"
+    },
+    "decision": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+    "checked_at": "2026-10-28"
+  },
+  "ryzen-7-7800x3d": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-7-7800X3d.html"
+    ],
+    "expected": {
+      "name": "AMD Ryzen 7 7800X3D",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 8,
+      "technical_specs.threads": 16,
+      "technical_specs.base_clock": "4.2GHz",
+      "technical_specs.boost_clock": "5.0GHz",
+      "technical_specs.tdp_watts": 120,
+      "technical_specs.socket": "AM5",
+      "technical_specs.architecture": "Zen 4",
+      "compatibility.socket": "AM5"
+    },
+    "decision": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+    "checked_at": "2026-10-28"
+  },
+  "ryzen-9-7950x": {
+    "sources": [
+      "https://www.amd.com/content/dam/amd/en/documents/partner-hub/ryzen/amd-consumer-pocket-guide-ryzen-radeon-july-2024.pdf"
+    ],
+    "expected": {
+      "name": "AMD Ryzen 9 7950X",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 16,
+      "technical_specs.threads": 32,
+      "technical_specs.base_clock": "4.5GHz",
+      "technical_specs.boost_clock": "5.7GHz",
+      "technical_specs.tdp_watts": 170,
+      "technical_specs.socket": "AM5",
+      "technical_specs.architecture": "Zen 4",
+      "compatibility.socket": "AM5"
+    },
+    "decision": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+    "checked_at": "2026-10-28"
+  },
+  "ryzen-9-5950x": {
+    "sources": [
+      "https://ir.amd.com/news-events/press-releases/detail/972/amd-launches-amd-ryzen-5000-series-desktop-processors-the-fastest-gaming-cpus-in-the-world"
+    ],
+    "expected": {
+      "name": "AMD Ryzen 9 5950X",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 16,
+      "technical_specs.threads": 32,
+      "technical_specs.base_clock": "3.4GHz",
+      "technical_specs.boost_clock": "4.9GHz",
+      "technical_specs.tdp_watts": 105,
+      "technical_specs.socket": "AM4",
+      "technical_specs.architecture": "Zen 3",
+      "compatibility.socket": "AM4"
+    },
+    "decision": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+    "checked_at": "2026-10-28"
+  },
+  "ryzen-9-7900x": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-9-7900x.html"
+    ],
+    "expected": {
+      "name": "AMD Ryzen 9 7900X",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 12,
+      "technical_specs.threads": 24,
+      "technical_specs.base_clock": "4.7GHz",
+      "technical_specs.boost_clock": "5.6GHz",
+      "technical_specs.tdp_watts": 170,
+      "technical_specs.socket": "AM5",
+      "technical_specs.architecture": "Zen 4",
+      "compatibility.socket": "AM5"
+    },
+    "decision": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+    "checked_at": "2026-10-28"
+  },
+  "intel-i7-13700k": {
+    "sources": [
+      "https://www.intel.com/content/www/us/en/products/sku/230500/intel-core-i713700k-processor-30m-cache-up-to-5-40-ghz/specifications.html"
+    ],
+    "expected": {
+      "name": "Intel Core i7-13700K",
+      "technical_specs.cores": 16,
+      "technical_specs.threads": 24,
+      "technical_specs.base_clock": "3.4GHz",
+      "technical_specs.boost_clock": "5.4GHz",
+      "technical_specs.tdp_watts": 125
+    },
+    "decision": "As specs existentes são de 13700K, apenas o nome apontava para 12700K.",
+    "checked_at": "2026-10-28"
+  },
+  "intel-i9-13900ks": {
+    "sources": [
+      "https://www.intel.com/content/www/us/en/products/sku/232167/intel-core-i913900ks-processor-36m-cache-up-to-6-00-ghz/specifications.html"
+    ],
+    "expected": {
+      "name": "Intel Core i9-13900KS",
+      "technical_specs.cores": 24,
+      "technical_specs.threads": 32,
+      "technical_specs.tdp_watts": 150,
+      "technical_specs.boost_clock": "6.0GHz"
+    },
+    "decision": "150W e turbo 6GHz já indicavam KS; corrigir nome, sem substituir por K.",
+    "checked_at": "2026-10-28"
+  },
+  "ryzen-7-9800x3d": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800X3d.html"
+    ],
+    "expected": {
+      "technical_specs.integrated_graphics": "AMD Radeon Graphics"
+    },
+    "decision": "AMD declara gráficos integrados; remover afirmação Nenhuma.",
+    "checked_at": "2026-10-28"
+  },
+  "cooler-cm-hyper212": {
+    "sources": [
+      "https://www.coolermaster.com/ja-jp/products/hyper-212-black.html"
+    ],
+    "expected": {
+      "name": "Cooler Master Hyper 212 Black (RR-S4KK-25SN-R1)",
+      "brand": "Cooler Master",
+      "technical_specs.height_mm": 152,
+      "technical_specs.fan_size_mm": 120,
+      "technical_specs.max_tdp_watts": {
+        "absent": true
+      },
+      "compatibility.max_tdp_watts": {
+        "absent": true
+      }
+    },
+    "decision": "Intenção do script de imagens é Hyper 212 Black. Fixada revisão/SKU compatível com os sockets já pretendidos, sem inventar capacidade térmica.",
+    "checked_at": "2026-10-28"
+  },
+  "cooler-deepcool-ak400": {
+    "sources": [
+      "https://www.deepcool.com/products/Cooling/cpuaircoolers/AK400-Performance-CPU-Cooler/2021/15222.shtml"
+    ],
+    "expected": {
+      "name": "DeepCool AK400",
+      "brand": "DeepCool",
+      "technical_specs.height_mm": 155,
+      "technical_specs.fan_size_mm": 120,
+      "technical_specs.max_tdp_watts": 220,
+      "compatibility.max_tdp_watts": 220
+    },
+    "decision": "Intenção confirmada no script de imagens; valores térmicos são declaração nominal do fabricante, não benchmark independente.",
+    "checked_at": "2026-10-28"
+  },
+  "cooler-deepcool-ak620": {
+    "sources": [
+      "https://www.deepcool.com/products/Cooling/cpuaircoolers/AK620-High-Performance-CPU-Cooler-1700-AM5/2021/13067.shtml"
+    ],
+    "expected": {
+      "name": "DeepCool AK620",
+      "brand": "DeepCool",
+      "technical_specs.height_mm": 160,
+      "technical_specs.fan_size_mm": 120,
+      "technical_specs.max_tdp_watts": 260,
+      "compatibility.max_tdp_watts": 260
+    },
+    "decision": "Intenção confirmada no script de imagens; valores térmicos são declaração nominal do fabricante, não benchmark independente.",
+    "checked_at": "2026-10-28"
+  },
+  "cooler-nzxt-kraken-240": {
+    "sources": [
+      "https://support.nzxt.com/hc/en-us/articles/47207322896923-Kraken-2023-Specs"
+    ],
+    "expected": {
+      "name": "NZXT Kraken 240 (2023)",
+      "brand": "NZXT",
+      "technical_specs.radiator_size_mm": 240,
+      "technical_specs.fan_size_mm": 120,
+      "technical_specs.max_tdp_watts": {
+        "absent": true
+      },
+      "compatibility.max_tdp_watts": {
+        "absent": true
+      }
+    },
+    "decision": "Preservar ID e intenção do script de imagens; selecionar edição 2023 explícita, sem herdar watts do Corsair.",
+    "checked_at": "2026-10-28"
+  },
+  "cooler-nzxt-kraken-360": {
+    "sources": [
+      "https://support.nzxt.com/hc/en-us/articles/47207322896923-Kraken-2023-Specs"
+    ],
+    "expected": {
+      "name": "NZXT Kraken 360 (2023)",
+      "brand": "NZXT",
+      "technical_specs.radiator_size_mm": 360,
+      "technical_specs.fan_size_mm": 120,
+      "technical_specs.max_tdp_watts": {
+        "absent": true
+      },
+      "compatibility.max_tdp_watts": {
+        "absent": true
+      }
+    },
+    "decision": "Preservar ID e intenção do script de imagens; selecionar edição 2023 explícita, sem herdar watts do Corsair.",
+    "checked_at": "2026-10-28"
+  },
+  "gabinete-lian-li-lancool": {
+    "sources": [
+      "https://lian-li.com/product/lancool-216/"
+    ],
+    "expected": {
+      "name": "Lian Li LANCOOL 216",
+      "brand": "Lian Li",
+      "technical_specs.fans": 3,
+      "technical_specs.max_gpu_length_mm": 392,
+      "compatibility.max_gpu_length_mm": 392
+    },
+    "decision": "scripts/download_images.py explicita LANCOOL 216, não apenas a família LANCOOL.",
+    "checked_at": "2026-10-28"
+  },
+  "gabinete-nzxt-h510": {
+    "sources": [
+      "https://support.nzxt.com/hc/en-us/articles/37464879064347-H510-Series-Specs"
+    ],
+    "expected": {
+      "name": "NZXT H510",
+      "brand": "NZXT",
+      "technical_specs.fans": 2,
+      "technical_specs.max_gpu_length_mm": 381,
+      "compatibility.max_gpu_length_mm": 381,
+      "technical_specs.radiator_support": "Frontal: 240/280mm; traseiro: 120mm"
+    },
+    "decision": "Preservar intenção H510 confirmada nas imagens. 381mm só sem ventoinhas/radiador frontais; registrar condição.",
+    "checked_at": "2026-10-28"
+  },
+  "cooler-noctua-nhd15": {
+    "sources": [
+      "https://noctua.at/es/noctua-standardised-performance-rating"
+    ],
+    "expected": {
+      "technical_specs.max_tdp_watts": {
+        "absent": true
+      },
+      "compatibility.max_tdp_watts": {
+        "absent": true
+      }
+    },
+    "decision": "Noctua não fornece rating TDP universal: remover 300W sem substituir por um valor inventado.",
+    "checked_at": "2026-10-28"
+  },
+  "ssd-sata-1tb": {
+    "sources": [
+      "https://www.kingston.com/datasheets/sa400_us.pdf"
+    ],
+    "expected": {
+      "name": "SSD SATA 1TB (modelo a definir)",
+      "brand": "Não especificada",
+      "technical_specs.capacity": "1TB",
+      "technical_specs.read_speed": {
+        "absent": true
+      },
+      "technical_specs.write_speed": {
+        "absent": true
+      }
+    },
+    "decision": "A400 não oferece 1TB nominal. ID genérico 1TB é preservado como classe sem SKU, sem rebatizar um A400 960GB ou inventar outro produto.",
+    "checked_at": "2026-10-28"
+  }
+}

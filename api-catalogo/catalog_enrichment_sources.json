@@ -1,0 +1,455 @@
+{
+  "ryzen-5-5500x3d": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/5000-series/amd-ryzen-5-5500x3d.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 5 5500X3D",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 6,
+      "technical_specs.threads": 12,
+      "technical_specs.socket": "AM4",
+      "compatibility.socket": "AM4"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-5-7500f": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7500f.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 5 7500F",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 6,
+      "technical_specs.threads": 12,
+      "technical_specs.socket": "AM5",
+      "compatibility.socket": "AM5"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-5-8400f": {
+    "sources": [
+      "https://www.amd.com/de/products/processors/desktops/ryzen/8000-series/amd-ryzen-5-8400f.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 5 8400F",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 6,
+      "technical_specs.threads": 12,
+      "technical_specs.socket": "AM5",
+      "compatibility.socket": "AM5"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-7-5800x3d": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/5000-series/amd-ryzen-7-5800x3d.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 7 5800X3D",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 8,
+      "technical_specs.threads": 16,
+      "technical_specs.socket": "AM4",
+      "compatibility.socket": "AM4"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-5-8600g": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/8000-series/amd-ryzen-5-8600g.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 5 8600G",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 6,
+      "technical_specs.threads": 12,
+      "technical_specs.socket": "AM5",
+      "compatibility.socket": "AM5"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-7-5700": {
+    "sources": [
+      "https://www.amd.com/en/newsroom/press-releases/2024-1-8-amd-reveals-next-gen-desktop-processors-for-extrem.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 7 5700",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 8,
+      "technical_specs.threads": 16,
+      "technical_specs.socket": "AM4",
+      "compatibility.socket": "AM4"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-7-5800xt": {
+    "sources": [
+      "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-unveils-next-gen-zen-5-ryzen-processors-to-p.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 7 5800XT",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 8,
+      "technical_specs.threads": 16,
+      "technical_specs.socket": "AM4",
+      "compatibility.socket": "AM4"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-7-7700": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-7-7700.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 7 7700",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 8,
+      "technical_specs.threads": 16,
+      "technical_specs.socket": "AM5",
+      "compatibility.socket": "AM5"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-9-7900": {
+    "sources": [
+      "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-9-7900.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 9 7900",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 12,
+      "technical_specs.threads": 24,
+      "technical_specs.socket": "AM5",
+      "compatibility.socket": "AM5"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-5-9600x": {
+    "sources": [
+      "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-unveils-next-gen-zen-5-ryzen-processors-to-p.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 5 9600X",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 6,
+      "technical_specs.threads": 12,
+      "technical_specs.socket": "AM5",
+      "compatibility.socket": "AM5"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-7-9700x": {
+    "sources": [
+      "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-unveils-next-gen-zen-5-ryzen-processors-to-p.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 7 9700X",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 8,
+      "technical_specs.threads": 16,
+      "technical_specs.socket": "AM5",
+      "compatibility.socket": "AM5"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "ryzen-9-5900xt": {
+    "sources": [
+      "https://www.amd.com/en/newsroom/press-releases/2024-6-2-amd-unveils-next-gen-zen-5-ryzen-processors-to-p.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "AMD Ryzen 9 5900XT",
+      "brand": "AMD",
+      "category": "cpu",
+      "technical_specs.cores": 16,
+      "technical_specs.threads": 32,
+      "technical_specs.socket": "AM4",
+      "compatibility.socket": "AM4"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "intel-i5-14600kf": {
+    "sources": [
+      "https://www.intel.com/content/www/us/en/products/sku/236778/intel-core-i5-processor-14600kf-24m-cache-up-to-5-30-ghz/specifications.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "Intel Core i5-14600KF",
+      "brand": "Intel",
+      "category": "cpu",
+      "technical_specs.cores": 14,
+      "technical_specs.threads": 20,
+      "technical_specs.socket": "LGA1700",
+      "compatibility.socket": "LGA1700"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "intel-i7-14700kf": {
+    "sources": [
+      "https://www.intel.com/content/www/us/en/products/sku/236789/intel-core-i7-processor-14700kf-33m-cache-up-to-5-60-ghz/specifications.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "Intel Core i7-14700KF",
+      "brand": "Intel",
+      "category": "cpu",
+      "technical_specs.cores": 20,
+      "technical_specs.threads": 28,
+      "technical_specs.socket": "LGA1700",
+      "compatibility.socket": "LGA1700"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "rtx-5050-8gb": {
+    "sources": [
+      "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5050/"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "gpu-model-and-vram-class",
+    "expected": {
+      "name": "GeForce RTX 5050 8GB",
+      "brand": "NVIDIA",
+      "category": "gpu",
+      "technical_specs.memory": "8GB"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "rtx-5060-8gb": {
+    "sources": [
+      "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "gpu-model-and-vram-class",
+    "expected": {
+      "name": "GeForce RTX 5060 8GB",
+      "brand": "NVIDIA",
+      "category": "gpu",
+      "technical_specs.memory": "8GB"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "rtx-5060-ti-8gb": {
+    "sources": [
+      "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "gpu-model-and-vram-class",
+    "expected": {
+      "name": "GeForce RTX 5060 Ti 8GB",
+      "brand": "NVIDIA",
+      "category": "gpu",
+      "technical_specs.memory": "8GB"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "rtx-5060-ti-16gb": {
+    "sources": [
+      "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5060-family/"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "gpu-model-and-vram-class",
+    "expected": {
+      "name": "GeForce RTX 5060 Ti 16GB",
+      "brand": "NVIDIA",
+      "category": "gpu",
+      "technical_specs.memory": "16GB"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "rx-9060-xt-16gb": {
+    "sources": [
+      "https://www.amd.com/en/products/graphics/desktops/radeon/9000-series/amd-radeon-rx-9060xt.html"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "gpu-model-and-vram-class",
+    "expected": {
+      "name": "Radeon RX 9060 XT 16GB",
+      "brand": "AMD",
+      "category": "gpu",
+      "technical_specs.memory": "16GB"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "rx-9070-xt-16gb": {
+    "sources": [
+      "https://ir.amd.com/news-events/press-releases/detail/1238/amd-unveils-next-generation-amd-rdna-4-architecture-with-the-launch-of-amd-radeon-rx-9000-series-graphics-cards"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "gpu-model-and-vram-class",
+    "expected": {
+      "name": "Radeon RX 9070 XT 16GB",
+      "brand": "AMD",
+      "category": "gpu",
+      "technical_specs.memory": "16GB"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  },
+  "a520m-am4-ddr4": {
+    "sources": [
+      "https://storage-asset.msi.com/datasheet/mb/uk/A520M-A-PRO.pdf"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "chipset-memory-form-factor-class",
+    "expected": {
+      "name": "Placa-mae A520M AM4 DDR4 (classe)",
+      "brand": "",
+      "category": "motherboard",
+      "technical_specs.socket": "AM4",
+      "technical_specs.memory_type": "DDR4",
+      "technical_specs.form_factor": "Micro-ATX",
+      "compatibility.socket": "AM4",
+      "compatibility.memory_type": "DDR4",
+      "compatibility.form_factor": "Micro-ATX"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted. M denotes the form factor in the class name, not a distinct silicon chipset. Vendor source is an example validating class attributes, not the identity of every board in that class."
+  },
+  "b450m-am4-ddr4": {
+    "sources": [
+      "https://www.asrock.com/mb/amd/b450m%20steel%20legend/"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "chipset-memory-form-factor-class",
+    "expected": {
+      "name": "Placa-mae B450M AM4 DDR4 (classe)",
+      "brand": "",
+      "category": "motherboard",
+      "technical_specs.socket": "AM4",
+      "technical_specs.memory_type": "DDR4",
+      "technical_specs.form_factor": "Micro-ATX",
+      "compatibility.socket": "AM4",
+      "compatibility.memory_type": "DDR4",
+      "compatibility.form_factor": "Micro-ATX"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted. M denotes the form factor in the class name, not a distinct silicon chipset. Vendor source is an example validating class attributes, not the identity of every board in that class."
+  },
+  "b760m-lga1700-ddr4": {
+    "sources": [
+      "https://www.asus.com/us/motherboards-components/motherboards/prime/prime-b760m-k-d4/"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "chipset-memory-form-factor-class",
+    "expected": {
+      "name": "Placa-mae B760M LGA1700 DDR4 (classe)",
+      "brand": "",
+      "category": "motherboard",
+      "technical_specs.socket": "LGA1700",
+      "technical_specs.memory_type": "DDR4",
+      "technical_specs.form_factor": "Micro-ATX",
+      "compatibility.socket": "LGA1700",
+      "compatibility.memory_type": "DDR4",
+      "compatibility.form_factor": "Micro-ATX"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted. M denotes the form factor in the class name, not a distinct silicon chipset. Vendor source is an example validating class attributes, not the identity of every board in that class."
+  },
+  "b760m-lga1700-ddr5": {
+    "sources": [
+      "https://www.msi.com/Motherboard/PRO-B760M-A-WIFI/Specification"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "chipset-memory-form-factor-class",
+    "expected": {
+      "name": "Placa-mae B760M LGA1700 DDR5 (classe)",
+      "brand": "",
+      "category": "motherboard",
+      "technical_specs.socket": "LGA1700",
+      "technical_specs.memory_type": "DDR5",
+      "technical_specs.form_factor": "Micro-ATX",
+      "compatibility.socket": "LGA1700",
+      "compatibility.memory_type": "DDR5",
+      "compatibility.form_factor": "Micro-ATX"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted. M denotes the form factor in the class name, not a distinct silicon chipset. Vendor source is an example validating class attributes, not the identity of every board in that class."
+  },
+  "b850m-am5-ddr5": {
+    "sources": [
+      "https://www.asrock.com/mb/AMD/B850M%20Challenger/index.asp"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "chipset-memory-form-factor-class",
+    "expected": {
+      "name": "Placa-mae B850M AM5 DDR5 (classe)",
+      "brand": "",
+      "category": "motherboard",
+      "technical_specs.socket": "AM5",
+      "technical_specs.memory_type": "DDR5",
+      "technical_specs.form_factor": "Micro-ATX",
+      "compatibility.socket": "AM5",
+      "compatibility.memory_type": "DDR5",
+      "compatibility.form_factor": "Micro-ATX"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted. M denotes the form factor in the class name, not a distinct silicon chipset. Vendor source is an example validating class attributes, not the identity of every board in that class."
+  },
+  "b840m-am5-ddr5": {
+    "sources": [
+      "https://us-store.msi.com/Motherboards/AMD-Platform-Motherboard/AMD-B840/PRO-B840M-B"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "chipset-memory-form-factor-class",
+    "expected": {
+      "name": "Placa-mae B840M AM5 DDR5 (classe)",
+      "brand": "",
+      "category": "motherboard",
+      "technical_specs.socket": "AM5",
+      "technical_specs.memory_type": "DDR5",
+      "technical_specs.form_factor": "Micro-ATX",
+      "compatibility.socket": "AM5",
+      "compatibility.memory_type": "DDR5",
+      "compatibility.form_factor": "Micro-ATX"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted. M denotes the form factor in the class name, not a distinct silicon chipset. Vendor source is an example validating class attributes, not the identity of every board in that class."
+  },
+  "ssd-wd-green-wds200t5g0a-2tb": {
+    "sources": [
+      "https://documents.westerndigital.com/content/dam/doc-library/en_us/assets/public/western-digital/product/internal-drives/wd-green-ssd/datasheet-wd-green-sata-internal-ssd-cased.pdf"
+    ],
+    "verified_on": "2026-10-28",
+    "identity_scope": "model",
+    "expected": {
+      "name": "SSD WD Green WDS200T5G0A 2TB SATA",
+      "brand": "Western Digital",
+      "category": "storage",
+      "technical_specs.capacity": "2TB",
+      "technical_specs.interface": "SATA",
+      "technical_specs.form_factor": "2.5 pol",
+      "compatibility.interface": "SATA"
+    },
+    "note": "Only the listed fields are verified; unknown dimensions, frequencies and performance scores omitted."
+  }
+}

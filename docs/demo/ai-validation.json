@@ -1,0 +1,157 @@
+{
+  "status": 200,
+  "response": {
+    "analysis": {
+      "summary": "O sistema atual apresenta um conjunto equilibrado com processador competente, placa de video com boa capacidade de memoria de video e armazenamento rapido, adequado para jogos na resolucao informada.",
+      "overall_rating": "good",
+      "balance": {
+        "status": "balanced",
+        "explanation": "O processador e a placa de video operam em harmonia para a proposta de uso, sem gargalos evidentes para a taxa de atualizacao do monitor."
+      },
+      "primary_limit": {
+        "component": "unknown",
+        "confidence": "low",
+        "explanation": "Confira as verificacoes do sistema. Nao ha limitantes criticos evidentes para a resolucao e taxa de atualizacao desejadas."
+      },
+      "strengths": [
+        "Processador com multiplos nucleos para multitarefa",
+        "Placa de video equipada com boa capacidade de memoria",
+        "Memoria rapida e armazenamento veloz"
+      ],
+      "weaknesses": [
+        "Alguns componentes nao possuem verificacao completa no catalogo"
+      ],
+      "upgrade_priorities": [],
+      "warnings": [
+        "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras.",
+        "Compatibilidade parcial: faltam dados do catalogo para uma ou mais regras"
+      ],
+      "missing_information": [
+        "Placa-mãe: especificações não verificadas no catálogo",
+        "Placa-mae: especificacoes nao verificadas no catalogo"
+      ],
+      "final_recommendation": "O computador esta pronto para uso atual. Para futuros melhoramentos, confira as verificacoes do sistema e avalie a expansao de memoria conforme a necessidade."
+    },
+    "compatibility": {
+      "valid": null,
+      "status": "partial",
+      "issues": [],
+      "warnings": [
+        "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras."
+      ],
+      "checked_rules": [
+        "gpu_power",
+        "gpu_case"
+      ],
+      "unchecked_rules": [
+        "cpu_socket",
+        "ram_type",
+        "ram_slots",
+        "ram_capacity",
+        "board_case"
+      ]
+    },
+    "compatibility_notes": [
+      "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras."
+    ],
+    "components": [
+      {
+        "name": "AMD Ryzen 5 5600",
+        "category": "cpu",
+        "source": "catalog",
+        "catalog_id": "ryzen-5-5600",
+        "specifications": {
+          "cores": 6,
+          "threads": 12,
+          "tdp_watts": 65
+        },
+        "compatibility": {
+          "socket": "AM4"
+        }
+      },
+      {
+        "name": "GeForce RTX 3060",
+        "category": "gpu",
+        "source": "catalog",
+        "catalog_id": "rtx-3060",
+        "specifications": {
+          "memory": "12GB GDDR6",
+          "interface": "PCIe 4.0",
+          "power_consumption_watts": 170,
+          "length_mm": 200
+        },
+        "compatibility": {
+          "min_psu_watts": 550
+        }
+      },
+      {
+        "name": "Placa-mÃ£e B550M AM4 DDR4",
+        "category": "motherboard",
+        "source": "user",
+        "catalog_id": null,
+        "specifications": {},
+        "compatibility": {}
+      },
+      {
+        "name": "Kingston Fury Beast 16GB DDR4 3200MHz",
+        "category": "ram",
+        "source": "catalog",
+        "catalog_id": "ram-16gb-ddr4",
+        "specifications": {
+          "capacity": "16GB",
+          "memory_type": "DDR4",
+          "speed": "3200MHz"
+        },
+        "compatibility": {
+          "memory_type": "DDR4"
+        }
+      },
+      {
+        "name": "Kingston NV3 1TB NVMe M.2",
+        "category": "storage",
+        "source": "catalog",
+        "catalog_id": "ssd-nvme-1tb",
+        "specifications": {
+          "capacity": "1TB",
+          "interface": "NVMe PCIe 4.0"
+        },
+        "compatibility": {}
+      },
+      {
+        "name": "Fonte 650W 80 Plus Bronze",
+        "category": "psu",
+        "source": "catalog",
+        "catalog_id": "fonte-650w",
+        "specifications": {
+          "wattage": 650
+        },
+        "compatibility": {}
+      },
+      {
+        "name": "Gabinete Gamer Rise Mode Glass",
+        "category": "case",
+        "source": "catalog",
+        "catalog_id": "gabinete-atx",
+        "specifications": {},
+        "compatibility": {
+          "supported_form_factors": [
+            "ATX",
+            "Micro-ATX",
+            "Mini-ITX"
+          ],
+          "max_gpu_length_mm": 380
+        }
+      }
+    ],
+    "recommended_candidates": [],
+    "upgrade_budget": null,
+    "metadata": {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "catalog_matches": 6,
+      "compatibility_checked": true,
+      "cached": false,
+      "prompt_version": "pc-analysis-v1.1"
+    }
+  }
+}

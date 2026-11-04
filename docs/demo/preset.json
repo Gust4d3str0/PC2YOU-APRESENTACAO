@@ -1,0 +1,21 @@
+{
+  "components": {
+    "cpu": "AMD Ryzen 5 5600",
+    "gpu": "GeForce RTX 3060 12 GB",
+    "motherboard": "Placa-mãe B550M AM4 DDR4",
+    "ram": "Kingston Fury Beast 16GB DDR4 3200MHz",
+    "storage": [
+      "Kingston NV3 1TB NVMe M.2"
+    ],
+    "psu": "Fonte 650W 80 Plus Bronze",
+    "case": "Gabinete Gamer Rise Mode Glass"
+  },
+  "usage": [
+    "gaming"
+  ],
+  "resolution": "1080p",
+  "refresh_rate": 144,
+  "monitor": null,
+  "games": [],
+  "upgrade_budget": null
+}

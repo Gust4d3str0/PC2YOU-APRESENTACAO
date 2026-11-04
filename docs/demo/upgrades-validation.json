@@ -1,0 +1,107 @@
+{
+  "status": 200,
+  "response": {
+    "analysis": {
+      "summary": "analisamos a sua configuracao atual composta por processador e placa de video dedicados ao uso de jogos, verificando oportunidades de evolucao na placa de video para elevar a qualidade grafica e a fluidez geral no sistema.",
+      "recommended_upgrades": [
+        {
+          "priority": 1,
+          "component_type": "gpu",
+          "candidate_id": "rtx-4060",
+          "reason": "substituir a placa de video atual por este modelo proporciona maior eficiencia energetica e tecnologias mais recentes para jogos, mantendo a estabilidade geral e conferindo as verificacoes do sistema.",
+          "confidence": "low",
+          "budget_relevance": "no_budget"
+        }
+      ],
+      "buy_now_opportunities": [],
+      "warnings": [
+        "confira as verificacoes do sistema e as dimensoes fisicas no gabinete antes de instalar novos componentes."
+      ],
+      "final_recommendation": "recomendamos atualizar a placa de video para obter melhor desempenho em jogos. verifique a bios, a capacidade da fonte e o espaco interno do gabinete."
+    },
+    "recommendations": [
+      {
+        "candidate_id": "rtx-4060",
+        "component": {
+          "name": "GeForce RTX 4060",
+          "category": "gpu",
+          "source": "catalog",
+          "catalog_id": "rtx-4060",
+          "specifications": {
+            "memory": "8GB GDDR6",
+            "interface": "PCIe 4.0",
+            "power_consumption_watts": 115,
+            "length_mm": 240
+          },
+          "compatibility": {
+            "min_psu_watts": 550
+          }
+        },
+        "price": {
+          "value": null,
+          "source": "unavailable",
+          "verified": false,
+          "store": null,
+          "conditional": false,
+          "conditions": []
+        },
+        "catalog_price": null,
+        "promotion": null,
+        "promotions": [],
+        "history": null,
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "gpu_power",
+            "gpu_case"
+          ],
+          "unchecked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "board_case"
+          ]
+        },
+        "opportunity_evidence": "insufficient_data"
+      }
+    ],
+    "compatibility": {
+      "valid": null,
+      "status": "partial",
+      "issues": [],
+      "warnings": [
+        "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras."
+      ],
+      "checked_rules": [
+        "gpu_power",
+        "gpu_case"
+      ],
+      "unchecked_rules": [
+        "cpu_socket",
+        "ram_type",
+        "ram_slots",
+        "ram_capacity",
+        "board_case"
+      ]
+    },
+    "warnings": [
+      "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras."
+    ],
+    "upgrade_budget": null,
+    "metadata": {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "catalog_matches": 6,
+      "compatibility_checked": true,
+      "cached": false,
+      "prompt_version": "ai-upgrades-v2.0",
+      "candidate_count": 10,
+      "matched_promotions": 0,
+      "promotions_available": true
+    }
+  }
+}

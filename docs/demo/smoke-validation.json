@@ -1,0 +1,248 @@
+[
+  {
+    "method": "GET",
+    "path": "/health/ready",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/commerce/catalog",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/promotions",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/components/ryzen-5-5600",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/components/ryzen-5-5600/offers",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/components/ryzen-5-5600/price-history",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/status",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/metrics",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/components",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/telegram-latest",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/ml-components",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/ml-example",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/matcher",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/telegram-parse",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/components",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/telegram_promotions",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/product_price_history",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/external_product_enrichment",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/ml_integration_state",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/telegram_service_status",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/users",
+    "status": 404,
+    "expected": 404
+  },
+  {
+    "method": "GET",
+    "path": "/demo/database/components?page_size=100",
+    "status": 422,
+    "expected": 422
+  },
+  {
+    "method": "GET",
+    "path": "/demo/ai-status",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/demo/ai-context",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "POST",
+    "path": "/demo/matcher",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "PUT",
+    "path": "/demo/matcher",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "PATCH",
+    "path": "/demo/matcher",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "DELETE",
+    "path": "/demo/matcher",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "POST",
+    "path": "/demo/database/components",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "PUT",
+    "path": "/demo/database/components",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "PATCH",
+    "path": "/demo/database/components",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "DELETE",
+    "path": "/demo/database/components",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "POST",
+    "path": "/demo/ai-context",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "PUT",
+    "path": "/demo/ai-context",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "PATCH",
+    "path": "/demo/ai-context",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "DELETE",
+    "path": "/demo/ai-context",
+    "status": 403,
+    "expected": 403
+  },
+  {
+    "method": "GET",
+    "path": "/",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/apresentacao",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/analyze-pc",
+    "status": 200,
+    "expected": 200
+  },
+  {
+    "method": "GET",
+    "path": "/components/ryzen-5-5600",
+    "status": 200,
+    "expected": 200
+  }
+]

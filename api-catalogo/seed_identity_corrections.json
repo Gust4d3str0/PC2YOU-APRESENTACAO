@@ -1,0 +1,1024 @@
+{
+  "version": "catalog-identity-fix-v1",
+  "date": "2026-10-28",
+  "components": [
+    {
+      "id": "ryzen-5-7600",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "AMD Ryzen 5 8600G para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "AMD Ryzen 5 7600 para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "AMD Ryzen 5 8600G",
+          "after_exists": true,
+          "after": "AMD Ryzen 5 7600"
+        },
+        {
+          "path": "technical_specs.architecture",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "Zen 4"
+        },
+        {
+          "path": "technical_specs.base_clock",
+          "before_exists": true,
+          "before": "4.3GHz",
+          "after_exists": true,
+          "after": "3.8GHz"
+        },
+        {
+          "path": "technical_specs.boost_clock",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "5.1GHz"
+        },
+        {
+          "path": "technical_specs.integrated_graphics",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "AMD Radeon Graphics"
+        },
+        {
+          "path": "technical_specs.socket",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "AM5"
+        }
+      ],
+      "rationale": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+      "sources": [
+        "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-5-7600.html",
+        "https://www.amd.com/content/dam/amd/en/documents/partner-hub/ryzen/amd-ryzen-7000-series-65w-how-to-sell-guide-generational.pdf"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "ryzen-7-7800x3d",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "AMD Ryzen 7 7700 para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "AMD Ryzen 7 7800X3D para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "AMD Ryzen 7 7700",
+          "after_exists": true,
+          "after": "AMD Ryzen 7 7800X3D"
+        },
+        {
+          "path": "technical_specs.architecture",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "Zen 4"
+        },
+        {
+          "path": "technical_specs.base_clock",
+          "before_exists": true,
+          "before": "3.8GHz",
+          "after_exists": true,
+          "after": "4.2GHz"
+        },
+        {
+          "path": "technical_specs.boost_clock",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "5.0GHz"
+        },
+        {
+          "path": "technical_specs.integrated_graphics",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "AMD Radeon Graphics"
+        },
+        {
+          "path": "technical_specs.socket",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "AM5"
+        },
+        {
+          "path": "technical_specs.tdp_watts",
+          "before_exists": true,
+          "before": 65,
+          "after_exists": true,
+          "after": 120
+        }
+      ],
+      "rationale": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+      "sources": [
+        "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-7-7800X3d.html"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "ryzen-9-7950x",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "AMD Ryzen 9 7900 para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "AMD Ryzen 9 7950X para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "AMD Ryzen 9 7900",
+          "after_exists": true,
+          "after": "AMD Ryzen 9 7950X"
+        },
+        {
+          "path": "technical_specs.architecture",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "Zen 4"
+        },
+        {
+          "path": "technical_specs.base_clock",
+          "before_exists": true,
+          "before": "3.7GHz",
+          "after_exists": true,
+          "after": "4.5GHz"
+        },
+        {
+          "path": "technical_specs.boost_clock",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "5.7GHz"
+        },
+        {
+          "path": "technical_specs.cores",
+          "before_exists": true,
+          "before": 12,
+          "after_exists": true,
+          "after": 16
+        },
+        {
+          "path": "technical_specs.integrated_graphics",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "AMD Radeon Graphics"
+        },
+        {
+          "path": "technical_specs.socket",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "AM5"
+        },
+        {
+          "path": "technical_specs.tdp_watts",
+          "before_exists": true,
+          "before": 65,
+          "after_exists": true,
+          "after": 170
+        },
+        {
+          "path": "technical_specs.threads",
+          "before_exists": true,
+          "before": 24,
+          "after_exists": true,
+          "after": 32
+        }
+      ],
+      "rationale": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+      "sources": [
+        "https://www.amd.com/content/dam/amd/en/documents/partner-hub/ryzen/amd-consumer-pocket-guide-ryzen-radeon-july-2024.pdf"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "ram-16gb-ddr4",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Kingston Fury Beast",
+          "after_exists": true,
+          "after": "Kingston"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "ram-32gb-ddr4",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Kingston Fury Beast",
+          "after_exists": true,
+          "after": "Kingston"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "ram-16gb-ddr5",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Kingston Fury Beast",
+          "after_exists": true,
+          "after": "Kingston"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "ram-32gb-ddr5",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair Vengeance",
+          "after_exists": true,
+          "after": "Corsair"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "ram-64gb-ddr5",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair Vengeance",
+          "after_exists": true,
+          "after": "Corsair"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "intel-i7-13700k",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Intel Core i7-12700K para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "Intel Core i7-13700K para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Intel Core i7-12700K",
+          "after_exists": true,
+          "after": "Intel Core i7-13700K"
+        }
+      ],
+      "rationale": "As specs existentes são de 13700K, apenas o nome apontava para 12700K.",
+      "sources": [
+        "https://www.intel.com/content/www/us/en/products/sku/230500/intel-core-i713700k-processor-30m-cache-up-to-5-40-ghz/specifications.html"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "intel-i9-13900ks",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Intel Core i9-13900K para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "Intel Core i9-13900KS para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Intel Core i9-13900K",
+          "after_exists": true,
+          "after": "Intel Core i9-13900KS"
+        }
+      ],
+      "rationale": "150W e turbo 6GHz já indicavam KS; corrigir nome, sem substituir por K.",
+      "sources": [
+        "https://www.intel.com/content/www/us/en/products/sku/232167/intel-core-i913900ks-processor-36m-cache-up-to-6-00-ghz/specifications.html"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "ryzen-9-5950x",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "AMD Ryzen 7 5800X para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "AMD Ryzen 9 5950X para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "AMD Ryzen 7 5800X",
+          "after_exists": true,
+          "after": "AMD Ryzen 9 5950X"
+        },
+        {
+          "path": "technical_specs.base_clock",
+          "before_exists": true,
+          "before": "3.8GHz",
+          "after_exists": true,
+          "after": "3.4GHz"
+        },
+        {
+          "path": "technical_specs.boost_clock",
+          "before_exists": true,
+          "before": "4.7GHz",
+          "after_exists": true,
+          "after": "4.9GHz"
+        },
+        {
+          "path": "technical_specs.cores",
+          "before_exists": true,
+          "before": 8,
+          "after_exists": true,
+          "after": 16
+        },
+        {
+          "path": "technical_specs.threads",
+          "before_exists": true,
+          "before": 16,
+          "after_exists": true,
+          "after": 32
+        }
+      ],
+      "rationale": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+      "sources": [
+        "https://ir.amd.com/news-events/press-releases/detail/972/amd-launches-amd-ryzen-5000-series-desktop-processors-the-fastest-gaming-cpus-in-the-world"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "ryzen-9-7900x",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "AMD Ryzen 7 7700X para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "AMD Ryzen 9 7900X para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "AMD Ryzen 7 7700X",
+          "after_exists": true,
+          "after": "AMD Ryzen 9 7900X"
+        },
+        {
+          "path": "technical_specs.integrated_graphics",
+          "before_exists": true,
+          "before": "Radeon Graphics RDNA2",
+          "after_exists": true,
+          "after": "AMD Radeon Graphics"
+        }
+      ],
+      "rationale": "Preservar ID: intenção confirmada também em scripts/download_images.py, posição na gama e campos técnicos; manter preço demonstrativo e sinalizar revisão.",
+      "sources": [
+        "https://www.amd.com/en/products/processors/desktops/ryzen/7000-series/amd-ryzen-9-7900x.html"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "ryzen-7-9800x3d",
+      "changes": [
+        {
+          "path": "technical_specs.integrated_graphics",
+          "before_exists": true,
+          "before": "Nenhuma",
+          "after_exists": true,
+          "after": "AMD Radeon Graphics"
+        }
+      ],
+      "rationale": "AMD declara gráficos integrados; remover afirmação Nenhuma.",
+      "sources": [
+        "https://www.amd.com/en/products/processors/desktops/ryzen/9000-series/amd-ryzen-7-9800X3d.html"
+      ],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "cooler-cm-hyper212",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Rise Mode",
+          "after_exists": true,
+          "after": "Cooler Master"
+        },
+        {
+          "path": "compatibility.max_tdp_watts",
+          "before_exists": true,
+          "before": 150,
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Cooler Gamer Rise Mode G800 para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "Cooler Master Hyper 212 Black (RR-S4KK-25SN-R1) para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Cooler Gamer Rise Mode G800",
+          "after_exists": true,
+          "after": "Cooler Master Hyper 212 Black (RR-S4KK-25SN-R1)"
+        },
+        {
+          "path": "technical_specs.height_mm",
+          "before_exists": true,
+          "before": 158,
+          "after_exists": true,
+          "after": 152
+        },
+        {
+          "path": "technical_specs.max_tdp_watts",
+          "before_exists": true,
+          "before": 150,
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "technical_specs.part_number",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "RR-S4KK-25SN-R1"
+        }
+      ],
+      "rationale": "Intenção do script de imagens é Hyper 212 Black. Fixada revisão/SKU compatível com os sockets já pretendidos, sem inventar capacidade térmica.",
+      "sources": [
+        "https://www.coolermaster.com/ja-jp/products/hyper-212-black.html"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "cooler-deepcool-ak400",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Cooler Master",
+          "after_exists": true,
+          "after": "DeepCool"
+        },
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Cooler Master Hyper 212 Spectrum para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "DeepCool AK400 para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Cooler Master Hyper 212 Spectrum",
+          "after_exists": true,
+          "after": "DeepCool AK400"
+        },
+        {
+          "path": "technical_specs.fans",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": 1
+        }
+      ],
+      "rationale": "Intenção confirmada no script de imagens; valores térmicos são declaração nominal do fabricante, não benchmark independente.",
+      "sources": [
+        "https://www.deepcool.com/products/Cooling/cpuaircoolers/AK400-Performance-CPU-Cooler/2021/15222.shtml"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "cooler-deepcool-ak620",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Cooler Master",
+          "after_exists": true,
+          "after": "DeepCool"
+        },
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Cooler Master MasterAir MA612 para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "DeepCool AK620 para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Cooler Master MasterAir MA612",
+          "after_exists": true,
+          "after": "DeepCool AK620"
+        },
+        {
+          "path": "technical_specs.fans",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": 2
+        },
+        {
+          "path": "technical_specs.height_mm",
+          "before_exists": true,
+          "before": 163,
+          "after_exists": true,
+          "after": 160
+        }
+      ],
+      "rationale": "Intenção confirmada no script de imagens; valores térmicos são declaração nominal do fabricante, não benchmark independente.",
+      "sources": [
+        "https://www.deepcool.com/products/Cooling/cpuaircoolers/AK620-High-Performance-CPU-Cooler-1700-AM5/2021/13067.shtml"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "cooler-noctua-nhd15",
+      "changes": [
+        {
+          "path": "compatibility.max_tdp_watts",
+          "before_exists": true,
+          "before": 300,
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "technical_specs.max_tdp_watts",
+          "before_exists": true,
+          "before": 300,
+          "after_exists": false,
+          "after": null
+        }
+      ],
+      "rationale": "Noctua não fornece rating TDP universal: remover 300W sem substituir por um valor inventado.",
+      "sources": [
+        "https://noctua.at/es/noctua-standardised-performance-rating"
+      ],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "cooler-nzxt-kraken-240",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair",
+          "after_exists": true,
+          "after": "NZXT"
+        },
+        {
+          "path": "compatibility.max_tdp_watts",
+          "before_exists": true,
+          "before": 280,
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Water Cooler Corsair H100 RGB 240mm para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "NZXT Kraken 240 (2023) para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Water Cooler Corsair H100 RGB 240mm",
+          "after_exists": true,
+          "after": "NZXT Kraken 240 (2023)"
+        },
+        {
+          "path": "technical_specs.fan_size_mm",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": 120
+        },
+        {
+          "path": "technical_specs.fans",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": 2
+        },
+        {
+          "path": "technical_specs.max_tdp_watts",
+          "before_exists": true,
+          "before": 280,
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "technical_specs.part_number",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "RL-KN240-B1"
+        },
+        {
+          "path": "technical_specs.radiator_dimensions_mm",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": [
+            275,
+            123,
+            30
+          ]
+        }
+      ],
+      "rationale": "Preservar ID e intenção do script de imagens; selecionar edição 2023 explícita, sem herdar watts do Corsair.",
+      "sources": [
+        "https://support.nzxt.com/hc/en-us/articles/47207322896923-Kraken-2023-Specs"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "cooler-nzxt-kraken-360",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair",
+          "after_exists": true,
+          "after": "NZXT"
+        },
+        {
+          "path": "compatibility.max_tdp_watts",
+          "before_exists": true,
+          "before": 350,
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Water Cooler Corsair H150 RGB 360mm para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "NZXT Kraken 360 (2023) para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Water Cooler Corsair H150 RGB 360mm",
+          "after_exists": true,
+          "after": "NZXT Kraken 360 (2023)"
+        },
+        {
+          "path": "technical_specs.fan_size_mm",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": 120
+        },
+        {
+          "path": "technical_specs.fans",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": 3
+        },
+        {
+          "path": "technical_specs.max_tdp_watts",
+          "before_exists": true,
+          "before": 350,
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "technical_specs.part_number",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "RL-KN360-B1"
+        },
+        {
+          "path": "technical_specs.radiator_dimensions_mm",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": [
+            394,
+            121,
+            30
+          ]
+        }
+      ],
+      "rationale": "Preservar ID e intenção do script de imagens; selecionar edição 2023 explícita, sem herdar watts do Corsair.",
+      "sources": [
+        "https://support.nzxt.com/hc/en-us/articles/47207322896923-Kraken-2023-Specs"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "kit-ram-16gb-ddr4-3200",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair Vengeance LPX",
+          "after_exists": true,
+          "after": "Corsair"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "kit-ram-32gb-ddr4-3600",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair Vengeance LPX",
+          "after_exists": true,
+          "after": "Corsair"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "kit-ram-64gb-ddr4-3200",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Kingston Fury Beast",
+          "after_exists": true,
+          "after": "Kingston"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "kit-ram-32gb-ddr5-6000",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair Vengeance",
+          "after_exists": true,
+          "after": "Corsair"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "kit-ram-64gb-ddr5-6000",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Kingston Fury Beast",
+          "after_exists": true,
+          "after": "Kingston"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "kit-ram-96gb-ddr5-6400",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair Vengeance",
+          "after_exists": true,
+          "after": "Corsair"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "ram-8gb-ddr4",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Kingston Fury Beast",
+          "after_exists": true,
+          "after": "Kingston"
+        }
+      ],
+      "rationale": "Normalizar fabricante; preservar a linha comercial no nome.",
+      "sources": [],
+      "price_review_required": false,
+      "benchmark_review_required": false
+    },
+    {
+      "id": "ssd-sata-1tb",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Kingston",
+          "after_exists": true,
+          "after": "Não especificada"
+        },
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "SSD 1TB Kingston A400 SATA para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "SSD SATA 1TB (modelo a definir) para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "SSD 1TB Kingston A400 SATA",
+          "after_exists": true,
+          "after": "SSD SATA 1TB (modelo a definir)"
+        },
+        {
+          "path": "technical_specs.read_speed",
+          "before_exists": true,
+          "before": "500MB/s",
+          "after_exists": false,
+          "after": null
+        },
+        {
+          "path": "technical_specs.write_speed",
+          "before_exists": true,
+          "before": "450MB/s",
+          "after_exists": false,
+          "after": null
+        }
+      ],
+      "rationale": "A400 não oferece 1TB nominal. ID genérico 1TB é preservado como classe sem SKU, sem rebatizar um A400 960GB ou inventar outro produto.",
+      "sources": [
+        "https://www.kingston.com/datasheets/sa400_us.pdf"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "gabinete-lian-li-lancool",
+      "changes": [
+        {
+          "path": "brand",
+          "before_exists": true,
+          "before": "Corsair",
+          "after_exists": true,
+          "after": "Lian Li"
+        },
+        {
+          "path": "compatibility.max_gpu_length_mm",
+          "before_exists": true,
+          "before": 400,
+          "after_exists": true,
+          "after": 392
+        },
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Gabinete Gamer Corsair 4000D Airflow para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "Lian Li LANCOOL 216 para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Gabinete Gamer Corsair 4000D Airflow",
+          "after_exists": true,
+          "after": "Lian Li LANCOOL 216"
+        },
+        {
+          "path": "technical_specs.fans",
+          "before_exists": true,
+          "before": 2,
+          "after_exists": true,
+          "after": 3
+        },
+        {
+          "path": "technical_specs.max_gpu_length_mm",
+          "before_exists": true,
+          "before": 400,
+          "after_exists": true,
+          "after": 392
+        }
+      ],
+      "rationale": "scripts/download_images.py explicita LANCOOL 216, não apenas a família LANCOOL.",
+      "sources": [
+        "https://lian-li.com/product/lancool-216/"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    },
+    {
+      "id": "gabinete-nzxt-h510",
+      "changes": [
+        {
+          "path": "description",
+          "before_exists": true,
+          "before": "Gabinete Gamer NZXT H5 Flow para montagem de PCs com foco em compatibilidade e custo-benefício.",
+          "after_exists": true,
+          "after": "NZXT H510 para montagem de PCs com foco em compatibilidade e custo-benefício."
+        },
+        {
+          "path": "name",
+          "before_exists": true,
+          "before": "Gabinete Gamer NZXT H5 Flow",
+          "after_exists": true,
+          "after": "NZXT H510"
+        },
+        {
+          "path": "technical_specs.gpu_clearance_note",
+          "before_exists": false,
+          "before": null,
+          "after_exists": true,
+          "after": "381mm sem ventoinhas ou radiador frontal; a montagem frontal reduz o espaço."
+        },
+        {
+          "path": "technical_specs.radiator_support",
+          "before_exists": true,
+          "before": "Ate 240mm",
+          "after_exists": true,
+          "after": "Frontal: 240/280mm; traseiro: 120mm"
+        }
+      ],
+      "rationale": "Preservar intenção H510 confirmada nas imagens. 381mm só sem ventoinhas/radiador frontais; registrar condição.",
+      "sources": [
+        "https://support.nzxt.com/hc/en-us/articles/37464879064347-H510-Series-Specs"
+      ],
+      "price_review_required": true,
+      "benchmark_review_required": true
+    }
+  ]
+}

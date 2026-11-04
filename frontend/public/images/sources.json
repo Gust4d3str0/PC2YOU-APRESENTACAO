@@ -1,0 +1,17 @@
+{
+  "scope": "Official ASUS representative model photos; offer partner and physical revision may differ. Ti 8GB and 16GB share a family photograph.",
+  "sources": {
+    "rtx-5060-8gb": {
+      "page": "https://www.asus.com/motherboards-components/graphics-cards/dual/dual-rtx5060-o8g/",
+      "image": "https://dlcdnwebimgs.asus.com/gain/35710ce7-7a2b-42ab-aa48-63c448e6c047/"
+    },
+    "rtx-5060-ti-8gb": {
+      "page": "https://press.asus.com/news/press-releases/asus-announces-nvidia-ge-force-rtx-5060-5060-ti-graphics-cards/",
+      "image": "https://press.asus.com/assets/w_1024,h_1024/4699a834-7682-4561-a2ef-97c6acb10961/DUAL-RTX5060Ti_2D.png"
+    },
+    "rtx-5060-ti-16gb": {
+      "page": "https://press.asus.com/news/press-releases/asus-announces-nvidia-ge-force-rtx-5060-5060-ti-graphics-cards/",
+      "image": "https://press.asus.com/assets/w_1024,h_1024/4699a834-7682-4561-a2ef-97c6acb10961/DUAL-RTX5060Ti_2D.png"
+    }
+  }
+}

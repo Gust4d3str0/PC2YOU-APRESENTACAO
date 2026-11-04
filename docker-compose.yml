@@ -1,0 +1,191 @@
+# PC2YOU-APRESENTACAO — academic demo stack (DEMO_MODE=true).
+# Differences from the full project: no api-usuarios (no login), read-only demo mode, distinct ports/containers
+# so it can run next to the original, Telegram collector/bot only under the optional `telegram` profile.
+name: pc2you-apresentacao
+
+services:
+  postgres-db:
+    image: postgres:15
+    container_name: pc2you_demo_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-orcapc_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-orcapc_password}
+      POSTGRES_DB: ${POSTGRES_DB:-orcapc_db}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+  mongo-db:
+    image: mongo:7
+    container_name: pc2you_demo_mongo
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+  api-catalogo:
+    build:
+      context: .
+      dockerfile: api-catalogo/Dockerfile
+    container_name: pc2you_demo_api_catalogo
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+    environment:
+      DEMO_MODE: ${DEMO_MODE:-true}
+      MONGO_URI: mongodb://mongo-db:27017
+      MONGO_DB: ${MONGO_DB:-orcapc_catalog}
+      MERCADO_LIVRE_ACCESS_TOKEN: ${MERCADO_LIVRE_ACCESS_TOKEN:-}
+      MERCADO_LIVRE_REFRESH_TOKEN: ${MERCADO_LIVRE_REFRESH_TOKEN:-}
+      MERCADO_LIVRE_CLIENT_ID: ${MERCADO_LIVRE_CLIENT_ID:-}
+      MERCADO_LIVRE_CLIENT_SECRET: ${MERCADO_LIVRE_CLIENT_SECRET:-}
+      MERCADO_LIVRE_TOKEN_FILE: /data/ml/tokens.json
+      PC2YOU_ML_PRODUCT_CACHE_TTL_HOURS: ${PC2YOU_ML_PRODUCT_CACHE_TTL_HOURS:-24}
+      JWT_SECRET: ${JWT_SECRET:-demo-mode-no-login-placeholder}
+      JWT_ALGORITHM: HS256
+      ADMIN_API_KEY: ${ADMIN_API_KEY:-}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5174,http://127.0.0.1:5174}
+      CATALOG_MAX_PAGE_SIZE: ${CATALOG_MAX_PAGE_SIZE:-100}
+      CATALOG_MAX_BATCH_SIZE: ${CATALOG_MAX_BATCH_SIZE:-100}
+      CATALOG_MAX_SEARCH_LENGTH: ${CATALOG_MAX_SEARCH_LENGTH:-120}
+    ports:
+      - "${DEMO_CATALOG_PORT:-8012}:8000"
+    volumes:
+      - ml_tokens:/data/ml
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/live', timeout=2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+  # Hosts the AI routes (/ai/*). Still needs PostgreSQL at boot (Alembic): kept on purpose, see docs/demo/ARCHITECTURE.md.
+  api-orcamentos:
+    build:
+      context: .
+      dockerfile: api-orcamentos/Dockerfile
+    container_name: pc2you_demo_api_ia
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+      api-catalogo:
+        condition: service_healthy
+    environment:
+      DEMO_MODE: ${DEMO_MODE:-true}
+      POSTGRES_USER: ${POSTGRES_USER:-orcapc_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-orcapc_password}
+      POSTGRES_DB: ${POSTGRES_DB:-orcapc_db}
+      POSTGRES_HOST: postgres-db
+      POSTGRES_PORT: 5432
+      CATALOG_API_URL: http://api-catalogo:8000
+      MONGO_URI: mongodb://mongo-db:27017
+      MONGO_DB: ${MONGO_DB:-orcapc_catalog}
+      JWT_SECRET: ${JWT_SECRET:-demo-mode-no-login-placeholder}
+      JWT_ALGORITHM: HS256
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5174,http://127.0.0.1:5174}
+      CATALOG_CONNECT_TIMEOUT: ${CATALOG_CONNECT_TIMEOUT:-2}
+      CATALOG_READ_TIMEOUT: ${CATALOG_READ_TIMEOUT:-8}
+      CATALOG_RETRIES: ${CATALOG_RETRIES:-2}
+      AI_ENABLED: ${AI_ENABLED:-false}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      AI_TIMEOUT_SECONDS: ${AI_TIMEOUT_SECONDS:-45}
+      AI_CACHE_TTL_SECONDS: ${AI_CACHE_TTL_SECONDS:-300}
+      AI_REQUESTS_PER_MINUTE: ${AI_REQUESTS_PER_MINUTE:-10}
+      AI_DEBUG_VALIDATION: ${AI_DEBUG_VALIDATION:-false}
+    ports:
+      - "${DEMO_AI_PORT:-8013}:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/live', timeout=2)"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_DEMO_MODE: ${DEMO_MODE:-true}
+        VITE_CATALOG_API_URL: ${PUBLIC_CATALOG_API_URL:-http://localhost:8012}
+        VITE_BUDGETS_API_URL: ${PUBLIC_AI_API_URL:-http://localhost:8013}
+    container_name: pc2you_demo_frontend
+    depends_on:
+      api-catalogo:
+        condition: service_healthy
+      api-orcamentos:
+        condition: service_healthy
+    ports:
+      - "${DEMO_FRONTEND_PORT:-5174}:5173"
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+  # Optional (not needed for the presentation: stored data is demonstrated).
+  telegram-collector:
+    build: ./services
+    profiles: [telegram]
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+    environment:
+      MONGO_URI: mongodb://mongo-db:27017
+      MONGO_DB: ${MONGO_DB:-orcapc_catalog}
+      TELEGRAM_API_ID: ${TELEGRAM_API_ID:-}
+      TELEGRAM_API_HASH: ${TELEGRAM_API_HASH:-}
+      TELEGRAM_PHONE: ${TELEGRAM_PHONE:-}
+      TELEGRAM_ALLOWED_CHATS: ${TELEGRAM_ALLOWED_CHATS:-}
+      TELEGRAM_HISTORY_LIMIT: ${TELEGRAM_HISTORY_LIMIT:-100}
+      TELEGRAM_SESSION_PATH: /data/telegram/pc2you
+    volumes:
+      - telegram_sessions:/data/telegram
+    restart: unless-stopped
+    stop_grace_period: 20s
+    networks:
+      - demo-network
+
+  telegram-bot:
+    build: ./services
+    profiles: [telegram]
+    command: ["python", "-m", "services.telegram_bot.bot"]
+    depends_on:
+      mongo-db:
+        condition: service_healthy
+    environment:
+      MONGO_URI: mongodb://mongo-db:27017
+      MONGO_DB: ${MONGO_DB:-orcapc_catalog}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_ALLOWED_CHATS: ${TELEGRAM_ALLOWED_CHATS:-}
+      TELEGRAM_ALLOWED_USERS: ${TELEGRAM_ALLOWED_USERS:-}
+      TELEGRAM_ALERT_DEDUP_HOURS: ${TELEGRAM_ALERT_DEDUP_HOURS:-6}
+      TELEGRAM_NOTIFICATION_POLL_SECONDS: ${TELEGRAM_NOTIFICATION_POLL_SECONDS:-10}
+    restart: unless-stopped
+    networks:
+      - demo-network
+
+volumes:
+  postgres_data:
+  mongo_data:
+  telegram_sessions:
+  ml_tokens:
+
+networks:
+  demo-network:
+    driver: bridge

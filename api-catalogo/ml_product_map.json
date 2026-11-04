@@ -1,0 +1,161 @@
+{
+  "_comment": "Curated links: internal component_id -> Mercado Livre PRODUCT_IDs (/p/MLB...). Each pair was found with the official /products/search (domain-filtered), accepted by the PC2YOU matcher without conflicts (model, variant, capacity, category) and by the product-domain guard. Generic class components (e.g. 'B550 AM4 DDR4' boards) and variant-ambiguous ones (NZXT H510 vs H510 Flow, Corsair H150i LCD/White) are deliberately NOT mapped. Review before adding more: scripts/enrich_mercado_livre_products.py --suggest. Real Telegram links are all meli.la affiliate redirects without a /p/ id today, so this file is the only source of PRODUCT_IDs for now.",
+  "components": {
+    "rtx-5060-ti-8gb": [
+      "MLB78085963"
+    ],
+    "rtx-5060-ti-16gb": [
+      "MLB70362477"
+    ],
+    "rtx-5060-8gb": [
+      "MLB69967663"
+    ],
+    "rtx-5050-8gb": [
+      "MLB54179883"
+    ],
+    "rtx-3070": [
+      "MLB29786974"
+    ],
+    "rx-9070-xt-16gb": [
+      "MLB47381953"
+    ],
+    "ryzen-7-7800x3d": [
+      "MLB22826887"
+    ],
+    "ryzen-7-9800x3d": [
+      "MLB44455598"
+    ],
+    "ryzen-7-5800x3d": [
+      "MLB75448717"
+    ],
+    "ryzen-7-5700x": [
+      "MLB53410760"
+    ],
+    "ryzen-7-7700": [
+      "MLB69750845"
+    ],
+    "ryzen-7-9700x": [
+      "MLB80105267"
+    ],
+    "ryzen-9-7900": [
+      "MLB61075833"
+    ],
+    "ryzen-5-9600x": [
+      "MLB39391929"
+    ],
+    "ryzen-5-5500x3d": [
+      "MLB52967964"
+    ],
+    "ssd-wd-green-wds200t5g0a-2tb": [
+      "MLB54224880"
+    ],
+    "intel-i5-14600k": [
+      "MLB28087623"
+    ],
+    "intel-i5-12400f": [
+      "MLB18733972"
+    ],
+    "ryzen-5-5600": [
+      "MLB23888602"
+    ],
+    "ryzen-9-7950x": [
+      "MLB19711891"
+    ],
+    "intel-i5-13400f": [
+      "MLB36466504"
+    ],
+    "intel-i7-13700k": [
+      "MLB19917322"
+    ],
+    "intel-i9-13900ks": [
+      "MLB22258347"
+    ],
+    "intel-i9-14900k": [
+      "MLB27830801"
+    ],
+    "ryzen-3-5300g": [
+      "MLB40718410"
+    ],
+    "ryzen-5-5500": [
+      "MLB19444510"
+    ],
+    "ryzen-9-5900x": [
+      "MLB17083418"
+    ],
+    "ryzen-9-5950x": [
+      "MLB17774865"
+    ],
+    "ryzen-5-7600x": [
+      "MLB49466419"
+    ],
+    "ryzen-9-7900x": [
+      "MLB24593747"
+    ],
+    "ryzen-9-9950x": [
+      "MLB40902986"
+    ],
+    "ryzen-5-8400f": [
+      "MLB53500536"
+    ],
+    "ryzen-5-8600g": [
+      "MLB32470567"
+    ],
+    "ryzen-7-5700": [
+      "MLB31054937"
+    ],
+    "ryzen-7-5800xt": [
+      "MLB38775722"
+    ],
+    "ryzen-9-5900xt": [
+      "MLB38775549"
+    ],
+    "intel-i5-14600kf": [
+      "MLB27860992"
+    ],
+    "rtx-4060": [
+      "MLB27240279"
+    ],
+    "rtx-4070": [
+      "MLB28590231"
+    ],
+    "rtx-5070": [
+      "MLB62229028"
+    ],
+    "rtx-5070-ti": [
+      "MLB47363066"
+    ],
+    "rtx-5080": [
+      "MLB47441661"
+    ],
+    "rtx-5090": [
+      "MLB51239787"
+    ],
+    "rx-6600": [
+      "MLB18564282"
+    ],
+    "rx-6650-xt": [
+      "MLB34774985"
+    ],
+    "rx-7600": [
+      "MLB64181273"
+    ],
+    "rx-7700-xt": [
+      "MLB27504713"
+    ],
+    "rx-7800-xt": [
+      "MLB44828472"
+    ],
+    "rx-7900-xtx": [
+      "MLB28288287"
+    ],
+    "rx-9060-xt-16gb": [
+      "MLB63230838"
+    ],
+    "ssd-nvme-500gb": [
+      "MLB62661365"
+    ],
+    "cooler-noctua-nhd15": [
+      "MLB36244248"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-04",
+  "suites": {
+    "api-catalogo": 397,
+    "api-orcamentos": 232,
+    "services": 488,
+    "frontend": 28
+  },
+  "passed": 1145,
+  "skipped": 1,
+  "lint": "OK",
+  "build": "OK"
+}
