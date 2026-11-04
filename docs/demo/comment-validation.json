@@ -1,0 +1,18 @@
+{
+  "snippets": 29,
+  "sourceLines": 588,
+  "viewports": [
+    "1920x1080",
+    "1366x768"
+  ],
+  "errors": [],
+  "checks": [
+    "toggle",
+    "source preserved",
+    "all guides",
+    "tab selection",
+    "preference shared",
+    "drawer close",
+    "no horizontal page overflow"
+  ]
+}

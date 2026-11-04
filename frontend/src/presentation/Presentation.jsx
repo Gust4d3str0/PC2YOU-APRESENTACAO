@@ -1,10 +1,11 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useId, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PresentationContext } from './context';
 import { SECTIONS, LIMITATIONS, QUALITY } from './data';
 import snippets from './snippets.json';
 import verification from './verification.json';
 import Code from './highlight';
+import { getSnippetGuide } from './snippetGuides';
 import { ArchitectureSection, FlowSection } from './Architecture';
 import { AiOverviewSection, AiAnalyzeSection, AiUpgradesSection, LiveAi } from './AiSections';
 import { MatcherSection, TelegramSection, MercadoLivreSection, DatabaseSection, IntegrationStatus } from './DataSections';
@@ -12,9 +13,33 @@ import './presentation.css';
 
 function CodeExplorer({ selectedId, onSelect }) {
   const selected = snippets.find(s => s.id === selectedId) || snippets[0];
-  const [tab, setTab] = useState(null);
-  const currentTab = tab || selected.tab;
-  return <div className="pz-explorer"><div className="pz-chips">{[...new Set(snippets.map(s => s.tab))].map(t => <button key={t} className={`pz-chip${currentTab === t ? ' on' : ''}`} onClick={() => setTab(t)}>{t === 'React' ? 'Frontend' : t}</button>)}</div><div className="pz-chips">{snippets.filter(s => s.tab === currentTab).map(s => <button key={s.id} className={`pz-chip${selected.id === s.id ? ' on' : ''}`} onClick={() => { setTab(null); onSelect(s.id); }}>{s.title}</button>)}</div><h3>{selected.title}</h3><p>{selected.explanation}</p><p className="pz-file">{selected.file}:{selected.start}–{selected.end}</p><Code code={selected.code} start={selected.start} language={selected.language} /><dl><dt>Entrada</dt><dd>{selected.input}</dd><dt>Saída</dt><dd>{selected.output}</dd></dl></div>;
+  const { showCodeComments, setShowCodeComments } = useContext(PresentationContext);
+  const codeId = useId();
+  const guide = getSnippetGuide(selected);
+  const currentTab = selected.tab;
+  return (
+    <div className="pz-explorer">
+      <div className="pz-chips" aria-label="Áreas do código">
+        {[...new Set(snippets.map(s => s.tab))].map(t => <button key={t} className={`pz-chip${currentTab === t ? ' on' : ''}`} onClick={() => { onSelect(snippets.find(s => s.tab === t).id); }}>{t === 'React' ? 'Frontend' : t}</button>)}
+      </div>
+      <div className="pz-chips" aria-label="Trechos disponíveis">
+        {snippets.filter(s => s.tab === currentTab).map(s => <button key={s.id} className={`pz-chip${selected.id === s.id ? ' on' : ''}`} onClick={() => { onSelect(s.id); }}>{s.title}</button>)}
+      </div>
+      <h3>{selected.title}</h3>
+      <div className="pz-code-intro">
+        <p><strong>O que faz</strong>{guide?.summary || selected.explanation}</p>
+        {guide && <><p><strong>Por que existe</strong>{guide.purpose}</p><p className="pz-code-example"><strong>Na prática</strong>{guide.example}</p></>}
+      </div>
+      <div className="pz-code-toolbar">
+        <div><p className="pz-file">{selected.file}:{selected.start}–{selected.end}</p><span className="pz-code-caption">{showCodeComments ? 'Leitura guiada · explicação abaixo de cada linha' : 'Código original · numeração do arquivo'}</span></div>
+        <button type="button" className={`pz-btn pz-comment-toggle${showCodeComments ? ' enabled' : ''}`} aria-pressed={showCodeComments} aria-controls={codeId} disabled={!guide} onClick={() => setShowCodeComments(value => !value)}>
+          <span aria-hidden="true">{showCodeComments ? '◉' : '◎'}</span>{showCodeComments ? 'Ocultar comentários' : 'Exibir comentários'}
+        </button>
+      </div>
+      <Code id={codeId} code={selected.code} start={selected.start} language={selected.language} annotations={showCodeComments ? guide?.lines : undefined} />
+      <dl className="pz-code-contract"><div><dt>O que recebe</dt><dd>{selected.input}</dd></div><div><dt>O que entrega</dt><dd>{selected.output}</dd></div></dl>
+    </div>
+  );
 }
 
 function Intro() {
@@ -51,6 +76,7 @@ export default function Presentation() {
   const [index, setIndex] = useState(() => Math.max(0, SECTIONS.findIndex(s => s.id === window.location.hash.slice(1))));
   const [selectedCode, selectCode] = useState(snippets[0].id);
   const [drawer, setDrawer] = useState(false);
+  const [showCodeComments, setShowCodeComments] = useState(false);
   const [lastAi, setLastAi] = useState(null);
   const [fullscreenError, setFullscreenError] = useState('');
   const main = useRef(null), closeButton = useRef(null), restoreFocus = useRef(null);
@@ -77,7 +103,7 @@ export default function Presentation() {
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus(); }
     if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus(); }
   }
-  return <PresentationContext.Provider value={{ openCode, lastAi, setLastAi, goTo }}><div className="pz-app">
+  return <PresentationContext.Provider value={{ openCode, lastAi, setLastAi, goTo, showCodeComments, setShowCodeComments }}><div className="pz-app">
     <aside className="pz-sidebar" inert={drawer ? '' : undefined}><Link className="pz-brand" to="/">▣ PC<span>2</span>YOU<small>POR DENTRO DO SISTEMA</small></Link><div className="pz-sidebar-label">ROTEIRO DA APRESENTAÇÃO</div><nav aria-label="Seções da apresentação">{SECTIONS.map((s, i) => <button key={s.id} className={i === index ? 'active' : ''} aria-current={i === index ? 'step' : undefined} onClick={() => setIndex(i)}><span>{s.number}</span>{s.title}</button>)}</nav><Link className="pz-home" to="/">↗ Abrir o catálogo</Link></aside>
     <div className="pz-workspace" inert={drawer ? '' : undefined}><header className="pz-topbar"><span><span className="pz-dot" /> MODO APRESENTAÇÃO</span><div><button className="pz-btn" onClick={() => openCode(selectedCode)}>&lt;/&gt; Código real</button><button className="pz-btn" onClick={fullscreen}>⛶ Tela cheia</button></div></header>{fullscreenError && <p role="status">{fullscreenError}</p>}
     <main ref={main} className="pz-main"><div className="pz-section-label">PC2YOU / {section.number} — {SECTIONS.length}</div><h1>{section.title}</h1><SectionContent key={section.id} id={section.id} selectedCode={selectedCode} selectCode={selectCode} /></main>

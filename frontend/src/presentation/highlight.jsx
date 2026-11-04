@@ -27,24 +27,34 @@ function tokenize(line) {
   return parts;
 }
 
-export default function Code({ code, start = 1, language = 'python' }) {
+function SourceLine({ line, language }) {
+  return language === 'text' ? line : tokenize(line).map((part, i) => (
+    <Fragment key={i}>{part.type ? <span className={`tk-${part.type}`}>{part.text}</span> : part.text}</Fragment>
+  ));
+}
+
+export default function Code({ id, code, start = 1, language = 'python', annotations }) {
   const lines = String(code || '').split('\n');
-  return (
-    <pre className={`pz-code lang-${language}`} tabIndex={0}>
-      <code>
+  if (annotations) {
+    return (
+      <div id={id} className={`pz-code pz-code-explained lang-${language}`} tabIndex={0} role="region" aria-label="Código com explicações linha por linha">
         {lines.map((line, index) => (
-          <div className="pz-line" key={index}>
-            <span className="pz-ln">{start + index}</span>
-            <span className="pz-src">
-              {language === 'text' ? line : tokenize(line).map((part, i) => (
-                <Fragment key={i}>{part.type ? <span className={`tk-${part.type}`}>{part.text}</span> : part.text}</Fragment>
-              ))}
-              {'\n'}
-            </span>
+          <div className={`pz-annotated-line${line.trim() ? '' : ' blank'}`} data-source-line={start + index} key={index}>
+            <div className="pz-line"><span className="pz-ln" aria-label={`Linha ${start + index}`}>{start + index}</span><code className="pz-src"><SourceLine line={line || ' '} language={language} /></code></div>
+            {line.trim() && <p className="pz-line-note"><span className="pz-note-label">EXPLICAÇÃO</span>{annotations[index]}</p>}
           </div>
         ))}
-      </code>
+      </div>
+    );
+  }
+  return (
+    <pre id={id} className={`pz-code lang-${language}`} tabIndex={0}>
+      <code>{lines.map((line, index) => (
+        <div className="pz-line" key={index}>
+          <span className="pz-ln">{start + index}</span>
+          <span className="pz-src"><SourceLine line={line} language={language} />{'\n'}</span>
+        </div>
+      ))}</code>
     </pre>
   );
 }
-

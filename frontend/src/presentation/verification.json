@@ -4,9 +4,9 @@
     "api-catalogo": 397,
     "api-orcamentos": 232,
     "services": 488,
-    "frontend": 28
+    "frontend": 61
   },
-  "passed": 1145,
+  "passed": 1178,
   "skipped": 1,
   "lint": "OK",
   "build": "OK"

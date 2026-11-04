@@ -67,3 +67,14 @@ O total histórico 1131 do original inclui 11 testes de api-usuarios, serviço a
 Configuração privada local preparada no .env da cópia, ignorado pelo Git/build. Nenhum segredo foi incluído nos documentos. Telegram opcional segue offline nesta demo; para mensagens novas é necessária sessão independente. Ofertas armazenadas envelhecem e não são apresentadas como verificadas agora. Gemini pode falhar por rede/cota/validação; o fallback é identificado. PostgreSQL permanece necessário no boot. APIs IA públicas têm rate limit por worker. Publicação em domínio externo requer URLs públicas, CORS e HTTPS conforme DEPLOY.md.
 
 Documentos: README-DEMO.md, ARCHITECTURE.md, FEATURES.md, PRESENTATION_ROUTE.md, DEPLOY.md e KNOWN_LIMITATIONS.md.
+
+
+## Atualização do explorador de código em 04/11/2026
+
+Foram incluídos comentários didáticos em português para as 588 linhas dos 29 snippets. O botão Exibir comentários / Ocultar comentários funciona na seção Código real e no drawer aberto pelos diagramas. O estado é compartilhado durante a apresentação. Linhas em branco preservam separação visual, sem comentários repetitivos na interface.
+
+Os resumos agora distinguem O que faz, Por que existe e Na prática. As anotações ficam separadas do código, com correspondência ao conteúdo exato para impedir explicações desatualizadas. O modo guiado preserva numeração, syntax highlighting e código original. As abas passam a selecionar um trecho da área escolhida imediatamente.
+
+Validação da melhoria: 61 testes de frontend passaram (33 novos), lint e build aprovados, imagem frontend reconstruída e 29 snippets verificados em 1920×1080 e 1366×768. Teste de navegador conferiu fonte de cada linha, cobertura dos comentários, alternância, estado compartilhado, troca de abas e fechamento do painel. Evidências em comment-validation.json e screenshots/codigo-com-comentarios-* e codigo-sem-comentarios-*.
+
+Os resultados Python anteriores permanecem como registro das suítes do backend, que não recebeu alterações nesta melhoria. O painel de qualidade soma esses resultados aos 61 testes atuais do frontend: 1.178 passaram e 1 skipped.
