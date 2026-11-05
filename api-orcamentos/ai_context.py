@@ -6,6 +6,7 @@ from copy import deepcopy
 
 import compatibility
 from ai.schemas import AnalyzePCRequest, technical_text
+from product_matching.normalization import named_brands, normalize_brand, normalize_text
 
 
 # Only these technical fields cross the provider boundary. No descriptions, URLs or accounts.
@@ -51,17 +52,45 @@ def _fields(item, section, allowed):
 
 
 def normalize(value):
-    return re.sub(r"[^\w]", "", value.casefold())
+    return re.sub(r"[^a-z0-9]", "", normalize_text(value))
 
 
-def canonical_name(value):
-    value = re.sub(r"^(?:AMD|Intel|NVIDIA|GeForce|Placa[- ]mãe|Placa de vídeo)\s+", "", value, flags=re.I)
-    return normalize(value)
+def canonical_name(value, brands):
+    words = re.sub(r"[.,]", " ", normalize_text(value)).split()
+    # Only remove brands belonging to this catalog identity (including existing
+    # aliases such as WD). A different manufacturer remains a mismatch.
+    for size in (2, 1):
+        index = 0
+        while index < len(words):
+            if normalize_brand(" ".join(words[index:index + size])) in brands:
+                del words[index:index + size]
+            else:
+                index += 1
+    value = " ".join(words)
+    value = re.sub(r"\bgeforce\b", " ", value)
+    return re.sub(r"^(?:placa mae|placa de video|processador)\s+", "", value).strip()
+
+
+def _matches_name(name, category, item):
+    if normalize(name) == normalize(str(item.get("id", ""))):
+        return True
+    brands = named_brands(item.get("name")) | {normalize_brand(item.get("brand"))}
+    brands.discard("")
+    if category == "gpu" and re.search(r"\b(?:GeForce|RTX|GTX)\b", item.get("name", ""), re.I):
+        brands.add("nvidia")
+    query = canonical_name(name, brands)
+    candidate = canonical_name(item.get("name", ""), brands)
+    if normalize(query) == normalize(candidate):
+        return True
+    memory = re.search(r"\b(\d+)gb\s*$", query) if category == "gpu" else None
+    return bool(memory and normalize(query[:memory.start()]) == normalize(candidate)
+                and re.match(rf"\s*{memory.group(1)}\s*GB\b",
+                             str((item.get("technical_specs") or {}).get("memory", "")), re.I))
 
 
 def enrich(name, category, catalog):
-    # Search is category-scoped and exact after punctuation/spacing normalization.
-    # Ambiguous / partial names remain user input rather than guesses.
+    # Keep direct IDs fast. Names also need the category snapshot: the catalog's
+    # literal search can miss accents, punctuation, units or a relocated brand.
     query = name
     memory = re.search(r"\s+(\d+)\s*GB\s*$", name, re.I) if category == "gpu" else None
     if memory:
@@ -69,12 +98,14 @@ def enrich(name, category, catalog):
     found = catalog.search_components(category, query)
     if category == "ram":
         found += catalog.search_components("kit-ram", query)
+    if not any(normalize(name) == normalize(str(item.get("id", ""))) for item in found):
+        found += catalog.list_components(category)
+        if category == "ram":
+            found += catalog.list_components("kit-ram")
     found = list({str(item.get("id")): item for item in found}.values())
     matches = [item for item in found
                if item.get("category") in ({"ram", "kit-ram"} if category == "ram" else {category})
-               and (canonical_name(query) == canonical_name(str(item.get("name", "")))
-                    or normalize(name) == normalize(str(item.get("id", ""))))
-               and (not memory or re.match(rf"\s*{memory.group(1)}\s*GB\b", str(item.get("technical_specs", {}).get("memory", "")), re.I))]
+               and _matches_name(name, category, item)]
     if len(matches) != 1:
         return {"name": name, "category": category, "source": "user", "catalog_id": None,
                 "specifications": {}, "compatibility": {}}

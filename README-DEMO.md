@@ -56,3 +56,17 @@ node scripts/validate-browser.cjs
 ```
 
 Resultados, limitações e instruções de deploy: [relatório final](docs/demo/FINAL_DEMO_REPORT.md). Nenhum deploy público foi realizado.
+
+## Hotfix da análise — 05/11/2026
+
+O preset foi validado com sete peças identificadas e sete regras verificadas. Nomes toleram acentos, pontuação, espaços e marca antes/depois do modelo; variantes e ambiguidades continuam não verificadas. Evidências e testes: [hotfix](docs/demo/AI_ANALYZE_HOTFIX.md).
+
+O snapshot e o seed já incluem `max_memory_gb` da B550M, com origem na referência local de demonstração. Bancos persistidos preservam os campos existentes no boot; para completar apenas esse campo ausente, depois de reconstruir a pilha:
+
+```powershell
+docker compose up -d --build api-catalogo api-orcamentos frontend
+docker compose cp scripts/backfill_demo_specs.py api-catalogo:/tmp/backfill_demo_specs.py
+docker compose exec -T api-catalogo python /tmp/backfill_demo_specs.py --mongo-uri mongodb://mongo-db:27017 --apply
+```
+
+Sem `--apply`, o script apenas informa mudanças. Ele não insere peças nem substitui valores preenchidos.

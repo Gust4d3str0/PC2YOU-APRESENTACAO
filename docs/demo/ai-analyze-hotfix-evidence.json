@@ -1,0 +1,602 @@
+{
+  "recorded_at": "2026-11-05",
+  "scope": "Actual FastAPI route via TestClient and actual Gemini. Catalog HTTP transport replaced with the local repository JSONL snapshot because Docker is stopped. No external component data sources.",
+  "before": {
+    "method": "POST",
+    "path": "/ai/analyze-pc",
+    "transport": "FastAPI TestClient, actual route + Gemini; catalog transport: repository JSONL snapshot (Docker unavailable)",
+    "request": {
+      "components": {
+        "cpu": "Ryzen 5 5600 AMD",
+        "gpu": "GeForce RTX 3060 12 GB",
+        "motherboard": "GIGABYTE Placa mae B550M AM4 DDR4",
+        "ram": "Fury Beast 16 GB DDR4 3200 MHz Kingston",
+        "storage": [
+          "Kingston NV3 1TB NVMe M.2"
+        ],
+        "psu": "Fonte 650W 80 Plus Bronze",
+        "case": "Gabinete Gamer Rise Mode Glass"
+      },
+      "usage": [
+        "gaming"
+      ],
+      "resolution": "1080p",
+      "refresh_rate": 144,
+      "monitor": null,
+      "games": [],
+      "upgrade_budget": null
+    },
+    "status_code": 200,
+    "response": {
+      "analysis": {
+        "summary": "O computador apresenta uma base moderna para jogos em alta taxa de atualizacao, unindo componentes equilibrados para o perfil informado. Confira as verificacoes do sistema para mais detalhes.",
+        "overall_rating": "attention",
+        "balance": {
+          "status": "attention",
+          "explanation": "Existe uma distribuicao adequada entre o processador e a placa de video, embora alguns itens dependam de confirmacoes adicionais do catalogo. Confira as verificacoes do sistema."
+        },
+        "primary_limit": {
+          "component": "unknown",
+          "confidence": "low",
+          "explanation": "A limitacao principal depende do cenario de uso escolhido, sem estrangulamentos criticos evidentes na configuracao atual. Confira as verificacoes do sistema."
+        },
+        "strengths": [
+          "Presenca de armazenamento em estado solido moderno e rapido",
+          "Capacidade de memoria adequada para tarefas atuais e jogos",
+          "Fonte com margem saudavel para o consumo atual"
+        ],
+        "weaknesses": [
+          "Alguns componentes nao possuem dados verificados no catalogo",
+          "Ausencia de informacoes completas sobre o socket e capacidade de expansao"
+        ],
+        "upgrade_priorities": [
+          {
+            "priority": 1,
+            "component_type": "gpu",
+            "reason": "Para elevar o desempenho grafico em resolucoes e taxas de atualizacao mais exigentes",
+            "expected_benefit": "Maior taxa de quadros e fluidez em jogos pesados",
+            "budget_relevance": "no_budget",
+            "candidate_id": null
+          },
+          {
+            "priority": 2,
+            "component_type": "cpu",
+            "reason": "Para entregar mais margem de processamento em cenarios dependentes da cpu",
+            "expected_benefit": "Reducao de oscilacoes na taxa de quadros",
+            "budget_relevance": "no_budget",
+            "candidate_id": null
+          }
+        ],
+        "warnings": [
+          "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras.",
+          "Compatibilidade parcial: faltam dados do catalogo para uma ou mais regras"
+        ],
+        "missing_information": [
+          "Processador: especificações não verificadas no catálogo",
+          "Placa-mãe: especificações não verificadas no catálogo",
+          "Memória RAM: especificações não verificadas no catálogo",
+          "Processador: especificacoes nao verificadas no catalogo",
+          "Placa-mae: especificacoes nao verificadas no catalogo",
+          "Memoria RAM: especificacoes nao verificadas no catalogo"
+        ],
+        "final_recommendation": "Recomenda-se validar todas as especificacoes no catalogo para garantir total seguranca e aproveitar ao maximo o monitor atual. Confira as verificacoes do sistema."
+      },
+      "compatibility": {
+        "valid": null,
+        "status": "partial",
+        "issues": [],
+        "warnings": [
+          "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras."
+        ],
+        "checked_rules": [
+          "gpu_power",
+          "gpu_case"
+        ],
+        "unchecked_rules": [
+          "cpu_socket",
+          "ram_type",
+          "ram_slots",
+          "ram_capacity",
+          "board_case"
+        ]
+      },
+      "compatibility_notes": [
+        "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras."
+      ],
+      "components": [
+        {
+          "name": "Ryzen 5 5600 AMD",
+          "category": "cpu",
+          "source": "user",
+          "catalog_id": null,
+          "specifications": {},
+          "compatibility": {}
+        },
+        {
+          "name": "GeForce RTX 3060",
+          "category": "gpu",
+          "source": "catalog",
+          "catalog_id": "rtx-3060",
+          "specifications": {
+            "memory": "12GB GDDR6",
+            "interface": "PCIe 4.0",
+            "power_consumption_watts": 170,
+            "length_mm": 200
+          },
+          "compatibility": {
+            "min_psu_watts": 550
+          }
+        },
+        {
+          "name": "GIGABYTE Placa mae B550M AM4 DDR4",
+          "category": "motherboard",
+          "source": "user",
+          "catalog_id": null,
+          "specifications": {},
+          "compatibility": {}
+        },
+        {
+          "name": "Fury Beast 16 GB DDR4 3200 MHz Kingston",
+          "category": "ram",
+          "source": "user",
+          "catalog_id": null,
+          "specifications": {},
+          "compatibility": {}
+        },
+        {
+          "name": "Kingston NV3 1TB NVMe M.2",
+          "category": "storage",
+          "source": "catalog",
+          "catalog_id": "ssd-nvme-1tb",
+          "specifications": {
+            "capacity": "1TB",
+            "interface": "NVMe PCIe 4.0"
+          },
+          "compatibility": {}
+        },
+        {
+          "name": "Fonte 650W 80 Plus Bronze",
+          "category": "psu",
+          "source": "catalog",
+          "catalog_id": "fonte-650w",
+          "specifications": {
+            "wattage": 650
+          },
+          "compatibility": {}
+        },
+        {
+          "name": "Gabinete Gamer Rise Mode Glass",
+          "category": "case",
+          "source": "catalog",
+          "catalog_id": "gabinete-atx",
+          "specifications": {},
+          "compatibility": {
+            "supported_form_factors": [
+              "ATX",
+              "Micro-ATX",
+              "Mini-ITX"
+            ],
+            "max_gpu_length_mm": 380
+          }
+        }
+      ],
+      "recommended_candidates": [],
+      "upgrade_budget": null,
+      "metadata": {
+        "provider": "gemini",
+        "model": "gemini-3.5-flash-lite",
+        "catalog_matches": 4,
+        "compatibility_checked": true,
+        "cached": false,
+        "prompt_version": "pc-analysis-v1.1"
+      }
+    }
+  },
+  "after": {
+    "method": "POST",
+    "path": "/ai/analyze-pc",
+    "transport": "FastAPI TestClient, actual route + Gemini; catalog transport: repository JSONL snapshot (Docker unavailable)",
+    "request": {
+      "components": {
+        "cpu": "Ryzen 5 5600 AMD",
+        "gpu": "GeForce RTX 3060 12 GB",
+        "motherboard": "GIGABYTE Placa mae B550M AM4 DDR4",
+        "ram": "Fury Beast 16 GB DDR4 3200 MHz Kingston",
+        "storage": [
+          "Kingston NV3 1TB NVMe M.2"
+        ],
+        "psu": "Fonte 650W 80 Plus Bronze",
+        "case": "Gabinete Gamer Rise Mode Glass"
+      },
+      "usage": [
+        "gaming"
+      ],
+      "resolution": "1080p",
+      "refresh_rate": 144,
+      "monitor": null,
+      "games": [],
+      "upgrade_budget": null
+    },
+    "status_code": 200,
+    "response": {
+      "analysis": {
+        "summary": "O computador possui um conjunto equilibrado para jogos na resolucao informada, contando com processador e placa de video modernos, capacidade adequada de memoria e armazenamento rapido em um sistema confiavel.",
+        "overall_rating": "good",
+        "balance": {
+          "status": "balanced",
+          "explanation": "O processador e a placa de video trabalham em harmonia sem gargalos evidentes para a resolucao e frequencia do monitor."
+        },
+        "primary_limit": {
+          "component": "gpu",
+          "confidence": "medium",
+          "explanation": "A placa de video define o limite maximo de desempenho grafico para taxas de atualizacao elevadas em cenarios mais exigentes."
+        },
+        "strengths": [
+          "Processador moderno com excelente eficiencia",
+          "Placa de video com boa capacidade de memoria para jogos atuais",
+          "Memoria rapida e em quantidade adequada para multitarefa",
+          "Armazenamento veloz do tipo NVMe",
+          "Fonte de alimentacao com margem segura para o sistema"
+        ],
+        "weaknesses": [
+          "A capacidade de memoria pode exigir expansao futura dependendo do uso intenso",
+          "A placa de video atual atingira limites em titulos futuros mais pesados"
+        ],
+        "upgrade_priorities": [
+          {
+            "priority": 1,
+            "component_type": "gpu",
+            "reason": "Substituir a placa de video trara o maior salto de desempenho grafico para jogos.",
+            "expected_benefit": "Taxas de quadros mais elevadas e maior estabilidade em resolucoes altas.",
+            "budget_relevance": "save_budget",
+            "candidate_id": null
+          },
+          {
+            "priority": 2,
+            "component_type": "ram",
+            "reason": "Expandir a memoria trara folga em aplicacoes pesadas e multitarefa.",
+            "expected_benefit": "Menor uso do armazenamento como memoria virtual e transicoes mais suaves.",
+            "budget_relevance": "save_budget",
+            "candidate_id": null
+          }
+        ],
+        "warnings": [],
+        "missing_information": [],
+        "final_recommendation": "O sistema atual atende muito bem as necessidades de uso para jogos com boa fluidez. Confira as verificacoes do sistema para garantir o funcionamento correto e planeje melhorias futuras na placa de video se desejar maior desempenho grafico."
+      },
+      "compatibility": {
+        "valid": true,
+        "status": "compatible",
+        "issues": [],
+        "warnings": [],
+        "checked_rules": [
+          "cpu_socket",
+          "ram_type",
+          "ram_slots",
+          "ram_capacity",
+          "gpu_power",
+          "board_case",
+          "gpu_case"
+        ],
+        "unchecked_rules": []
+      },
+      "compatibility_notes": [],
+      "components": [
+        {
+          "name": "AMD Ryzen 5 5600",
+          "category": "cpu",
+          "source": "catalog",
+          "catalog_id": "ryzen-5-5600",
+          "specifications": {
+            "cores": 6,
+            "threads": 12,
+            "tdp_watts": 65
+          },
+          "compatibility": {
+            "socket": "AM4"
+          }
+        },
+        {
+          "name": "GeForce RTX 3060",
+          "category": "gpu",
+          "source": "catalog",
+          "catalog_id": "rtx-3060",
+          "specifications": {
+            "memory": "12GB GDDR6",
+            "interface": "PCIe 4.0",
+            "power_consumption_watts": 170,
+            "length_mm": 200
+          },
+          "compatibility": {
+            "min_psu_watts": 550
+          }
+        },
+        {
+          "name": "Placa-mãe B550M AM4 DDR4",
+          "category": "motherboard",
+          "source": "catalog",
+          "catalog_id": "b550m-am4-ddr4",
+          "specifications": {
+            "memory_slots": 4,
+            "max_memory_gb": 128
+          },
+          "compatibility": {
+            "socket": "AM4",
+            "memory_type": "DDR4",
+            "form_factor": "Micro-ATX"
+          }
+        },
+        {
+          "name": "Kingston Fury Beast 16GB DDR4 3200MHz",
+          "category": "ram",
+          "source": "catalog",
+          "catalog_id": "ram-16gb-ddr4",
+          "specifications": {
+            "capacity": "16GB",
+            "memory_type": "DDR4",
+            "speed": "3200MHz"
+          },
+          "compatibility": {
+            "memory_type": "DDR4"
+          }
+        },
+        {
+          "name": "Kingston NV3 1TB NVMe M.2",
+          "category": "storage",
+          "source": "catalog",
+          "catalog_id": "ssd-nvme-1tb",
+          "specifications": {
+            "capacity": "1TB",
+            "interface": "NVMe PCIe 4.0"
+          },
+          "compatibility": {}
+        },
+        {
+          "name": "Fonte 650W 80 Plus Bronze",
+          "category": "psu",
+          "source": "catalog",
+          "catalog_id": "fonte-650w",
+          "specifications": {
+            "wattage": 650
+          },
+          "compatibility": {}
+        },
+        {
+          "name": "Gabinete Gamer Rise Mode Glass",
+          "category": "case",
+          "source": "catalog",
+          "catalog_id": "gabinete-atx",
+          "specifications": {},
+          "compatibility": {
+            "supported_form_factors": [
+              "ATX",
+              "Micro-ATX",
+              "Mini-ITX"
+            ],
+            "max_gpu_length_mm": 380
+          }
+        }
+      ],
+      "recommended_candidates": [],
+      "upgrade_budget": null,
+      "metadata": {
+        "provider": "gemini",
+        "model": "gemini-3.5-flash-lite",
+        "catalog_matches": 7,
+        "compatibility_checked": true,
+        "cached": false,
+        "prompt_version": "pc-analysis-v1.1"
+      }
+    }
+  },
+  "main_preset_after": {
+    "method": "POST",
+    "path": "/ai/analyze-pc",
+    "transport": "FastAPI TestClient, actual route + Gemini; catalog transport: repository JSONL snapshot (Docker unavailable)",
+    "request": {
+      "components": {
+        "cpu": "AMD Ryzen 5 5600",
+        "gpu": "GeForce RTX 3060 12 GB",
+        "motherboard": "Placa-mãe B550M AM4 DDR4",
+        "ram": "Kingston Fury Beast 16GB DDR4 3200MHz",
+        "storage": [
+          "Kingston NV3 1TB NVMe M.2"
+        ],
+        "psu": "Fonte 650W 80 Plus Bronze",
+        "case": "Gabinete Gamer Rise Mode Glass"
+      },
+      "usage": [
+        "gaming"
+      ],
+      "resolution": "1080p",
+      "refresh_rate": 144,
+      "monitor": null,
+      "games": [],
+      "upgrade_budget": null
+    },
+    "status_code": 200,
+    "response": {
+      "analysis": {
+        "summary": "O sistema atual possui uma combinacao equilibrada de processador e placa de video, adequada para uso em jogos na resolucao informada. A configuracao conta com capacidade solida de memoria e armazenamento rapido, alem de boa margem na fonte de alimentacao.",
+        "overall_rating": "good",
+        "balance": {
+          "status": "balanced",
+          "explanation": "O processador e a placa de video trabalham em harmonia sem apontar gargalos extremos para o perfil de uso voltado a jogos. Confira as verificacoes do sistema para mais detalhes sobre o funcionamento geral."
+        },
+        "primary_limit": {
+          "component": "gpu",
+          "confidence": "medium",
+          "explanation": "A placa de video atual define o limite principal de desempenho em tarefas graficas mais exigentes quando consideramos o uso com telas de alta taxa de atualizacao."
+        },
+        "strengths": [
+          "Processador moderno com boa quantidade de nucleos e threads",
+          "Placa de video com quantidade solida de memoria dedicada",
+          "Quantidade adequada de memoria para multitarefa e jogos atuais",
+          "Armazenamento rapido utilizando tecnologia moderna",
+          "Fonte de alimentacao com capacidade adequada para a configuracao"
+        ],
+        "weaknesses": [
+          "A placa de video pode exigir reducao de qualidade grafica em lancamentos futuros mais pesados",
+          "A capacidade de memoria pode necessitar de expansao em cenarios de uso muito intensivos"
+        ],
+        "upgrade_priorities": [
+          {
+            "priority": 1,
+            "component_type": "gpu",
+            "reason": "Permite elevar a qualidade grafica e manter taxas de quadros elevadas em jogos recentes.",
+            "expected_benefit": "Ganho visivel na nitidez e fluidez grafica em jogos exigentes.",
+            "budget_relevance": "no_budget",
+            "candidate_id": "rtx-4070-super"
+          },
+          {
+            "priority": 2,
+            "component_type": "ram",
+            "reason": "Expandir a capacidade total de memoria melhora a estabilidade ao executar varios programas em paralelo.",
+            "expected_benefit": "Menor oscilacao de desempenho em multitarefa intensa e aplicacoes pesadas.",
+            "budget_relevance": "no_budget",
+            "candidate_id": "ram-32gb-ddr4"
+          }
+        ],
+        "warnings": [],
+        "missing_information": [],
+        "final_recommendation": "O computador esta muito bem dimensionado para a resolucao e frequencia informadas. Considere futuros melhoramentos na placa de video caso deseje alcancar niveis graficos mais altos em jogos recentes. Confira as verificacoes do sistema para certificar-se de todos os detalhes tecnicos."
+      },
+      "compatibility": {
+        "valid": true,
+        "status": "compatible",
+        "issues": [],
+        "warnings": [],
+        "checked_rules": [
+          "cpu_socket",
+          "ram_type",
+          "ram_slots",
+          "ram_capacity",
+          "gpu_power",
+          "board_case",
+          "gpu_case"
+        ],
+        "unchecked_rules": []
+      },
+      "compatibility_notes": [],
+      "components": [
+        {
+          "name": "AMD Ryzen 5 5600",
+          "category": "cpu",
+          "source": "catalog",
+          "catalog_id": "ryzen-5-5600",
+          "specifications": {
+            "cores": 6,
+            "threads": 12,
+            "tdp_watts": 65
+          },
+          "compatibility": {
+            "socket": "AM4"
+          }
+        },
+        {
+          "name": "GeForce RTX 3060",
+          "category": "gpu",
+          "source": "catalog",
+          "catalog_id": "rtx-3060",
+          "specifications": {
+            "memory": "12GB GDDR6",
+            "interface": "PCIe 4.0",
+            "power_consumption_watts": 170,
+            "length_mm": 200
+          },
+          "compatibility": {
+            "min_psu_watts": 550
+          }
+        },
+        {
+          "name": "Placa-mãe B550M AM4 DDR4",
+          "category": "motherboard",
+          "source": "catalog",
+          "catalog_id": "b550m-am4-ddr4",
+          "specifications": {
+            "memory_slots": 4,
+            "max_memory_gb": 128
+          },
+          "compatibility": {
+            "socket": "AM4",
+            "memory_type": "DDR4",
+            "form_factor": "Micro-ATX"
+          }
+        },
+        {
+          "name": "Kingston Fury Beast 16GB DDR4 3200MHz",
+          "category": "ram",
+          "source": "catalog",
+          "catalog_id": "ram-16gb-ddr4",
+          "specifications": {
+            "capacity": "16GB",
+            "memory_type": "DDR4",
+            "speed": "3200MHz"
+          },
+          "compatibility": {
+            "memory_type": "DDR4"
+          }
+        },
+        {
+          "name": "Kingston NV3 1TB NVMe M.2",
+          "category": "storage",
+          "source": "catalog",
+          "catalog_id": "ssd-nvme-1tb",
+          "specifications": {
+            "capacity": "1TB",
+            "interface": "NVMe PCIe 4.0"
+          },
+          "compatibility": {}
+        },
+        {
+          "name": "Fonte 650W 80 Plus Bronze",
+          "category": "psu",
+          "source": "catalog",
+          "catalog_id": "fonte-650w",
+          "specifications": {
+            "wattage": 650
+          },
+          "compatibility": {}
+        },
+        {
+          "name": "Gabinete Gamer Rise Mode Glass",
+          "category": "case",
+          "source": "catalog",
+          "catalog_id": "gabinete-atx",
+          "specifications": {},
+          "compatibility": {
+            "supported_form_factors": [
+              "ATX",
+              "Micro-ATX",
+              "Mini-ITX"
+            ],
+            "max_gpu_length_mm": 380
+          }
+        }
+      ],
+      "recommended_candidates": [
+        {
+          "component_id": "rtx-4070-super",
+          "name": "GeForce RTX 4070 Super",
+          "component_type": "gpu",
+          "price": null
+        },
+        {
+          "component_id": "ram-32gb-ddr4",
+          "name": "Kingston Fury Beast 32GB DDR4 3200MHz",
+          "component_type": "ram",
+          "price": null
+        }
+      ],
+      "upgrade_budget": null,
+      "metadata": {
+        "provider": "gemini",
+        "model": "gemini-3.5-flash-lite",
+        "catalog_matches": 7,
+        "compatibility_checked": true,
+        "cached": false,
+        "prompt_version": "pc-analysis-v1.1"
+      }
+    }
+  }
+}
