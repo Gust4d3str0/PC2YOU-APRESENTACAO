@@ -46,7 +46,7 @@ export default function PCAnalysisResult({ result }) {
         <ul>{result.components.map((c, i) => <li key={i}>{labels[c.category]}: {c.name} — {c.source === 'catalog' ? 'Catálogo' : 'Informado por você; especificações não verificadas'}</li>)}</ul>
       </details>
     </section>
-    <div className="analysis-grid"><TextList title="Alertas" items={a.warnings} /><TextList title="Informações a confirmar" items={a.missing_information} /></div>
+    <div className="analysis-grid"><TextList title="Alertas" items={a.warnings.filter(note => !result.compatibility_notes.includes(note))} /><TextList title="Informações a confirmar" items={a.missing_information} /></div>
     <section className="summary-panel analysis-card analysis-final"><h3>Recomendação final</h3><p>{a.final_recommendation}</p></section>
   </section>;
 }

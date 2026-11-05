@@ -38,7 +38,7 @@ export function AiOverviewSection() {
         <div className="pz-card"><h4>Backend valida</h4><p>Pydantic, tipo/ID/orçamento e uma barreira que rejeita números, preços e modelos que o modelo inventar.</p></div>
       </div>
       <div className="pz-cards">
-        <div className="pz-card"><h4>POST /ai/analyze-pc</h4><p>Diagnóstico do PC atual e prioridades de upgrade. Sem Product Matcher.</p></div>
+        <div className="pz-card"><h4>POST /ai/analyze-pc</h4><p>Diagnóstico do PC atual e prioridades de upgrade. Identificação determinística por nome normalizado.</p></div>
         <div className="pz-card"><h4>POST /ai/recommend-upgrades</h4><p>Substituições concretas com ofertas do Telegram, histórico e compatibilidade combinada. Usa o Product Matcher.</p></div>
       </div>
       <p className="pz-note">Padrões do código: temperatura 0,2, structured output (JSON Schema), timeout 45 s, cache 300 s, 10 chamadas/min. Modelo e limites podem ser configurados; a resposta real informa o modelo utilizado.</p>
@@ -49,11 +49,11 @@ export function AiOverviewSection() {
 export function AiAnalyzeSection() {
   return (
     <>
-      <div className="pz-callout">/ai/analyze-pc <b>NÃO utiliza o Product Matcher.</b> A identificação das peças ocorre em <code>ai_context.enrich</code>: busca no catálogo restrita à categoria, aceita só <b>uma</b> correspondência exata.</div>
+      <div className="pz-callout">A identificação em <code>ai_context.enrich</code> é <b>determinística, sem IA</b>: normaliza nomes com utilitários do Product Matcher e aceita só <b>uma</b> identidade na categoria. Diferenças de acentos, pontuação, espaços e posição da marca são toleradas; variantes e ambiguidades permanecem não verificadas.</div>
       <Flow steps={[
         ['Usuário', 'preenche o formulário em AnalyzePC.jsx', 'react-analyze'],
         ['Pydantic / sanitização', 'AnalyzePCRequest (extra=forbid) + technical_text bloqueia URLs, e-mails, chaves e instruções', 'api-analyze-route'],
-        ['ai_context.enrich', 'cada peça → catálogo (1 match exato) ou “dado do usuário”', 'ai-enrich'],
+        ['ai_context.enrich', 'cada peça → catálogo (1 identidade normalizada) ou “dado do usuário”', 'ai-enrich'],
         ['Compatibilidade por regras', 'socket, memória, slots, potência, gabinete; regra sem dado = não verificada', 'ai-context'],
         ['Candidatos', 'só se todas as regras foram verificadas; até 3 por categoria dentro do orçamento', 'ai-context'],
         ['Prompt estruturado', 'system prompt + trusted_context + user_context (dado, nunca instrução)', 'ai-prompt'],

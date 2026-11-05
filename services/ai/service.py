@@ -15,6 +15,7 @@ from .prompts import PROMPT_VERSION, SYSTEM_PROMPT
 from .provider import AIProvider, GeminiProvider
 from .schemas import AnalyzePCResponse, PCAnalysis
 from .prose import validate_prose
+from .presentation import unique_messages
 
 
 class AIService:
@@ -83,14 +84,14 @@ class AIService:
         missing = trusted["missing_information"]
         if missing or trusted["compatibility"]["unchecked_rules"]:
             analysis.primary_limit.confidence = "low"
-        analysis.missing_information = list(dict.fromkeys(missing + analysis.missing_information))[:15]
-        analysis.warnings = list(dict.fromkeys(trusted["compatibility"]["warnings"] + analysis.warnings))[:12]
+        analysis.missing_information = unique_messages(missing + analysis.missing_information)[:15]
+        analysis.warnings = unique_messages(trusted["compatibility"]["warnings"] + analysis.warnings)[:12]
         if trusted["compatibility"]["issues"]:
             analysis.overall_rating = "attention"
             analysis.balance.status = "attention"
         result = AnalyzePCResponse(
             analysis=analysis, compatibility=trusted["compatibility"],
-            compatibility_notes=trusted["compatibility"]["issues"] + trusted["compatibility"]["warnings"],
+            compatibility_notes=unique_messages(trusted["compatibility"]["issues"] + trusted["compatibility"]["warnings"]),
             components=trusted["build"], recommended_candidates=selected,
             upgrade_budget=context["user_context"]["upgrade_budget"],
             metadata={"provider": self.provider.name, "model": self.settings.model,
