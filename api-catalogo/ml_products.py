@@ -402,6 +402,13 @@ class MercadoLivreProductEnrichment:
             payload.update(match_status=match['status'], match_basis=basis, brand_variant=match['brand_variant'],
                            external_conflict=bool(match['conflicts']))
             self.database['components'].update_one({'id': component['id']}, {'$set': {'external_enrichment.mercado_livre': payload}})
+            # The same deterministic, missing-only mapper used by the catalog backfill.
+            # Re-read so a concurrent manual technical correction always wins.
+            from catalog_specs import plan_backfill
+            from catalog_specs.persistence import write_mongo_plan
+            current = self.database['components'].find_one({'id': component['id']})
+            if current:
+                write_mongo_plan(self.database['components'], current, plan_backfill(current))
             record_state(self.database, {'ml_products_enriched': 1, 'ml_images_added': 1 if payload['images'] else 0,
                                          'ml_specs_added': 1 if payload['specs'] else 0})
         return {'product_id': product_id, 'component_id': component['id'], 'outcome': outcome, 'match': match, 'applied': applied,

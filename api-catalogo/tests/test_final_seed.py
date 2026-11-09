@@ -4,13 +4,16 @@ import seed
 import pytest
 from product_matching.matcher import match_product
 from services import price_summary, _public_component
+from catalog_specs.coverage import audit
+import json
+from pathlib import Path
 
 
 def test_startups_and_module_reload_preserve_all_existing_fields(monkeypatch):
     collection = mongomock.MongoClient().db.components
     collection.create_index('id', unique=True)
     monkeypatch.setattr(seed, 'get_components_collection', lambda: collection)
-    assert seed.seed_components() == 121
+    assert seed.seed_components() == 150
     collection.update_one({'id': 'ryzen-5-7600'}, {'$set': {'name': 'Corrected manually', 'prices': [], 'observations': ['keep'], 'real_image': 'keep'}})
     snapshot = deepcopy(list(collection.find()))
     assert seed.seed_components() == 0
@@ -25,6 +28,14 @@ def test_existing_ids_are_preserved_even_with_empty_or_custom_fields(monkeypatch
     monkeypatch.setattr(seed, 'get_components_collection', lambda: collection)
     seed.seed_components()
     assert collection.find_one({'id': 'ryzen-5-7600'}) == before
+
+
+def test_fresh_mongo_seed_has_the_same_technical_coverage_as_the_backfilled_snapshot(monkeypatch):
+    collection = mongomock.MongoClient().db.components
+    monkeypatch.setattr(seed, 'get_components_collection', lambda: collection)
+    seed.seed_components()
+    snapshot = [json.loads(line) for line in (Path(__file__).resolve().parents[2] / 'demo-data/components.jsonl').read_text(encoding='utf-8').splitlines()]
+    assert audit(list(collection.find()))['categories'] == audit(snapshot)['categories']
 
 
 @pytest.mark.parametrize('title,cid', [('AMD Ryzen 5 7600', 'ryzen-5-7600'),

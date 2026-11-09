@@ -207,7 +207,11 @@ def test_repository_does_not_freeze_status_in_the_database():
     assert 'evaluation' not in database.telegram_promotions.find_one()
 
 
-def test_history_does_not_duplicate_an_identical_observation_the_same_day():
+def test_history_does_not_duplicate_an_identical_observation_the_same_day(monkeypatch):
+    # This test exercises daily deduplication; its fixed announcements must not
+    # expire against the host clock and silently prevent history creation.
+    monkeypatch.setattr('services.telegram_collector.repository.enrich_promotion',
+                        lambda document, catalog: enrich_promotion(document, catalog, now=NOW))
     database = mongomock.MongoClient(tz_aware=True).db
     database.components.insert_many(CATALOG)
     repository = PromotionRepository(database)

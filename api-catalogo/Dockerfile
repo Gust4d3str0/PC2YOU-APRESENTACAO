@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY api-catalogo/ .
 COPY services/product_matching/ ./product_matching/
+COPY services/catalog_specs/ ./catalog_specs/
 # Demo endpoints (/demo/telegram-parse) reuse the real Telegram parser: `services.telegram_collector.*`
 COPY services/telegram_collector/__init__.py services/telegram_collector/parser.py services/telegram_collector/links.py services/telegram_collector/filters.py ./telegram_collector/
 # Sanitized snapshot loaded into an empty database when DEMO_MODE=true

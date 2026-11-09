@@ -1,0 +1,1186 @@
+{
+  "total": 150,
+  "categories": {
+    "cpu": {
+      "total": 40,
+      "complete": 37,
+      "fields": {
+        "compatibility.socket": 40,
+        "technical_specs.cores": 40,
+        "technical_specs.threads": 40,
+        "technical_specs.tdp_watts": 37
+      }
+    },
+    "motherboard": {
+      "total": 27,
+      "complete": 14,
+      "fields": {
+        "compatibility.socket": 27,
+        "compatibility.memory_type": 27,
+        "technical_specs.memory_slots": 17,
+        "technical_specs.max_memory_gb": 18,
+        "compatibility.form_factor": 26
+      }
+    },
+    "ram": {
+      "total": 18,
+      "complete": 18,
+      "fields": {
+        "technical_specs.capacity": 18,
+        "compatibility.memory_type": 18,
+        "technical_specs.speed": 18
+      },
+      "modules_known": 11
+    },
+    "gpu": {
+      "total": 29,
+      "complete": 23,
+      "fields": {
+        "technical_specs.memory": 29,
+        "technical_specs.length_mm": 23,
+        "compatibility.min_psu_watts": 23
+      }
+    },
+    "psu": {
+      "total": 10,
+      "complete": 10,
+      "fields": {
+        "technical_specs.wattage": 10
+      }
+    },
+    "case": {
+      "total": 6,
+      "complete": 6,
+      "fields": {
+        "compatibility.supported_form_factors": 6,
+        "compatibility.max_gpu_length_mm": 6
+      }
+    },
+    "storage": {
+      "total": 11,
+      "complete": 11,
+      "fields": {
+        "technical_specs.capacity": 11,
+        "technical_specs.interface": 11
+      }
+    }
+  },
+  "rules": {
+    "cpu_socket": {
+      "cpu": {
+        "eligible": 40,
+        "total": 40
+      },
+      "motherboard": {
+        "eligible": 27,
+        "total": 27
+      }
+    },
+    "ram_type": {
+      "motherboard": {
+        "eligible": 27,
+        "total": 27
+      },
+      "ram": {
+        "eligible": 18,
+        "total": 18
+      }
+    },
+    "ram_slots": {
+      "motherboard": {
+        "eligible": 17,
+        "total": 27
+      },
+      "ram": {
+        "eligible": 11,
+        "total": 18
+      }
+    },
+    "ram_capacity": {
+      "motherboard": {
+        "eligible": 18,
+        "total": 27
+      },
+      "ram": {
+        "eligible": 18,
+        "total": 18
+      }
+    },
+    "gpu_power": {
+      "gpu": {
+        "eligible": 23,
+        "total": 29
+      },
+      "psu": {
+        "eligible": 10,
+        "total": 10
+      }
+    },
+    "board_case": {
+      "motherboard": {
+        "eligible": 26,
+        "total": 27
+      },
+      "case": {
+        "eligible": 6,
+        "total": 6
+      }
+    },
+    "gpu_case": {
+      "gpu": {
+        "eligible": 23,
+        "total": 29
+      },
+      "case": {
+        "eligible": 6,
+        "total": 6
+      }
+    }
+  },
+  "components": [
+    {
+      "id": "intel-i5-14600k",
+      "name": "Intel Core i5-14600K",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i7-14700k",
+      "name": "Intel Core i7-14700K",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i5-12400f",
+      "name": "Intel Core i5-12400F",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-5600",
+      "name": "AMD Ryzen 5 5600",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-5700x",
+      "name": "AMD Ryzen 7 5700X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-7600",
+      "name": "AMD Ryzen 5 7600",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-7800x3d",
+      "name": "AMD Ryzen 7 7800X3D",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-9-7950x",
+      "name": "AMD Ryzen 9 7950X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i3-12100f",
+      "name": "Intel Core i3-12100F",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i5-13400f",
+      "name": "Intel Core i5-13400F",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i5-14400f",
+      "name": "Intel Core i5-14400F",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i7-13700k",
+      "name": "Intel Core i7-13700K",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i9-13900ks",
+      "name": "Intel Core i9-13900KS",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i9-14900k",
+      "name": "Intel Core i9-14900K",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-3-5300g",
+      "name": "AMD Ryzen 3 5300G",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-5500",
+      "name": "AMD Ryzen 5 5500",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-9-5900x",
+      "name": "AMD Ryzen 9 5900X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-9-5950x",
+      "name": "AMD Ryzen 9 5950X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-7600x",
+      "name": "AMD Ryzen 5 7600X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-9-7900x",
+      "name": "AMD Ryzen 9 7900X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-9800x3d",
+      "name": "AMD Ryzen 7 9800X3D",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-9-9950x",
+      "name": "AMD Ryzen 9 9950X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-5500x3d",
+      "name": "AMD Ryzen 5 5500X3D",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-7500f",
+      "name": "AMD Ryzen 5 7500F",
+      "category": "cpu",
+      "missing": [
+        "technical_specs.tdp_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-8400f",
+      "name": "AMD Ryzen 5 8400F",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-5800x3d",
+      "name": "AMD Ryzen 7 5800X3D",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-8600g",
+      "name": "AMD Ryzen 5 8600G",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-5700",
+      "name": "AMD Ryzen 7 5700",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-5800xt",
+      "name": "AMD Ryzen 7 5800XT",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-7700",
+      "name": "AMD Ryzen 7 7700",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-9-7900",
+      "name": "AMD Ryzen 9 7900",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-9600x",
+      "name": "AMD Ryzen 5 9600X",
+      "category": "cpu",
+      "missing": [
+        "technical_specs.tdp_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-9700x",
+      "name": "AMD Ryzen 7 9700X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-9-5900xt",
+      "name": "AMD Ryzen 9 5900XT",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i5-14600kf",
+      "name": "Intel Core i5-14600KF",
+      "category": "cpu",
+      "missing": [
+        "technical_specs.tdp_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i7-14700kf",
+      "name": "Intel Core i7-14700KF",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-3600",
+      "name": "AMD Ryzen 5 3600",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-5-5600x",
+      "name": "AMD Ryzen 5 5600X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ryzen-7-5800x",
+      "name": "AMD Ryzen 7 5800X",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "intel-i5-13600k",
+      "name": "Intel Core i5-13600K",
+      "category": "cpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "b550-am4-ddr4",
+      "name": "Placa-mãe B550 AM4 DDR4",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "b550m-am4-ddr4",
+      "name": "Placa-mãe B550M AM4 DDR4",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "x570-am4-ddr4",
+      "name": "Placa-mãe X570 AM4 DDR4",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "b650-am5-ddr5",
+      "name": "Placa-mãe B650 AM5 DDR5",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "x670e-am5-ddr5",
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "b760-lga1700-ddr5",
+      "name": "Placa-mãe B760 LGA1700 DDR5",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "z790-lga1700-ddr5",
+      "name": "Placa-mãe Z790 LGA1700 DDR5",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "b660-lga1700-ddr4",
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "a520m-am4-ddr4",
+      "name": "Placa-mae A520M AM4 DDR4 (classe)",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots",
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "b450m-am4-ddr4",
+      "name": "Placa-mae B450M AM4 DDR4 (classe)",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots",
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "b760m-lga1700-ddr4",
+      "name": "Placa-mae B760M LGA1700 DDR4 (classe)",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots",
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "b760m-lga1700-ddr5",
+      "name": "Placa-mae B760M LGA1700 DDR5 (classe)",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots",
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "b850m-am5-ddr5",
+      "name": "Placa-mae B850M AM5 DDR5 (classe)",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots",
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "b840m-am5-ddr5",
+      "name": "Placa-mae B840M AM5 DDR5 (classe)",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots",
+        "technical_specs.max_memory_gb"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-b550m-k",
+      "name": "Gigabyte B550M K",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "asrock-b550-pg-velocita",
+      "name": "ASRock B550 PG VELOCITA",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-b650-gaming-x-ax-v2",
+      "name": "Gigabyte B650 Gaming X AX V2",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "asrock-a520m-hdv",
+      "name": "ASRock A520M-HDV",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "asrock-a620m-c",
+      "name": "ASRock A620M-C",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "foxstar-fs-h610mb-eg",
+      "name": "Foxstar FS-H610MB EG",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-b760m-k-ddr4",
+      "name": "Gigabyte B760M K DDR4",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-b760m-ds3h-ddr5",
+      "name": "Gigabyte B760M DS3H DDR5",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "revenger-g-b450",
+      "name": "Revenger G-B450",
+      "category": "motherboard",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-x570-aorus-ultra",
+      "name": "Gigabyte X570 AORUS ULTRA",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-x670-aorus-elite-ax",
+      "name": "Gigabyte X670 AORUS ELITE AX DDR5",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots",
+        "compatibility.form_factor"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "msi-pro-z690-a-ddr4",
+      "name": "MSI PRO Z690-A DDR4",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-z790-aorus-elite-ax",
+      "name": "Gigabyte Z790 AORUS ELITE AX",
+      "category": "motherboard",
+      "missing": [
+        "technical_specs.memory_slots"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "ram-16gb-ddr4",
+      "name": "Kingston Fury Beast 16GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": false
+    },
+    {
+      "id": "ram-32gb-ddr4",
+      "name": "Kingston Fury Beast 32GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": false
+    },
+    {
+      "id": "ram-16gb-ddr5",
+      "name": "Kingston Fury Beast 16GB DDR5 5600MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": false
+    },
+    {
+      "id": "ram-32gb-ddr5",
+      "name": "Corsair Vengeance 32GB DDR5 6000MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": false
+    },
+    {
+      "id": "ram-64gb-ddr5",
+      "name": "Corsair Vengeance 64GB DDR5 5600MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": false
+    },
+    {
+      "id": "kit-ram-16gb-ddr4-3200",
+      "name": "Corsair Vengeance LPX 16GB 2x8GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kit-ram-32gb-ddr4-3600",
+      "name": "Corsair Vengeance LPX 32GB 2x16GB DDR4 3600MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kit-ram-64gb-ddr4-3200",
+      "name": "Kingston Fury Beast 64GB 2x32GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kit-ram-32gb-ddr5-6000",
+      "name": "Corsair Vengeance 32GB 2x16GB DDR5 6000MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kit-ram-64gb-ddr5-6000",
+      "name": "Kingston Fury Beast 64GB 2x32GB DDR5 6000MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kit-ram-96gb-ddr5-6400",
+      "name": "Corsair Vengeance 96GB 2x48GB DDR5 6400MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "ram-8gb-ddr4",
+      "name": "Kingston Fury Beast 8GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": false
+    },
+    {
+      "id": "ram-8gb-ddr5",
+      "name": "Crucial 8GB DDR5 4800MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": false
+    },
+    {
+      "id": "kingston-kvr26n19s8-8",
+      "name": "Kingston ValueRAM KVR26N19S8/8 8GB DDR4 2666MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kingston-kf432c16bb-8",
+      "name": "Kingston Fury Beast KF432C16BB/8 8GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kingston-kf432c16bb-16",
+      "name": "Kingston Fury Beast KF432C16BB/16 16GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kingston-kf432c16bb-32",
+      "name": "Kingston Fury Beast KF432C16BB/32 32GB DDR4 3200MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "kingston-kf556c40bb-16",
+      "name": "Kingston Fury Beast KF556C40BB-16 16GB DDR5 5600MHz",
+      "category": "ram",
+      "missing": [],
+      "modules_known": true
+    },
+    {
+      "id": "rtx-4060",
+      "name": "GeForce RTX 4060",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-4070-super",
+      "name": "GeForce RTX 4070 Super",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-4080-super",
+      "name": "GeForce RTX 4080 Super",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5090",
+      "name": "GeForce RTX 5090",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rx-7600",
+      "name": "Radeon RX 7600",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rx-7800-xt",
+      "name": "Radeon RX 7800 XT",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-3060",
+      "name": "GeForce RTX 3060",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-3070",
+      "name": "GeForce RTX 3070",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-3080",
+      "name": "GeForce RTX 3080",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-4060-ti",
+      "name": "GeForce RTX 4060 Ti",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-4070",
+      "name": "GeForce RTX 4070",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-4090",
+      "name": "GeForce RTX 4090",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5070",
+      "name": "GeForce RTX 5070",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5070-ti",
+      "name": "GeForce RTX 5070 Ti",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5080",
+      "name": "GeForce RTX 5080",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rx-6600",
+      "name": "Radeon RX 6600",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rx-6650-xt",
+      "name": "Radeon RX 6650 XT",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rx-7700-xt",
+      "name": "Radeon RX 7700 XT",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rx-7900-gre",
+      "name": "Radeon RX 7900 GRE",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rx-7900-xtx",
+      "name": "Radeon RX 7900 XTX",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5050-8gb",
+      "name": "GeForce RTX 5050 8GB",
+      "category": "gpu",
+      "missing": [
+        "technical_specs.length_mm",
+        "compatibility.min_psu_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5060-8gb",
+      "name": "GeForce RTX 5060 8GB",
+      "category": "gpu",
+      "missing": [
+        "technical_specs.length_mm",
+        "compatibility.min_psu_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5060-ti-8gb",
+      "name": "GeForce RTX 5060 Ti 8GB",
+      "category": "gpu",
+      "missing": [
+        "technical_specs.length_mm",
+        "compatibility.min_psu_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "rtx-5060-ti-16gb",
+      "name": "GeForce RTX 5060 Ti 16GB",
+      "category": "gpu",
+      "missing": [
+        "technical_specs.length_mm",
+        "compatibility.min_psu_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "rx-9060-xt-16gb",
+      "name": "Radeon RX 9060 XT 16GB",
+      "category": "gpu",
+      "missing": [
+        "technical_specs.length_mm",
+        "compatibility.min_psu_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "rx-9070-xt-16gb",
+      "name": "Radeon RX 9070 XT 16GB",
+      "category": "gpu",
+      "missing": [
+        "technical_specs.length_mm",
+        "compatibility.min_psu_watts"
+      ],
+      "modules_known": null
+    },
+    {
+      "id": "palit-rtx-5050-dual-8gb",
+      "name": "Palit GeForce RTX 5050 Dual 8GB NE65050019P1-GB2070D",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-rtx-5060-ti-windforce-max-oc-8gb",
+      "name": "Gigabyte RTX 5060 Ti WINDFORCE MAX OC 8GB GV-N506TWF2MAX-OC-8GD",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gigabyte-rtx-2060-d6-6gb-rev2",
+      "name": "Gigabyte RTX 2060 D6 6GB GV-N2060D6-6GD rev. 2.0",
+      "category": "gpu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "fonte-650w",
+      "name": "Fonte 650W 80 Plus Bronze",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "fonte-750w",
+      "name": "Fonte 750W 80 Plus Gold",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "fonte-850w",
+      "name": "Fonte 850W 80 Plus Gold",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "fonte-1000w",
+      "name": "Fonte 1000W 80 Plus Gold",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "fonte-1200w",
+      "name": "Fonte 1200W 80 Plus Platinum",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "fonte-550w",
+      "name": "Fonte 550W 80 Plus Bronze",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "fonte-1100w",
+      "name": "Fonte 1100W 80 Plus Gold",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "corsair-cv450",
+      "name": "Corsair CV450",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "corsair-cx500",
+      "name": "Corsair CX500",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "thermaltake-smart-rgb-600w",
+      "name": "Thermaltake SMART RGB 600W",
+      "category": "psu",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gabinete-atx",
+      "name": "Gabinete Gamer Rise Mode Glass",
+      "category": "case",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gabinete-micro-atx",
+      "name": "Gabinete Gamer Rise Mode Z3 Glass",
+      "category": "case",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gabinete-compacto-itx",
+      "name": "Gabinete Mini-ITX compacto",
+      "category": "case",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gabinete-lian-li-lancool",
+      "name": "Lian Li LANCOOL 216",
+      "category": "case",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gabinete-nzxt-h510",
+      "name": "NZXT H510",
+      "category": "case",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "gabinete-phanteks-p360a",
+      "name": "Phanteks Eclipse P360A",
+      "category": "case",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ssd-nvme-500gb",
+      "name": "SSD 500GB Kingston NV2 NVMe M.2",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ssd-nvme-1tb",
+      "name": "Kingston NV3 1TB NVMe M.2",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ssd-nvme-2tb",
+      "name": "SSD 2TB Kingston NV2 NVMe M.2",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ssd-sata-480gb",
+      "name": "SSD 480GB Kingston A400 SATA",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ssd-sata-1tb",
+      "name": "SSD SATA 1TB (modelo a definir)",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "hdd-1tb",
+      "name": "HD 1TB Seagate Barracuda",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "hdd-2tb",
+      "name": "HD 2TB Seagate Barracuda",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "hdd-4tb",
+      "name": "HD 4TB Seagate SkyHawk",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ssd-nvme-4tb",
+      "name": "Kingston NV2 4TB NVMe M.2",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "ssd-wd-green-wds200t5g0a-2tb",
+      "name": "SSD WD Green WDS200T5G0A 2TB SATA",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    },
+    {
+      "id": "samsung-mz-v7s1t0",
+      "name": "Samsung 970 EVO Plus MZ-V7S1T0 1TB NVMe PCIe 3.0",
+      "category": "storage",
+      "missing": [],
+      "modules_known": null
+    }
+  ]
+}

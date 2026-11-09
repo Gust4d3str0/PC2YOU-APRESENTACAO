@@ -1,0 +1,22 @@
+{
+  "blocked_attributes": [
+    {
+      "product_id": "MLB27860992",
+      "attribute": "CPU_THREADS_NUMBER",
+      "reason": "Persisted 28 threads conflicts with Intel's 20 threads; leave absent",
+      "source": "https://www.intel.com/content/www/us/en/products/sku/236778/intel-core-i5-processor-14600kf-24m-cache-up-to-5-30-ghz/specifications.html"
+    },
+    {
+      "product_id": "MLB39391929",
+      "attribute": "TDP",
+      "reason": "105 W does not identify default TDP versus the optional operating mode; leave absent",
+      "source": "https://shop-us-en.amd.com/amd-ryzen-5-9600x-processor/"
+    },
+    {
+      "product_id": "MLB27860992",
+      "attribute": "TDP",
+      "reason": "Persisted 65 W conflicts with Intel's 125 W Processor Base Power; leave absent",
+      "source": "https://www.intel.com/content/www/us/en/support/articles/000006047/processors.html"
+    }
+  ]
+}

@@ -39,7 +39,7 @@ def component(component_id: str, category: str) -> dict:
         technical_specs = {"memory_slots": 4, "max_memory_gb": 128}
         compatibility = {"socket": "AM5", "memory_type": "DDR5", "form_factor": "ATX"}
     elif category in {"ram", "kit-ram"}:
-        technical_specs = {"capacity": "16GB", "memory_type": "DDR5"}
+        technical_specs = {"capacity": "16GB", "memory_type": "DDR5", "modules": 1}
         if category == "kit-ram":
             technical_specs["modules"] = "2x8GB"
         compatibility = {"memory_type": "DDR5"}

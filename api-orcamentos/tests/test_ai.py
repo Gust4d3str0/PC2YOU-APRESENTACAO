@@ -158,6 +158,7 @@ def test_manufacturer_prefix_gpu_memory_suffix_and_ambiguous_names(setup):
 def test_ram_kit_uses_existing_module_count_rule(setup):
     ram = next(c for c in setup.catalog.items if c["category"] == "ram")
     ram["category"] = "kit-ram"
+    ram['technical_specs']['modules'] = '2x8GB'
     board = next(c for c in setup.catalog.items if c["category"] == "motherboard")
     board["technical_specs"]["memory_slots"] = 1
     data = post(setup).json()

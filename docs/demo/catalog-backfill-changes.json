@@ -1,0 +1,443 @@
+{
+  "mode": "apply",
+  "components": 22,
+  "fields": 32,
+  "changes": [
+    {
+      "id": "intel-i5-12400f",
+      "name": "Intel Core i5-12400F",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "LGA1700",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-5-5600",
+      "name": "AMD Ryzen 5 5600",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "AM4",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-7-5700x",
+      "name": "AMD Ryzen 7 5700X",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "AM4",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "b550-am4-ddr4",
+      "name": "Placa-mãe B550 AM4 DDR4",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "AM4",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": []
+        },
+        {
+          "field": "technical_specs.memory_type",
+          "value": "DDR4",
+          "source": "catalog.compatibility.memory_type",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "b550m-am4-ddr4",
+      "name": "Placa-mãe B550M AM4 DDR4",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "AM4",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": []
+        },
+        {
+          "field": "technical_specs.memory_type",
+          "value": "DDR4",
+          "source": "catalog.compatibility.memory_type",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "x570-am4-ddr4",
+      "name": "Placa-mãe X570 AM4 DDR4",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "AM4",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": []
+        },
+        {
+          "field": "technical_specs.memory_type",
+          "value": "DDR4",
+          "source": "catalog.compatibility.memory_type",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "b650-am5-ddr5",
+      "name": "Placa-mãe B650 AM5 DDR5",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "AM5",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": []
+        },
+        {
+          "field": "technical_specs.memory_type",
+          "value": "DDR5",
+          "source": "catalog.compatibility.memory_type",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "x670e-am5-ddr5",
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "AM5",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": [
+            {
+              "value": "AM5",
+              "source": "mercado_livre.SOCKET",
+              "urls": [
+                "https://api.mercadolibre.com/products/MLB22651390"
+              ],
+              "product_id": "MLB22651390",
+              "raw": "Am5"
+            }
+          ]
+        },
+        {
+          "field": "technical_specs.memory_type",
+          "value": "DDR5",
+          "source": "catalog.compatibility.memory_type",
+          "corroborating_sources": [
+            {
+              "value": "DDR5",
+              "source": "mercado_livre.SUPPORTED_RAM_MEMORY_TYPE",
+              "urls": [
+                "https://api.mercadolibre.com/products/MLB22651390"
+              ],
+              "product_id": "MLB22651390",
+              "raw": "DDR5"
+            }
+          ]
+        },
+        {
+          "field": "technical_specs.max_memory_gb",
+          "value": 128,
+          "source": "mercado_livre.MAX_SUPPORTED_RAM_MEMORY_CAPACITY",
+          "urls": [
+            "https://api.mercadolibre.com/products/MLB22651390"
+          ],
+          "product_id": "MLB22651390",
+          "raw": "128 GB",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "b660-lga1700-ddr4",
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "changes": [
+        {
+          "field": "technical_specs.socket",
+          "value": "LGA1700",
+          "source": "catalog.compatibility.socket",
+          "corroborating_sources": [
+            {
+              "value": "LGA1700",
+              "source": "mercado_livre.SOCKET",
+              "urls": [
+                "https://api.mercadolibre.com/products/MLB22650260"
+              ],
+              "product_id": "MLB22650260",
+              "raw": "Lga1700"
+            }
+          ]
+        },
+        {
+          "field": "technical_specs.memory_type",
+          "value": "DDR4",
+          "source": "catalog.compatibility.memory_type",
+          "corroborating_sources": [
+            {
+              "value": "DDR4",
+              "source": "mercado_livre.SUPPORTED_RAM_MEMORY_TYPE",
+              "urls": [
+                "https://api.mercadolibre.com/products/MLB22650260"
+              ],
+              "product_id": "MLB22650260",
+              "raw": "DDR4"
+            }
+          ]
+        },
+        {
+          "field": "technical_specs.max_memory_gb",
+          "value": 128,
+          "source": "mercado_livre.MAX_SUPPORTED_RAM_MEMORY_CAPACITY",
+          "urls": [
+            "https://api.mercadolibre.com/products/MLB22650260"
+          ],
+          "product_id": "MLB22650260",
+          "raw": "128 GB",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "gabinete-micro-atx",
+      "name": "Gabinete Gamer Rise Mode Z3 Glass",
+      "changes": [
+        {
+          "field": "technical_specs.supported_form_factors",
+          "value": [
+            "Micro-ATX",
+            "Mini-ITX"
+          ],
+          "source": "catalog.compatibility.supported_form_factors",
+          "corroborating_sources": []
+        },
+        {
+          "field": "technical_specs.max_gpu_length_mm",
+          "value": 320,
+          "source": "catalog.compatibility.max_gpu_length_mm",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "gabinete-compacto-itx",
+      "name": "Gabinete Mini-ITX compacto",
+      "changes": [
+        {
+          "field": "technical_specs.supported_form_factors",
+          "value": [
+            "Mini-ITX"
+          ],
+          "source": "catalog.compatibility.supported_form_factors",
+          "corroborating_sources": []
+        },
+        {
+          "field": "technical_specs.max_gpu_length_mm",
+          "value": 270,
+          "source": "catalog.compatibility.max_gpu_length_mm",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-5-5500x3d",
+      "name": "AMD Ryzen 5 5500X3D",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 105,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB52967964",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "105 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-5-8400f",
+      "name": "AMD Ryzen 5 8400F",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 65,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB53500536",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "65 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-7-5800x3d",
+      "name": "AMD Ryzen 7 5800X3D",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 105,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB75448717",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "105 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-5-8600g",
+      "name": "AMD Ryzen 5 8600G",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 65,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB32470567",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "65 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-7-5700",
+      "name": "AMD Ryzen 7 5700",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 65,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB31054937",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "65 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-7-5800xt",
+      "name": "AMD Ryzen 7 5800XT",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 105,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB38775722",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "105 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-7-7700",
+      "name": "AMD Ryzen 7 7700",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 65,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB69750845",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "65 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-9-7900",
+      "name": "AMD Ryzen 9 7900",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 65,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB61075833",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "65 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-7-9700x",
+      "name": "AMD Ryzen 7 9700X",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 65,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB80105267",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "65 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "ryzen-9-5900xt",
+      "name": "AMD Ryzen 9 5900XT",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 105,
+          "source": "mercado_livre.TDP",
+          "product_id": "MLB38775549",
+          "origin": "external_enrichment.mercado_livre.attributes",
+          "raw": "105 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    },
+    {
+      "id": "intel-i7-14700kf",
+      "name": "Intel Core i7-14700KF",
+      "changes": [
+        {
+          "field": "technical_specs.tdp_watts",
+          "value": 125,
+          "source": "mercado_livre.TDP",
+          "urls": [
+            "https://api.mercadolibre.com/products/MLB28111906"
+          ],
+          "product_id": "MLB28111906",
+          "raw": "125 W",
+          "corroborating_sources": []
+        }
+      ],
+      "rejected": []
+    }
+  ]
+}

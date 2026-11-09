@@ -1,0 +1,1717 @@
+{
+  "execution": "real FastAPI route, local catalog transport, simulated prose only; no Gemini",
+  "total": 10,
+  "passed": 10,
+  "results": [
+    {
+      "pc": 1,
+      "label": "AM4 B550 / RTX 3060",
+      "request": {
+        "components": {
+          "cpu": "Processador AMD Ryzen 5 5600",
+          "motherboard": "Gigabyte B550M K",
+          "ram": "kingston-kf432c16bb-16",
+          "gpu": "RTX 3060",
+          "psu": "650W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "AMD Ryzen 5 5600",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "ryzen-5-5600",
+            "specifications": {
+              "cores": 6,
+              "threads": 12,
+              "tdp_watts": 65,
+              "socket": "AM4"
+            },
+            "compatibility": {
+              "socket": "AM4"
+            }
+          },
+          {
+            "name": "GeForce RTX 3060",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rtx-3060",
+            "specifications": {
+              "memory": "12GB GDDR6",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 170,
+              "length_mm": 200
+            },
+            "compatibility": {
+              "min_psu_watts": 550
+            }
+          },
+          {
+            "name": "Gigabyte B550M K",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "gigabyte-b550m-k",
+            "specifications": {
+              "memory_slots": 4,
+              "max_memory_gb": 128,
+              "socket": "AM4",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "socket": "AM4",
+              "memory_type": "DDR4",
+              "form_factor": "Micro-ATX"
+            }
+          },
+          {
+            "name": "Kingston Fury Beast KF432C16BB/16 16GB DDR4 3200MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kingston-kf432c16bb-16",
+            "specifications": {
+              "capacity": "16GB",
+              "speed": "3200MHz",
+              "modules": "1x16GB",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "memory_type": "DDR4"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 650W 80 Plus Bronze",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-650w",
+            "specifications": {
+              "wattage": 650
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 2,
+      "label": "AM4 B550 / RTX 4070 Super",
+      "request": {
+        "components": {
+          "cpu": "Ryzen 7 5700X AMD",
+          "motherboard": "ASRock B550 PG VELOCITA",
+          "ram": "kit-ram-32gb-ddr4-3600",
+          "gpu": "RTX 4070 Super",
+          "psu": "750W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "AMD Ryzen 7 5700X",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "ryzen-7-5700x",
+            "specifications": {
+              "cores": 8,
+              "threads": 16,
+              "tdp_watts": 65,
+              "socket": "AM4"
+            },
+            "compatibility": {
+              "socket": "AM4"
+            }
+          },
+          {
+            "name": "GeForce RTX 4070 Super",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rtx-4070-super",
+            "specifications": {
+              "memory": "12GB GDDR6X",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 220,
+              "length_mm": 305
+            },
+            "compatibility": {
+              "min_psu_watts": 650
+            }
+          },
+          {
+            "name": "ASRock B550 PG VELOCITA",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "asrock-b550-pg-velocita",
+            "specifications": {
+              "memory_slots": 4,
+              "max_memory_gb": 128,
+              "socket": "AM4",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "socket": "AM4",
+              "memory_type": "DDR4",
+              "form_factor": "ATX"
+            }
+          },
+          {
+            "name": "Corsair Vengeance LPX 32GB 2x16GB DDR4 3600MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kit-ram-32gb-ddr4-3600",
+            "specifications": {
+              "capacity": "32GB",
+              "modules": "2x16GB",
+              "memory_type": "DDR4",
+              "speed": "3600MHz"
+            },
+            "compatibility": {
+              "memory_type": "DDR4"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 750W 80 Plus Gold",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-750w",
+            "specifications": {
+              "wattage": 750
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 3,
+      "label": "Intel B660 / RTX 4060",
+      "request": {
+        "components": {
+          "cpu": "i5-12400F",
+          "motherboard": "Gigabyte B660M AORUS PRO",
+          "ram": "kingston-kf432c16bb-16",
+          "gpu": "RTX 4060",
+          "psu": "650W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "Intel Core i5-12400F",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "intel-i5-12400f",
+            "specifications": {
+              "cores": 6,
+              "threads": 12,
+              "tdp_watts": 65,
+              "socket": "LGA1700"
+            },
+            "compatibility": {
+              "socket": "LGA1700"
+            }
+          },
+          {
+            "name": "GeForce RTX 4060",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rtx-4060",
+            "specifications": {
+              "memory": "8GB GDDR6",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 115,
+              "length_mm": 240
+            },
+            "compatibility": {
+              "min_psu_watts": 550
+            }
+          },
+          {
+            "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "b660-lga1700-ddr4",
+            "specifications": {
+              "memory_slots": 4,
+              "socket": "LGA1700",
+              "memory_type": "DDR4",
+              "max_memory_gb": 128
+            },
+            "compatibility": {
+              "socket": "LGA1700",
+              "memory_type": "DDR4",
+              "form_factor": "Micro-ATX"
+            }
+          },
+          {
+            "name": "Kingston Fury Beast KF432C16BB/16 16GB DDR4 3200MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kingston-kf432c16bb-16",
+            "specifications": {
+              "capacity": "16GB",
+              "speed": "3200MHz",
+              "modules": "1x16GB",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "memory_type": "DDR4"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 650W 80 Plus Bronze",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-650w",
+            "specifications": {
+              "wattage": 650
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 4,
+      "label": "AM5 B650 / RX 7800 XT",
+      "request": {
+        "components": {
+          "cpu": "AMD Ryzen 5 7600",
+          "motherboard": "Gigabyte B650 Gaming X AX V2",
+          "ram": "kit-ram-32gb-ddr5-6000",
+          "gpu": "RX 7800 XT",
+          "psu": "750W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "AMD Ryzen 5 7600",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "ryzen-5-7600",
+            "specifications": {
+              "cores": 6,
+              "threads": 12,
+              "tdp_watts": 65,
+              "socket": "AM5"
+            },
+            "compatibility": {
+              "socket": "AM5"
+            }
+          },
+          {
+            "name": "Radeon RX 7800 XT",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rx-7800-xt",
+            "specifications": {
+              "memory": "16GB GDDR6",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 263,
+              "length_mm": 320
+            },
+            "compatibility": {
+              "min_psu_watts": 750
+            }
+          },
+          {
+            "name": "Gigabyte B650 Gaming X AX V2",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "gigabyte-b650-gaming-x-ax-v2",
+            "specifications": {
+              "memory_slots": 4,
+              "max_memory_gb": 256,
+              "socket": "AM5",
+              "memory_type": "DDR5"
+            },
+            "compatibility": {
+              "socket": "AM5",
+              "memory_type": "DDR5",
+              "form_factor": "ATX"
+            }
+          },
+          {
+            "name": "Corsair Vengeance 32GB 2x16GB DDR5 6000MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kit-ram-32gb-ddr5-6000",
+            "specifications": {
+              "capacity": "32GB",
+              "modules": "2x16GB",
+              "memory_type": "DDR5",
+              "speed": "6000MHz"
+            },
+            "compatibility": {
+              "memory_type": "DDR5"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 750W 80 Plus Gold",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-750w",
+            "specifications": {
+              "wattage": 750
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 5,
+      "label": "AM4 B450 / RX 6600",
+      "request": {
+        "components": {
+          "cpu": "AMD Ryzen 5 3600",
+          "motherboard": "Revenger G-B450",
+          "ram": "kingston-kvr26n19s8-8",
+          "gpu": "RX 6600",
+          "psu": "Corsair CX500",
+          "storage": [
+            "Samsung 970 EVO Plus MZ-V7S1T0 1TB NVMe PCIe 3.0"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "AMD Ryzen 5 3600",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "ryzen-5-3600",
+            "specifications": {
+              "cores": 6,
+              "threads": 12,
+              "tdp_watts": 65,
+              "socket": "AM4"
+            },
+            "compatibility": {
+              "socket": "AM4"
+            }
+          },
+          {
+            "name": "Radeon RX 6600",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rx-6600",
+            "specifications": {
+              "memory": "8GB GDDR6",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 132,
+              "length_mm": 200
+            },
+            "compatibility": {
+              "min_psu_watts": 500
+            }
+          },
+          {
+            "name": "Revenger G-B450",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "revenger-g-b450",
+            "specifications": {
+              "memory_slots": 2,
+              "max_memory_gb": 32,
+              "socket": "AM4",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "socket": "AM4",
+              "memory_type": "DDR4",
+              "form_factor": "Micro-ATX"
+            }
+          },
+          {
+            "name": "Kingston ValueRAM KVR26N19S8/8 8GB DDR4 2666MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kingston-kvr26n19s8-8",
+            "specifications": {
+              "capacity": "8GB",
+              "speed": "2666MHz",
+              "modules": 1,
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "memory_type": "DDR4"
+            }
+          },
+          {
+            "name": "Samsung 970 EVO Plus MZ-V7S1T0 1TB NVMe PCIe 3.0",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "samsung-mz-v7s1t0",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 3.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Corsair CX500",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "corsair-cx500",
+            "specifications": {
+              "wattage": 500
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 6,
+      "label": "AM4 A520 / RX 6650 XT",
+      "request": {
+        "components": {
+          "cpu": "AMD Ryzen 5 5500",
+          "motherboard": "ASRock A520M-HDV",
+          "ram": "kingston-kf432c16bb-8",
+          "gpu": "RX 6650 XT",
+          "psu": "550W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "AMD Ryzen 5 5500",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "ryzen-5-5500",
+            "specifications": {
+              "cores": 6,
+              "threads": 12,
+              "tdp_watts": 65,
+              "socket": "AM4"
+            },
+            "compatibility": {
+              "socket": "AM4"
+            }
+          },
+          {
+            "name": "Radeon RX 6650 XT",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rx-6650-xt",
+            "specifications": {
+              "memory": "8GB GDDR6",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 176,
+              "length_mm": 215
+            },
+            "compatibility": {
+              "min_psu_watts": 550
+            }
+          },
+          {
+            "name": "ASRock A520M-HDV",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "asrock-a520m-hdv",
+            "specifications": {
+              "max_memory_gb": 64,
+              "memory_slots": 2,
+              "socket": "AM4",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "socket": "AM4",
+              "memory_type": "DDR4",
+              "form_factor": "Micro-ATX"
+            }
+          },
+          {
+            "name": "Kingston Fury Beast KF432C16BB/8 8GB DDR4 3200MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kingston-kf432c16bb-8",
+            "specifications": {
+              "capacity": "8GB",
+              "speed": "3200MHz",
+              "modules": 1,
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "memory_type": "DDR4"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 550W 80 Plus Bronze",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-550w",
+            "specifications": {
+              "wattage": 550
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 7,
+      "label": "AM4 B550 / RTX 4060 Ti",
+      "request": {
+        "components": {
+          "cpu": "AMD Ryzen 5 5600X",
+          "motherboard": "ASRock B550 PG VELOCITA",
+          "ram": "kingston-kf432c16bb-32",
+          "gpu": "RTX 4060 Ti",
+          "psu": "650W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "AMD Ryzen 5 5600X",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "ryzen-5-5600x",
+            "specifications": {
+              "cores": 6,
+              "threads": 12,
+              "tdp_watts": 65,
+              "socket": "AM4"
+            },
+            "compatibility": {
+              "socket": "AM4"
+            }
+          },
+          {
+            "name": "GeForce RTX 4060 Ti",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rtx-4060-ti",
+            "specifications": {
+              "memory": "8GB GDDR6",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 160,
+              "length_mm": 240
+            },
+            "compatibility": {
+              "min_psu_watts": 550
+            }
+          },
+          {
+            "name": "ASRock B550 PG VELOCITA",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "asrock-b550-pg-velocita",
+            "specifications": {
+              "memory_slots": 4,
+              "max_memory_gb": 128,
+              "socket": "AM4",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "socket": "AM4",
+              "memory_type": "DDR4",
+              "form_factor": "ATX"
+            }
+          },
+          {
+            "name": "Kingston Fury Beast KF432C16BB/32 32GB DDR4 3200MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kingston-kf432c16bb-32",
+            "specifications": {
+              "capacity": "32GB",
+              "speed": "3200MHz",
+              "modules": 1,
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "memory_type": "DDR4"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 650W 80 Plus Bronze",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-650w",
+            "specifications": {
+              "wattage": 650
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 8,
+      "label": "AM5 A620 / RX 7700 XT",
+      "request": {
+        "components": {
+          "cpu": "AMD Ryzen 7 7800X3D",
+          "motherboard": "ASRock A620M-C",
+          "ram": "kit-ram-32gb-ddr5-6000",
+          "gpu": "RX 7700 XT",
+          "psu": "750W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "AMD Ryzen 7 7800X3D",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "ryzen-7-7800x3d",
+            "specifications": {
+              "cores": 8,
+              "threads": 16,
+              "tdp_watts": 120,
+              "socket": "AM5"
+            },
+            "compatibility": {
+              "socket": "AM5"
+            }
+          },
+          {
+            "name": "Radeon RX 7700 XT",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rx-7700-xt",
+            "specifications": {
+              "memory": "12GB GDDR6",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 245,
+              "length_mm": 267
+            },
+            "compatibility": {
+              "min_psu_watts": 700
+            }
+          },
+          {
+            "name": "ASRock A620M-C",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "asrock-a620m-c",
+            "specifications": {
+              "memory_slots": 4,
+              "max_memory_gb": 256,
+              "socket": "AM5",
+              "memory_type": "DDR5"
+            },
+            "compatibility": {
+              "socket": "AM5",
+              "memory_type": "DDR5",
+              "form_factor": "Micro-ATX"
+            }
+          },
+          {
+            "name": "Corsair Vengeance 32GB 2x16GB DDR5 6000MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kit-ram-32gb-ddr5-6000",
+            "specifications": {
+              "capacity": "32GB",
+              "modules": "2x16GB",
+              "memory_type": "DDR5",
+              "speed": "6000MHz"
+            },
+            "compatibility": {
+              "memory_type": "DDR5"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 750W 80 Plus Gold",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-750w",
+            "specifications": {
+              "wattage": 750
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 9,
+      "label": "Intel B760 DDR4 / RTX 4070",
+      "request": {
+        "components": {
+          "cpu": "Intel Core i5-13600K",
+          "motherboard": "Gigabyte B760M K DDR4",
+          "ram": "kit-ram-16gb-ddr4-3200",
+          "gpu": "RTX 4070",
+          "psu": "750W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "Intel Core i5-13600K",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "intel-i5-13600k",
+            "specifications": {
+              "cores": 14,
+              "threads": 20,
+              "tdp_watts": 125,
+              "socket": "LGA1700"
+            },
+            "compatibility": {
+              "socket": "LGA1700"
+            }
+          },
+          {
+            "name": "GeForce RTX 4070",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rtx-4070",
+            "specifications": {
+              "memory": "12GB GDDR6X",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 200,
+              "length_mm": 285
+            },
+            "compatibility": {
+              "min_psu_watts": 650
+            }
+          },
+          {
+            "name": "Gigabyte B760M K DDR4",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "gigabyte-b760m-k-ddr4",
+            "specifications": {
+              "memory_slots": 2,
+              "max_memory_gb": 64,
+              "socket": "LGA1700",
+              "memory_type": "DDR4"
+            },
+            "compatibility": {
+              "socket": "LGA1700",
+              "memory_type": "DDR4",
+              "form_factor": "Micro-ATX"
+            }
+          },
+          {
+            "name": "Corsair Vengeance LPX 16GB 2x8GB DDR4 3200MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kit-ram-16gb-ddr4-3200",
+            "specifications": {
+              "capacity": "16GB",
+              "modules": "2x8GB",
+              "memory_type": "DDR4",
+              "speed": "3200MHz"
+            },
+            "compatibility": {
+              "memory_type": "DDR4"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 750W 80 Plus Gold",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-750w",
+            "specifications": {
+              "wattage": 750
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    },
+    {
+      "pc": 10,
+      "label": "Intel B760 DDR5 / RTX 4080 Super",
+      "request": {
+        "components": {
+          "cpu": "Intel Core i7-14700K",
+          "motherboard": "Gigabyte B760M DS3H DDR5",
+          "ram": "kit-ram-64gb-ddr5-6000",
+          "gpu": "RTX 4080 Super",
+          "psu": "850W",
+          "storage": [
+            "Kingston NV3 1TB NVMe M.2"
+          ],
+          "case": "Lian Li LANCOOL 216"
+        },
+        "usage": [
+          "gaming"
+        ],
+        "resolution": "1080p"
+      },
+      "http_status": 200,
+      "passed": true,
+      "response": {
+        "analysis": {
+          "summary": "Execução local de validação técnica do catálogo.",
+          "overall_rating": "insufficient_data",
+          "balance": {
+            "status": "insufficient_data",
+            "explanation": "Não foram feitas medições de desempenho."
+          },
+          "primary_limit": {
+            "component": "unknown",
+            "confidence": "low",
+            "explanation": "Este teste avalia somente os dados técnicos."
+          },
+          "strengths": [],
+          "weaknesses": [],
+          "upgrade_priorities": [],
+          "warnings": [],
+          "missing_information": [],
+          "final_recommendation": "Consulte os resultados determinísticos de compatibilidade."
+        },
+        "compatibility": {
+          "valid": true,
+          "status": "compatible",
+          "issues": [],
+          "warnings": [],
+          "checked_rules": [
+            "cpu_socket",
+            "ram_type",
+            "ram_slots",
+            "ram_capacity",
+            "gpu_power",
+            "board_case",
+            "gpu_case"
+          ],
+          "unchecked_rules": []
+        },
+        "compatibility_notes": [],
+        "components": [
+          {
+            "name": "Intel Core i7-14700K",
+            "category": "cpu",
+            "source": "catalog",
+            "catalog_id": "intel-i7-14700k",
+            "specifications": {
+              "cores": 20,
+              "threads": 28,
+              "tdp_watts": 125,
+              "socket": "LGA1700"
+            },
+            "compatibility": {
+              "socket": "LGA1700"
+            }
+          },
+          {
+            "name": "GeForce RTX 4080 Super",
+            "category": "gpu",
+            "source": "catalog",
+            "catalog_id": "rtx-4080-super",
+            "specifications": {
+              "memory": "16GB GDDR6X",
+              "interface": "PCIe 4.0",
+              "power_consumption_watts": 320,
+              "length_mm": 340
+            },
+            "compatibility": {
+              "min_psu_watts": 850
+            }
+          },
+          {
+            "name": "Gigabyte B760M DS3H DDR5",
+            "category": "motherboard",
+            "source": "catalog",
+            "catalog_id": "gigabyte-b760m-ds3h-ddr5",
+            "specifications": {
+              "memory_slots": 4,
+              "max_memory_gb": 192,
+              "socket": "LGA1700",
+              "memory_type": "DDR5"
+            },
+            "compatibility": {
+              "socket": "LGA1700",
+              "memory_type": "DDR5",
+              "form_factor": "Micro-ATX"
+            }
+          },
+          {
+            "name": "Kingston Fury Beast 64GB 2x32GB DDR5 6000MHz",
+            "category": "ram",
+            "source": "catalog",
+            "catalog_id": "kit-ram-64gb-ddr5-6000",
+            "specifications": {
+              "capacity": "64GB",
+              "modules": "2x32GB",
+              "memory_type": "DDR5",
+              "speed": "6000MHz"
+            },
+            "compatibility": {
+              "memory_type": "DDR5"
+            }
+          },
+          {
+            "name": "Kingston NV3 1TB NVMe M.2",
+            "category": "storage",
+            "source": "catalog",
+            "catalog_id": "ssd-nvme-1tb",
+            "specifications": {
+              "capacity": "1TB",
+              "interface": "NVMe PCIe 4.0"
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Fonte 850W 80 Plus Gold",
+            "category": "psu",
+            "source": "catalog",
+            "catalog_id": "fonte-850w",
+            "specifications": {
+              "wattage": 850
+            },
+            "compatibility": {}
+          },
+          {
+            "name": "Lian Li LANCOOL 216",
+            "category": "case",
+            "source": "catalog",
+            "catalog_id": "gabinete-lian-li-lancool",
+            "specifications": {},
+            "compatibility": {
+              "supported_form_factors": [
+                "ATX",
+                "Micro-ATX",
+                "Mini-ITX"
+              ],
+              "max_gpu_length_mm": 392
+            }
+          }
+        ],
+        "recommended_candidates": [],
+        "upgrade_budget": null,
+        "metadata": {
+          "provider": "offline-validation-double",
+          "model": "gemini-2.5-flash",
+          "catalog_matches": 7,
+          "compatibility_checked": true,
+          "cached": false,
+          "prompt_version": "pc-analysis-v1.1"
+        }
+      }
+    }
+  ]
+}
