@@ -8,6 +8,20 @@ def text(value):
     return unicodedata.normalize('NFKC', str(value)).strip()
 
 
+def normalize_human_text(value):
+    """Normalize typography and compact model spellings without erasing suffixes."""
+    value = unicodedata.normalize('NFKD', text(value).replace('×', 'x')).encode('ascii', 'ignore').decode().lower()
+    value = re.sub(r'\b(ryzen)\s*(?:([3579])\s*)?(\d{4})([a-z0-9]*)\b',
+                   lambda m: ' '.join(p for p in (m[1], m[2], m[3] + m[4]) if p), value)
+    value = re.sub(r'\b(rtx|gtx|rx|arc)\s*([ab]?\d{3,4})(?:\s*(ti\s*super|super|ti|xtx|xt|gre))?\b',
+                   lambda m: ' '.join(p for p in (m[1], m[2], re.sub(r'ti\s*super', 'ti super', m[3] or '')) if p), value)
+    value = re.sub(r'\bi([3579])[-\s]*(\d{4,5})([a-z]*)\b', r'i\1 \2\3', value)
+    value = re.sub(r'\bddr\s*([2345])\b', r'ddr\1', value)
+    value = re.sub(r'\b(?:micro[-\s]*atx|m[-\s]*atx)\b', 'matx', value)
+    value = re.sub(r'\bmini[-\s]*itx\b', 'itx', value)
+    return re.sub(r'\s+', ' ', value).strip()
+
+
 def number(value, units=('',), *, integer=True):
     if isinstance(value, bool) or value is None:
         return None
@@ -83,8 +97,11 @@ def normalize_spec(key, value):
             return result
         match = re.fullmatch(r'(\d+)\s*(?:x\s*(?:DIMM|slots)|slots(?:\s+DDR[345])?)', text(value), re.I)
         return int(match[1]) if match and int(match[1]) > 0 else None
-    if key in {'cores', 'threads'}:
+    if key in {'cores', 'threads', 'cas_latency'}:
         return number(value)
+    if key == 'efficiency':
+        match = re.fullmatch(r'(?:80\s*\+?\s*(?:plus\s*)?)?(bronze|silver|gold|platinum|titanium|white)', text(value), re.I)
+        return match[1].title() if match else None
     if key == 'modules':
         count = number(value)
         if count:

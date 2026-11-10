@@ -34,3 +34,9 @@ mongo_data/
 reports/*.json
 
 .tools/
+
+# Immutable upstream data and local expanded catalog (rebuild from pinned manifests).
+external-data/*/
+!external-data/manifests/
+reports/external-catalog-local.jsonl
+reports/external-candidates-local.jsonl

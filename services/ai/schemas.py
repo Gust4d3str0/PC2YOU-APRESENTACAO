@@ -124,10 +124,12 @@ class PCAnalysis(StrictModel):
 class TechnicalComponent(StrictModel):
     name: str
     category: ComponentType
-    source: Literal["user", "catalog"]
+    source: Literal["user", "catalog", "derived"]
     catalog_id: str | None = None
     specifications: dict = Field(default_factory=dict)
     compatibility: dict = Field(default_factory=dict)
+    resolution_scope: Literal['sku', 'model', 'family', 'generic', 'unresolved'] | None = None
+    field_sources: dict[str, str] = Field(default_factory=dict)
 
 
 class CompatibilityResult(StrictModel):
@@ -150,6 +152,8 @@ class AnalysisMetadata(StrictModel):
     provider: str
     model: str
     catalog_matches: int
+    technical_matches: int = 0
+    derived_matches: int = 0
     compatibility_checked: bool
     cached: bool
     prompt_version: str

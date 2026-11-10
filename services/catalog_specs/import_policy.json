@@ -1,0 +1,16 @@
+{
+  "source_priority": ["pc2you_audited", "buildcores", "mercado_livre", "pc_part_dataset", "deterministic_name"],
+  "categories": ["cpu", "gpu", "motherboard", "ram", "storage", "psu", "case"],
+  "desktop_sockets": ["AM4", "AM5", "LGA1151", "LGA1151V2", "LGA1200", "LGA1700", "LGA1851"],
+  "minimum_release_year": 2017,
+  "max_file_bytes": 25165824,
+  "max_record_bytes": 524288,
+  "max_snapshot_bytes": 268435456,
+  "max_records": 60000,
+  "lookup_candidate_limit": 32,
+  "preserve_existing": true,
+  "ambiguous_identity": "reject",
+  "new_dataset_sku_in_existing_hardware_class": "quarantine_without_mpn",
+  "conflicting_fields": "quarantine_entire_candidate",
+  "unknown_record_date_with_newer_than": "reject"
+}

@@ -108,13 +108,13 @@ def test_main_demo_has_specs_and_all_existing_rules_verified(setup):
 def test_alert_deduplication_does_not_change_validation_or_context(setup):
     body = request()
     body["components"]["motherboard"] = "Placa desconhecida"
-    warning = "Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras."
-    missing = "Placa-mãe: especificações não verificadas no catálogo"
-    setup.provider.output["warnings"] = [warning, "  Compatibilidade parcial: faltam dados do catalogo para uma ou mais regras  ", "Confira os conectores."]
+    warning = "Compatibilidade parcial: faltam campos técnicos confiáveis para uma ou mais regras."
+    setup.provider.output["warnings"] = [warning, "  Compatibilidade parcial: faltam campos tecnicos confiaveis para uma ou mais regras  ", "Confira os conectores."]
     setup.provider.output["missing_information"] = ["Placa-mae: especificacoes nao verificadas no catalogo"]
     data = post(setup, body).json()
     assert data["analysis"]["warnings"] == [warning, "Confira os conectores."]
-    assert data["analysis"]["missing_information"] == [missing]
+    assert data['analysis']['missing_information'] == setup.provider.calls[0]['context']['trusted_context']['missing_information']
+    assert all('confirmar' in m for m in data['analysis']['missing_information'])
     assert data["analysis"]["primary_limit"]["confidence"] == "low"
     assert data["compatibility"]["valid"] is None
     assert setup.provider.calls[0]["context"]["trusted_context"]["compatibility"] == data["compatibility"]

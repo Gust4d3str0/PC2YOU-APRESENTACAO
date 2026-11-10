@@ -1,0 +1,314 @@
+[
+  {
+    "category": "cpu",
+    "input": "ryzen 7 5700x",
+    "feature": "number",
+    "expected": "5700"
+  },
+  {
+    "category": "cpu",
+    "input": "AMD Ryzen 7 5700X",
+    "feature": "suffix",
+    "expected": "X"
+  },
+  {
+    "category": "cpu",
+    "input": "Processador Ryzen 7 5700X",
+    "feature": "tier",
+    "expected": "7"
+  },
+  {
+    "category": "cpu",
+    "input": "Ryzen5700X",
+    "feature": "number",
+    "expected": "5700"
+  },
+  {
+    "category": "cpu",
+    "input": "Ryzen 5700X",
+    "feature": "suffix",
+    "expected": "X"
+  },
+  {
+    "category": "cpu",
+    "input": "5700X",
+    "feature": "suffix",
+    "expected": "X"
+  },
+  {
+    "category": "cpu",
+    "input": "5600X",
+    "feature": "suffix",
+    "expected": "X"
+  },
+  {
+    "category": "cpu",
+    "input": "5600G",
+    "feature": "suffix",
+    "expected": "G"
+  },
+  {
+    "category": "cpu",
+    "input": "7800X3D",
+    "feature": "suffix",
+    "expected": "X3D"
+  },
+  {
+    "category": "cpu",
+    "input": "i5 12400F",
+    "feature": "suffix",
+    "expected": "F"
+  },
+  {
+    "category": "cpu",
+    "input": "i5-13600K",
+    "feature": "suffix",
+    "expected": "K"
+  },
+  {
+    "category": "cpu",
+    "input": "Intel Core i5-13600KF",
+    "feature": "suffix",
+    "expected": "KF"
+  },
+  {
+    "category": "gpu",
+    "input": "rtx4060ti",
+    "feature": "suffix",
+    "expected": "TI"
+  },
+  {
+    "category": "gpu",
+    "input": "RTX 4060 Ti",
+    "feature": "number",
+    "expected": "4060"
+  },
+  {
+    "category": "gpu",
+    "input": "GeForce RTX4060Ti",
+    "feature": "suffix",
+    "expected": "TI"
+  },
+  {
+    "category": "gpu",
+    "input": "Nvidia GeForce RTX 4060 Ti",
+    "feature": "series",
+    "expected": "rtx"
+  },
+  {
+    "category": "gpu",
+    "input": "RTX 4070",
+    "feature": "suffix",
+    "expected": ""
+  },
+  {
+    "category": "gpu",
+    "input": "RTX 4070 Super",
+    "feature": "suffix",
+    "expected": "SUPER"
+  },
+  {
+    "category": "gpu",
+    "input": "RTX 4070 Ti",
+    "feature": "suffix",
+    "expected": "TI"
+  },
+  {
+    "category": "gpu",
+    "input": "RTX4070TiSuper",
+    "feature": "suffix",
+    "expected": "TI SUPER"
+  },
+  {
+    "category": "gpu",
+    "input": "RX 7800 XT",
+    "feature": "suffix",
+    "expected": "XT"
+  },
+  {
+    "category": "gpu",
+    "input": "RX7900XTX",
+    "feature": "suffix",
+    "expected": "XTX"
+  },
+  {
+    "category": "gpu",
+    "input": "RX 7900 GRE",
+    "feature": "suffix",
+    "expected": "GRE"
+  },
+  {
+    "category": "gpu",
+    "input": "RTX 4060 Ti 16GB",
+    "feature": "vram",
+    "expected": "16GB"
+  },
+  {
+    "category": "ram",
+    "input": "32GB DDR4 3200",
+    "feature": "capacity",
+    "expected": "32GB"
+  },
+  {
+    "category": "ram",
+    "input": "2x16GB DDR4 3200",
+    "feature": "modules",
+    "expected": "2x16GB"
+  },
+  {
+    "category": "ram",
+    "input": "16 GB 3200 DDR4",
+    "feature": "speed",
+    "expected": "3200MHz"
+  },
+  {
+    "category": "ram",
+    "input": "DDR5 32GB 6000",
+    "feature": "memory_type",
+    "expected": "DDR5"
+  },
+  {
+    "category": "ram",
+    "input": "2×16GB DDR5 6000 CL30",
+    "feature": "capacity",
+    "expected": "32GB"
+  },
+  {
+    "category": "ram",
+    "input": "DDR4 8GB 2666MHz",
+    "feature": "capacity",
+    "expected": "8GB"
+  },
+  {
+    "category": "ram",
+    "input": "4x8GB DDR4 3200 CL16",
+    "feature": "cas_latency",
+    "expected": 16
+  },
+  {
+    "category": "ram",
+    "input": "DDR5 16GB 5600MT/s",
+    "feature": "speed",
+    "expected": "5600MHz"
+  },
+  {
+    "category": "psu",
+    "input": "650w",
+    "feature": "wattage",
+    "expected": 650
+  },
+  {
+    "category": "psu",
+    "input": "650W 80 plus gold",
+    "feature": "efficiency",
+    "expected": "Gold"
+  },
+  {
+    "category": "psu",
+    "input": "Fonte 750 watts",
+    "feature": "wattage",
+    "expected": 750
+  },
+  {
+    "category": "psu",
+    "input": "Corsair 650W",
+    "feature": "wattage",
+    "expected": 650
+  },
+  {
+    "category": "psu",
+    "input": "450 watts",
+    "feature": "wattage",
+    "expected": 450
+  },
+  {
+    "category": "psu",
+    "input": "850W 80+ Platinum",
+    "feature": "efficiency",
+    "expected": "Platinum"
+  },
+  {
+    "category": "storage",
+    "input": "1TB NVMe",
+    "feature": "capacity",
+    "expected": "1TB"
+  },
+  {
+    "category": "storage",
+    "input": "SSD 1TB",
+    "feature": "capacity",
+    "expected": "1TB"
+  },
+  {
+    "category": "storage",
+    "input": "NVMe 2TB",
+    "feature": "capacity",
+    "expected": "2TB"
+  },
+  {
+    "category": "storage",
+    "input": "500GB SATA SSD",
+    "feature": "capacity",
+    "expected": "500GB"
+  },
+  {
+    "category": "storage",
+    "input": "NVMe 1TB PCIe 4.0 M.2",
+    "feature": "pcie_generation",
+    "expected": 4
+  },
+  {
+    "category": "motherboard",
+    "input": "B550M",
+    "feature": "chipset",
+    "expected": "B550M"
+  },
+  {
+    "category": "motherboard",
+    "input": "B550M DDR4",
+    "feature": "memory_type",
+    "expected": "DDR4"
+  },
+  {
+    "category": "motherboard",
+    "input": "B650 DDR5",
+    "feature": "chipset",
+    "expected": "B650"
+  },
+  {
+    "category": "motherboard",
+    "input": "B760M DDR4",
+    "feature": "memory_type",
+    "expected": "DDR4"
+  },
+  {
+    "category": "motherboard",
+    "input": "Z790 DDR5",
+    "feature": "chipset",
+    "expected": "Z790"
+  },
+  {
+    "category": "motherboard",
+    "input": "AM5 B650 ATX DDR5",
+    "feature": "socket",
+    "expected": "AM5"
+  },
+  {
+    "category": "case",
+    "input": "ATX",
+    "feature": null,
+    "expected": null
+  },
+  {
+    "category": "case",
+    "input": "mATX",
+    "feature": null,
+    "expected": null
+  },
+  {
+    "category": "case",
+    "input": "Mini-ITX GPU até 300mm",
+    "feature": "max_gpu_length_mm",
+    "expected": 300
+  }
+]

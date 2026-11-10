@@ -1,5 +1,8 @@
 # Scripts de manutenção
 
+Importação de snapshots técnicos externos: [guia completo](../docs/EXTERNAL_CATALOG_IMPORT.md),
+com dry-run, staging, promoção revisada, limites, licenças e comandos de Atlas.
+
 Execute a partir da raiz `PC2YOU`. As APIs precisam estar disponíveis para
 sincronizações. Estes scripts não são executados automaticamente pelo Docker.
 

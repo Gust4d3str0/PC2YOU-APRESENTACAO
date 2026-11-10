@@ -10,6 +10,22 @@ const budgetLabels = { within_budget: 'Dentro do orçamento informado', no_budge
 const ruleLabels = { cpu_socket: 'Socket do processador', ram_type: 'Tipo de memória', ram_slots: 'Slots de RAM',
   ram_capacity: 'Capacidade de RAM', gpu_power: 'Potência da fonte', board_case: 'Formato do gabinete', gpu_case: 'Espaço para a GPU' };
 
+function componentStatus(component) {
+  if (component.resolution_scope === 'unresolved' || component.source === 'user') return 'Não identificado';
+  if (component.resolution_scope === 'model' || component.resolution_scope === 'family') return 'Modelo/família reconhecido';
+  if (component.source === 'derived') return 'Informação técnica reconhecida';
+  return 'Catálogo';
+}
+
+const specLabels = { wattage: 'Potência', capacity: 'Capacidade', memory_type: 'Memória', speed: 'Frequência',
+  modules: 'Módulos', interface: 'Interface', memory: 'VRAM', socket: 'Socket', max_gpu_length_mm: 'Espaço para GPU' };
+
+function technicalSummary(component) {
+  const fields = { ...component.specifications, ...component.compatibility };
+  return Object.entries(specLabels).filter(([key]) => fields[key] !== undefined).map(([key, label]) =>
+    `${label}: ${fields[key]}${key === 'wattage' ? 'W' : key === 'max_gpu_length_mm' ? 'mm' : ''}`).join(' · ');
+}
+
 function TextList({ title, items }) {
   return <section className="summary-panel analysis-card"><h3>{title}</h3>{items.length
     ? <ul>{items.map((item, i) => <li key={i}>{item}</li>)}</ul> : <p>Nenhum ponto adicional informado.</p>}</section>;
@@ -42,8 +58,9 @@ export default function PCAnalysisResult({ result }) {
       {result.compatibility_notes.length > 0 && <ul>{result.compatibility_notes.map((note, i) => <li key={i}>{note}</li>)}</ul>}
       <p>Regras verificadas: {result.compatibility.checked_rules.map((rule) => ruleLabels[rule]).join(', ') || 'Nenhuma; faltam dados confiáveis.'}</p>
       {result.compatibility.unchecked_rules.length > 0 && <p>Não verificadas: {result.compatibility.unchecked_rules.map((rule) => ruleLabels[rule]).join(', ')}.</p>}
-      <details><summary>Identificação dos componentes ({result.metadata.catalog_matches} no catálogo)</summary>
-        <ul>{result.components.map((c, i) => <li key={i}>{labels[c.category]}: {c.name} — {c.source === 'catalog' ? 'Catálogo' : 'Informado por você; especificações não verificadas'}</li>)}</ul>
+      <details><summary>Identificação dos componentes ({result.metadata.technical_matches ?? result.metadata.catalog_matches} reconhecidos tecnicamente; {result.metadata.catalog_matches} no catálogo)</summary>
+        <ul>{result.components.map((c, i) => <li key={i}>{labels[c.category]}: {c.name} — {componentStatus(c)}
+          {technicalSummary(c) && <><br /><small>{technicalSummary(c)}</small></>}</li>)}</ul>
       </details>
     </section>
     <div className="analysis-grid"><TextList title="Alertas" items={a.warnings.filter(note => !result.compatibility_notes.includes(note))} /><TextList title="Informações a confirmar" items={a.missing_information} /></div>

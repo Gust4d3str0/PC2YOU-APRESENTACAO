@@ -3,6 +3,7 @@ from collections import defaultdict
 
 from .mapper import get_path
 from .normalization import normalize_spec
+from .identity import identity_scope
 
 REQUIRED = {
     'cpu': ['compatibility.socket', 'technical_specs.cores', 'technical_specs.threads', 'technical_specs.tdp_watts'],
@@ -53,4 +54,7 @@ def audit(rows):
             required_by_category[cat].append(f'{section}.{key}')
         rules[name] = {cat: {'eligible': sum(all(valid_field(r, p) for p in paths) for r in groups[cat]),
                              'total': len(groups[cat])} for cat, paths in required_by_category.items()}
-    return {'total': len(rows), 'categories': summary, 'rules': rules, 'components': details}
+    scopes = {scope: sum(identity_scope(row) == scope for row in rows) for scope in ('sku', 'family', 'model')}
+    return {'total': len(rows), 'categories': summary, 'rules': rules, 'components': details,
+            'identity_scopes': scopes,
+            'components_with_conflict': sum(bool(r.get('spec_conflicts') or r.get('import_conflicts')) for r in rows)}

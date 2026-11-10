@@ -44,3 +44,9 @@ def ensure_indexes(collection=None):
     ):
         if not matching_indexes(field):
             target.create_index(field, name=name)
+
+    # Additive indexes only. Populating keys is an explicit offline migration.
+    for key in ('lookup_keys', 'human_lookup_keys', 'normalized_name', 'brand', 'model', 'mpn'):
+        target.create_index([('category', 1), (key, 1)], name=f'ix_catalog_{key}')
+    for source in ('buildcores_opendb', 'pc_part_dataset'):
+        target.create_index(f'external_ids.{source}', sparse=True, name=f'ix_external_{source}')
