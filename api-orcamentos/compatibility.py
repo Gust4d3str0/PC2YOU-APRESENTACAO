@@ -1,4 +1,11 @@
 import re
+import sys
+from pathlib import Path
+
+_shared = Path(__file__).resolve().parents[1] / 'services'
+if _shared.is_dir():
+    sys.path.append(str(_shared))
+from catalog_specs.normalization import capacity
 
 
 STEP_CATEGORIES = ["cpu", "cooler", "motherboard", "ram", "storage", "gpu", "psu", "case"]
@@ -50,14 +57,7 @@ def _ram_modules(ram: dict) -> int:
 
 
 def _capacity_gb(component: dict) -> int | None:
-    value = _spec(component, "capacity")
-    if isinstance(value, (int, float)) and not isinstance(value, bool):
-        return int(value) if value > 0 else None
-    if isinstance(value, str):
-        match = re.search(r"(\d+)\s*GB", value, re.IGNORECASE)
-        if match:
-            return int(match.group(1))
-    return None
+    return capacity(_spec(component, 'capacity'), gb=True)
 
 
 def check_components(components: list[dict], quantities: dict[str, int] | None = None) -> dict:

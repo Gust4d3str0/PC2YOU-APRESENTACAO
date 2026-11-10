@@ -7,6 +7,9 @@ from copy import deepcopy
 import compatibility
 from ai.schemas import AnalyzePCRequest, technical_text
 from product_matching.normalization import named_brands, normalize_brand, normalize_text
+from product_matching.matcher import features
+from catalog_specs.coverage import RULES
+from catalog_specs.normalization import normalize_spec
 
 
 # Only these technical fields cross the provider boundary. No descriptions, URLs or accounts.
@@ -19,15 +22,6 @@ COMPAT_FIELDS = {"socket", "memory_type", "form_factor", "min_psu_watts",
                  "supported_form_factors", "max_gpu_length_mm"}
 LABELS = {"cpu": "Processador", "gpu": "Placa de vídeo", "motherboard": "Placa-mãe",
           "ram": "Memória RAM", "storage": "Armazenamento", "psu": "Fonte", "case": "Gabinete"}
-RULES = [
-    ("cpu_socket", [("cpu", "compatibility", "socket"), ("motherboard", "compatibility", "socket")]),
-    ("ram_type", [("motherboard", "compatibility", "memory_type"), ("ram", "compatibility", "memory_type")]),
-    ("ram_slots", [("motherboard", "technical_specs", "memory_slots")]),
-    ("ram_capacity", [("motherboard", "technical_specs", "max_memory_gb"), ("ram", "technical_specs", "capacity")]),
-    ("gpu_power", [("gpu", "compatibility", "min_psu_watts"), ("psu", "technical_specs", "wattage")]),
-    ("board_case", [("motherboard", "compatibility", "form_factor"), ("case", "compatibility", "supported_form_factors")]),
-    ("gpu_case", [("gpu", "technical_specs", "length_mm"), ("case", "compatibility", "max_gpu_length_mm")]),
-]
 
 
 def _safe_value(value):
@@ -68,7 +62,45 @@ def canonical_name(value, brands):
                 index += 1
     value = " ".join(words)
     value = re.sub(r"\bgeforce\b", " ", value)
-    return re.sub(r"^(?:placa mae|placa de video|processador)\s+", "", value).strip()
+    value = re.sub(r"\b(?:placa mae|placa de video|processador|gamer|lacrado|novo|box|oem)\b", " ", value)
+    return ' '.join(value.split())
+
+
+def _identity_match(name, category, item):
+    """Explicit identities only; commercial words cannot erase variant tokens."""
+    p = features({'title': name, 'category': category})
+    c = features(item)
+    if p['multiple'] or (p['inferred'] in {'cpu', 'gpu'} and p['inferred'] != category):
+        return False
+    brands = named_brands(item.get('name')) | {normalize_brand(item.get('brand'))}
+    if category == 'cpu' and named_brands(name) - brands:
+        return False
+    if category == 'cpu':
+        if not p['model'] or p['model'] != c['model']:
+            return False
+        cleaned = canonical_name(name, brands)
+        cleaned = re.sub(r'\b(?:ryzen\s*[3579]\s*\d{4}[a-z0-9]*|(?:core\s*)?i[3579]\s*\d{4,5}[a-z]*)\b', '', cleaned)
+        return not normalize(cleaned)
+    if category == 'motherboard':
+        # A chipset alone can identify an explicitly generic family, never a named SKU.
+        candidate = normalize_text(item.get('name'))
+        generic = bool(re.fullmatch(r'placa mae [abhxz]\d{3}[a-z]* (?:am\d|lga\d+) ddr\d(?: classe)?', candidate))
+        candidate_models = set(re.findall(r'\b[abhxz]\d{3}[a-z]*\b', candidate))
+        if not generic or not p['model'] or p['model'] != candidate_models or p['brands'] - c['brands']:
+            return False
+        for key in ('socket', 'memory_type'):
+            if p[key] and p[key] != c[key]:
+                return False
+        cleaned = canonical_name(name, brands)
+        cleaned = re.sub(r'\b(?:[abhxz]\d{3}[a-z]*|am[345]|lga\d+|ddr[345]|classe)\b', '', cleaned)
+        return not normalize(cleaned)
+    if category == 'psu' and normalize_text(item.get('name')).startswith('fonte '):
+        if p['brands'] - c['brands'] or not p['power'] or p['power'] != c['power']:
+            return False
+        query = normalize(canonical_name(name, brands)).removeprefix('fonte')
+        candidate = normalize(canonical_name(item['name'], brands)).removeprefix('fonte')
+        return query == next(iter(p['power'])) + 'w' or query == candidate
+    return False
 
 
 def _matches_name(name, category, item):
@@ -81,6 +113,11 @@ def _matches_name(name, category, item):
     query = canonical_name(name, brands)
     candidate = canonical_name(item.get("name", ""), brands)
     if normalize(query) == normalize(candidate):
+        return True
+    if any(normalize(query) == normalize(canonical_name(alias, brands))
+           for alias in item.get('aliases', [])):
+        return True
+    if _identity_match(name, category, item):
         return True
     memory = re.search(r"\b(\d+)gb\s*$", query) if category == "gpu" else None
     return bool(memory and normalize(query[:memory.start()]) == normalize(candidate)
@@ -126,7 +163,7 @@ def check_compatibility(components):
     known = {item["category"]: as_catalog(item) for item in components if item["source"] == "catalog"}
     issues, checked, unchecked = [], [], []
     for name, fields in RULES:
-        available = all(known.get(cat, {}).get(section, {}).get(key) not in (None, "", [], 0)
+        available = all(normalize_spec(key, known.get(cat, {}).get(section, {}).get(key)) is not None
                         for cat, section, key in fields)
         if name == "ram_slots":
             available = available and "ram" in known
@@ -138,11 +175,9 @@ def check_compatibility(components):
         selected = {}
         for cat, section, key in fields:
             selected.setdefault(cat, {"id": known[cat]["id"], "category": known[cat]["category"],
-                                      "technical_specs": {}, "compatibility": {}})[section][key] = known[cat][section][key]
+                                      "technical_specs": {}, "compatibility": {}})[section][key] = normalize_spec(key, known[cat][section][key])
         if name == "ram_slots":
-            selected["ram"] = {"id": known["ram"]["id"], "category": known["ram"]["category"],
-                               "technical_specs": {k: v for k, v in known["ram"]["technical_specs"].items() if k == "modules"},
-                               "compatibility": {}}
+            selected['ram']['technical_specs']['modules'] = normalize_spec('modules', known['ram']['technical_specs']['modules'])
         try:
             result = compatibility.check_components(list(selected.values()))
         except (TypeError, ValueError):

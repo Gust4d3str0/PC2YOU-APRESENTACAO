@@ -11,6 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY api-orcamentos/ .
 COPY services/ai/ ./ai/
 COPY services/product_matching/ ./product_matching/
+COPY services/catalog_specs/ ./catalog_specs/
 
 RUN useradd --create-home --uid 10001 appuser
 USER appuser

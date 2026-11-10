@@ -1,87 +1,113 @@
-"""Complete one known demo field; dry-run by default, no inserts or overwrites.
+"""Audit/backfill every component. Dry-run by default; missing-only atomic Mongo updates.
 
-python scripts/backfill_demo_specs.py --apply
-python scripts/backfill_demo_specs.py --mongo-uri mongodb://localhost:27017 --db orcapc_catalog --apply
-
-Source: scripts/ai_upgrade_demo.py, mock_app/current, SAME b550m-am4-ddr4 ID:
-technical_specs.max_memory_gb = 128. This is a repository demo reference, not
-independent verification of a commercial motherboard SKU. No external lookup.
+No deletes, replacements, inserts, upserts, scraping or AI. Credentials never appear in reports.
 """
 import argparse
 import json
 import os
+import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
-COMPONENT_ID = "b550m-am4-ddr4"
-FIELD = "technical_specs.max_memory_gb"
-VALUE = 128
+sys.path.insert(0, str(ROOT / 'services'))
+from catalog_specs import plan_backfill, apply_plan
+from catalog_specs.persistence import write_mongo_plan
+
+
+def read_jsonl(path):
+    return [json.loads(line) for line in Path(path).read_text(encoding='utf-8').splitlines() if line.strip()]
+
+
+def repository_references():
+    from catalog_audit.seed_io import load_seed
+    refs = []
+    groups = [('api-catalogo/seed.py', load_seed(ROOT / 'api-catalogo/seed.py'))]
+    for name in ('catalog_enrichment_v1.json', 'catalog_coverage_v2.json'):
+        path = ROOT / 'api-catalogo' / name
+        if path.exists():
+            groups.append((f'api-catalogo/{name}', json.loads(path.read_text(encoding='utf-8'))))
+    for source, rows in groups:
+        for row in rows:
+            refs.append({'id': row['id'], 'identity': {k: row[k] for k in ('name', 'category', 'brand')},
+                         'fields': {f'{section}.{key}': value for section in ('technical_specs', 'compatibility')
+                                    for key, value in row.get(section, {}).items()}, 'source': source})
+    curated = ROOT / 'api-catalogo/catalog_spec_references.json'
+    if curated.exists():
+        refs.extend(json.loads(curated.read_text(encoding='utf-8')))
+    return refs
 
 
 def missing_fields(row):
-    if row.get("id") != COMPONENT_ID or row.get("category") != "motherboard":
-        return {}
-    specs = row.get("technical_specs")
-    if specs is not None and not isinstance(specs, dict):
-        return {}  # Malformed data needs review, not a speculative repair.
-    if (specs or {}).get("max_memory_gb") in (None, ""):
-        return {FIELD: VALUE}
-    return {}
+    return {c['field']: c['value'] for c in plan_backfill(row, references=repository_references())['changes']}
 
 
-def backfill_jsonl(path, apply=False):
-    lines = path.read_text(encoding="utf-8").splitlines(keepends=True)
-    changes = []
+def backfill_jsonl(path, apply=False, sources=None, references=None):
+    path = Path(path)
+    sources = sources if sources is not None else read_jsonl(ROOT / 'demo-data/external_product_enrichment.jsonl')
+    references = references if references is not None else repository_references()
+    lines, plans = path.read_text(encoding='utf-8').splitlines(keepends=True), []
     for index, line in enumerate(lines):
         if not line.strip():
             continue
         row = json.loads(line)
-        fields = missing_fields(row)
-        if fields:
-            changes.append({"id": row["id"], "fields": fields})
-            row.setdefault("technical_specs", {})
-            if row["technical_specs"] is None:
-                row["technical_specs"] = {}
-            row["technical_specs"]["max_memory_gb"] = VALUE
-            lines[index] = json.dumps(row, ensure_ascii=False) + "\n"
-    if apply and changes:
-        path.write_text("".join(lines), encoding="utf-8")
-    return changes
+        plan = plan_backfill(row, sources, references)
+        if plan['changes']:
+            plans.append(plan)
+            lines[index] = json.dumps(apply_plan(row, plan), ensure_ascii=False) + '\n'
+    if apply and plans:
+        temporary = path.with_suffix(path.suffix + '.tmp')
+        temporary.write_text(''.join(lines), encoding='utf-8')
+        temporary.replace(path)
+    return plans
 
 
-def backfill_collection(collection, apply=False):
-    changes = []
-    for row in collection.find({"id": COMPONENT_ID, "category": "motherboard"}):
-        fields = missing_fields(row)
-        if fields:
-            changes.append({"id": row["id"], "fields": fields})
-            if apply:
-                # Compare-and-set: never replace a value added since the read.
-                if "technical_specs" in row and row["technical_specs"] is None:
-                    collection.update_one({"_id": row["_id"], "technical_specs": None},
-                                          {"$set": {"technical_specs": {"max_memory_gb": VALUE}}})
-                else:
-                    collection.update_one({"_id": row["_id"], FIELD: (row.get("technical_specs") or {}).get("max_memory_gb")},
-                                          {"$set": fields})
-    return changes
+def backfill_collection(collection, apply=False, sources=(), references=None):
+    references = references if references is not None else repository_references()
+    plans = []
+    for row in collection.find({}):
+        plan = plan_backfill(row, sources, references)
+        if not plan['changes']:
+            continue
+        if apply:
+            plan['applied_fields'] = write_mongo_plan(collection, row, plan)
+        plans.append(plan)
+    return plans
 
 
 def main():
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--jsonl", type=Path, default=ROOT / "demo-data/components.jsonl")
-    parser.add_argument("--mongo-uri", help="Optional persisted demo database; otherwise patches the local snapshot")
-    parser.add_argument("--db", default=os.getenv("MONGO_DB", "orcapc_catalog"))
-    parser.add_argument("--apply", action="store_true")
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--jsonl', type=Path, default=ROOT / 'demo-data/components.jsonl')
+    parser.add_argument('--sources-jsonl', type=Path, default=ROOT / 'demo-data/external_product_enrichment.jsonl')
+    parser.add_argument('--mongo-uri', help='Use MONGO_URI to avoid exposing credentials in shell history')
+    parser.add_argument('--mongo', action='store_true', help='Use MONGO_URI from process environment')
+    parser.add_argument('--db', default=os.getenv('MONGO_DB', 'orcapc_catalog'))
+    parser.add_argument('--report', type=Path)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--dry-run', action='store_true')
+    mode.add_argument('--apply', action='store_true')
     args = parser.parse_args()
-    if args.mongo_uri:
+    if args.mongo or args.mongo_uri:
         from pymongo import MongoClient
-        with MongoClient(args.mongo_uri, serverSelectionTimeoutMS=3000) as client:
-            changes = backfill_collection(client[args.db].components, args.apply)
+        uri = args.mongo_uri or os.getenv('MONGO_URI')
+        if not uri:
+            parser.error('--mongo requires MONGO_URI')
+        try:
+            with MongoClient(uri, serverSelectionTimeoutMS=10000) as client:
+                db = client[args.db]
+                plans = backfill_collection(db.components, args.apply, list(db.external_product_enrichment.find({})))
+        except Exception as exc:
+            raise SystemExit(f'MongoDB operation failed ({type(exc).__name__}); credentials omitted') from None
     else:
-        changes = backfill_jsonl(args.jsonl, args.apply)
-    print(json.dumps({"mode": "apply" if args.apply else "dry-run", "changes": changes}, ensure_ascii=False, indent=2))
+        sources = read_jsonl(args.sources_jsonl) if args.sources_jsonl.exists() else []
+        plans = backfill_jsonl(args.jsonl, args.apply, sources)
+    report = {'mode': 'apply' if args.apply else 'dry-run', 'components': len(plans),
+              'fields': sum(len(p['changes']) for p in plans), 'changes': plans}
+    output = json.dumps(report, ensure_ascii=False, indent=2)
+    if args.report:
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(output + '\n', encoding='utf-8')
+    print(output)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

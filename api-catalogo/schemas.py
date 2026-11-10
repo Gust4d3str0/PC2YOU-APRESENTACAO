@@ -55,6 +55,9 @@ class ComponentBase(BaseModel):
     benchmark: Benchmark
     price_history: list[dict] = Field(default_factory=list)
     external_enrichment: dict[str, Any] | None = None
+    identity_scope: str | None = None
+    spec_provenance: dict[str, Any] | None = None
+    aliases: list[str] = Field(default_factory=list)
 
 
 class ComponentCreate(ComponentBase):

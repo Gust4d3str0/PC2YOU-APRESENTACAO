@@ -1,0 +1,1175 @@
+[
+  {
+    "id": "b660-lga1700-ddr4",
+    "identity": {
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "brand": "Gigabyte"
+    },
+    "fields": {
+      "compatibility.socket": "LGA1700"
+    },
+    "source": "mercado_livre.SOCKET",
+    "product_id": "MLB22650260",
+    "raw": "Lga1700",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22650260"
+    ]
+  },
+  {
+    "id": "b660-lga1700-ddr4",
+    "identity": {
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "brand": "Gigabyte"
+    },
+    "fields": {
+      "compatibility.memory_type": "DDR4"
+    },
+    "source": "mercado_livre.SUPPORTED_RAM_MEMORY_TYPE",
+    "product_id": "MLB22650260",
+    "raw": "DDR4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22650260"
+    ]
+  },
+  {
+    "id": "b660-lga1700-ddr4",
+    "identity": {
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "brand": "Gigabyte"
+    },
+    "fields": {
+      "technical_specs.max_memory_gb": 128
+    },
+    "source": "mercado_livre.MAX_SUPPORTED_RAM_MEMORY_CAPACITY",
+    "product_id": "MLB22650260",
+    "raw": "128 GB",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22650260"
+    ]
+  },
+  {
+    "id": "b660-lga1700-ddr4",
+    "identity": {
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "brand": "Gigabyte"
+    },
+    "fields": {
+      "compatibility.form_factor": "Micro-ATX"
+    },
+    "source": "mercado_livre.FORM_FACTOR",
+    "product_id": "MLB22650260",
+    "raw": "Micro ATX",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22650260"
+    ]
+  },
+  {
+    "id": "b660-lga1700-ddr4",
+    "identity": {
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "brand": "Gigabyte"
+    },
+    "fields": {
+      "technical_specs.socket": "LGA1700"
+    },
+    "source": "mercado_livre.SOCKET",
+    "product_id": "MLB22650260",
+    "raw": "Lga1700",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22650260"
+    ]
+  },
+  {
+    "id": "b660-lga1700-ddr4",
+    "identity": {
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "brand": "Gigabyte"
+    },
+    "fields": {
+      "technical_specs.memory_type": "DDR4"
+    },
+    "source": "mercado_livre.SUPPORTED_RAM_MEMORY_TYPE",
+    "product_id": "MLB22650260",
+    "raw": "DDR4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22650260"
+    ]
+  },
+  {
+    "id": "b660-lga1700-ddr4",
+    "identity": {
+      "name": "Placa-mãe Gigabyte B660M AORUS PRO",
+      "category": "motherboard",
+      "brand": "Gigabyte"
+    },
+    "fields": {
+      "technical_specs.form_factor": "Micro-ATX"
+    },
+    "source": "mercado_livre.FORM_FACTOR",
+    "product_id": "MLB22650260",
+    "raw": "Micro ATX",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22650260"
+    ]
+  },
+  {
+    "id": "x670e-am5-ddr5",
+    "identity": {
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "brand": "ASUS"
+    },
+    "fields": {
+      "compatibility.socket": "AM5"
+    },
+    "source": "mercado_livre.SOCKET",
+    "product_id": "MLB22651390",
+    "raw": "Am5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22651390"
+    ]
+  },
+  {
+    "id": "x670e-am5-ddr5",
+    "identity": {
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "brand": "ASUS"
+    },
+    "fields": {
+      "compatibility.memory_type": "DDR5"
+    },
+    "source": "mercado_livre.SUPPORTED_RAM_MEMORY_TYPE",
+    "product_id": "MLB22651390",
+    "raw": "DDR5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22651390"
+    ]
+  },
+  {
+    "id": "x670e-am5-ddr5",
+    "identity": {
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "brand": "ASUS"
+    },
+    "fields": {
+      "technical_specs.max_memory_gb": 128
+    },
+    "source": "mercado_livre.MAX_SUPPORTED_RAM_MEMORY_CAPACITY",
+    "product_id": "MLB22651390",
+    "raw": "128 GB",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22651390"
+    ]
+  },
+  {
+    "id": "x670e-am5-ddr5",
+    "identity": {
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "brand": "ASUS"
+    },
+    "fields": {
+      "compatibility.form_factor": "ATX"
+    },
+    "source": "mercado_livre.FORM_FACTOR",
+    "product_id": "MLB22651390",
+    "raw": "ATX",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22651390"
+    ]
+  },
+  {
+    "id": "x670e-am5-ddr5",
+    "identity": {
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "brand": "ASUS"
+    },
+    "fields": {
+      "technical_specs.socket": "AM5"
+    },
+    "source": "mercado_livre.SOCKET",
+    "product_id": "MLB22651390",
+    "raw": "Am5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22651390"
+    ]
+  },
+  {
+    "id": "x670e-am5-ddr5",
+    "identity": {
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "brand": "ASUS"
+    },
+    "fields": {
+      "technical_specs.memory_type": "DDR5"
+    },
+    "source": "mercado_livre.SUPPORTED_RAM_MEMORY_TYPE",
+    "product_id": "MLB22651390",
+    "raw": "DDR5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22651390"
+    ]
+  },
+  {
+    "id": "x670e-am5-ddr5",
+    "identity": {
+      "name": "Placa-mãe Asus TUF Gaming X670E-PLUS",
+      "category": "motherboard",
+      "brand": "ASUS"
+    },
+    "fields": {
+      "technical_specs.form_factor": "ATX"
+    },
+    "source": "mercado_livre.FORM_FACTOR",
+    "product_id": "MLB22651390",
+    "raw": "ATX",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB22651390"
+    ]
+  },
+  {
+    "id": "intel-i7-14700kf",
+    "identity": {
+      "name": "Intel Core i7-14700KF",
+      "category": "cpu",
+      "brand": "Intel"
+    },
+    "fields": {
+      "compatibility.socket": "LGA1700"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB28111906",
+    "raw": "Lga1700",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB28111906"
+    ]
+  },
+  {
+    "id": "intel-i7-14700kf",
+    "identity": {
+      "name": "Intel Core i7-14700KF",
+      "category": "cpu",
+      "brand": "Intel"
+    },
+    "fields": {
+      "technical_specs.cores": 20
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB28111906",
+    "raw": "20",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB28111906"
+    ]
+  },
+  {
+    "id": "intel-i7-14700kf",
+    "identity": {
+      "name": "Intel Core i7-14700KF",
+      "category": "cpu",
+      "brand": "Intel"
+    },
+    "fields": {
+      "technical_specs.threads": 28
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB28111906",
+    "raw": "28",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB28111906"
+    ]
+  },
+  {
+    "id": "intel-i7-14700kf",
+    "identity": {
+      "name": "Intel Core i7-14700KF",
+      "category": "cpu",
+      "brand": "Intel"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 125
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB28111906",
+    "raw": "125 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB28111906"
+    ]
+  },
+  {
+    "id": "intel-i7-14700kf",
+    "identity": {
+      "name": "Intel Core i7-14700KF",
+      "category": "cpu",
+      "brand": "Intel"
+    },
+    "fields": {
+      "technical_specs.socket": "LGA1700"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB28111906",
+    "raw": "Lga1700",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB28111906"
+    ]
+  },
+  {
+    "id": "ryzen-5-5500x3d",
+    "identity": {
+      "name": "AMD Ryzen 5 5500X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB52967964",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB52967964"
+    ]
+  },
+  {
+    "id": "ryzen-5-5500x3d",
+    "identity": {
+      "name": "AMD Ryzen 5 5500X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 6
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB52967964",
+    "raw": "6",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB52967964"
+    ]
+  },
+  {
+    "id": "ryzen-5-5500x3d",
+    "identity": {
+      "name": "AMD Ryzen 5 5500X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 12
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB52967964",
+    "raw": "12",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB52967964"
+    ]
+  },
+  {
+    "id": "ryzen-5-5500x3d",
+    "identity": {
+      "name": "AMD Ryzen 5 5500X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 105
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB52967964",
+    "raw": "105 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB52967964"
+    ]
+  },
+  {
+    "id": "ryzen-5-5500x3d",
+    "identity": {
+      "name": "AMD Ryzen 5 5500X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB52967964",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB52967964"
+    ]
+  },
+  {
+    "id": "ryzen-5-8400f",
+    "identity": {
+      "name": "AMD Ryzen 5 8400F",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB53500536",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB53500536"
+    ]
+  },
+  {
+    "id": "ryzen-5-8400f",
+    "identity": {
+      "name": "AMD Ryzen 5 8400F",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 6
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB53500536",
+    "raw": "6",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB53500536"
+    ]
+  },
+  {
+    "id": "ryzen-5-8400f",
+    "identity": {
+      "name": "AMD Ryzen 5 8400F",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 12
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB53500536",
+    "raw": "12",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB53500536"
+    ]
+  },
+  {
+    "id": "ryzen-5-8400f",
+    "identity": {
+      "name": "AMD Ryzen 5 8400F",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 65
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB53500536",
+    "raw": "65 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB53500536"
+    ]
+  },
+  {
+    "id": "ryzen-5-8400f",
+    "identity": {
+      "name": "AMD Ryzen 5 8400F",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB53500536",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB53500536"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800x3d",
+    "identity": {
+      "name": "AMD Ryzen 7 5800X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB75448717",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB75448717"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800x3d",
+    "identity": {
+      "name": "AMD Ryzen 7 5800X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 8
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB75448717",
+    "raw": "8",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB75448717"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800x3d",
+    "identity": {
+      "name": "AMD Ryzen 7 5800X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 16
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB75448717",
+    "raw": "16",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB75448717"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800x3d",
+    "identity": {
+      "name": "AMD Ryzen 7 5800X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 105
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB75448717",
+    "raw": "105 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB75448717"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800x3d",
+    "identity": {
+      "name": "AMD Ryzen 7 5800X3D",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB75448717",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB75448717"
+    ]
+  },
+  {
+    "id": "ryzen-5-8600g",
+    "identity": {
+      "name": "AMD Ryzen 5 8600G",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB32470567",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB32470567"
+    ]
+  },
+  {
+    "id": "ryzen-5-8600g",
+    "identity": {
+      "name": "AMD Ryzen 5 8600G",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 6
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB32470567",
+    "raw": "6",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB32470567"
+    ]
+  },
+  {
+    "id": "ryzen-5-8600g",
+    "identity": {
+      "name": "AMD Ryzen 5 8600G",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 12
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB32470567",
+    "raw": "12",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB32470567"
+    ]
+  },
+  {
+    "id": "ryzen-5-8600g",
+    "identity": {
+      "name": "AMD Ryzen 5 8600G",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 65
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB32470567",
+    "raw": "65 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB32470567"
+    ]
+  },
+  {
+    "id": "ryzen-5-8600g",
+    "identity": {
+      "name": "AMD Ryzen 5 8600G",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB32470567",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB32470567"
+    ]
+  },
+  {
+    "id": "ryzen-7-5700",
+    "identity": {
+      "name": "AMD Ryzen 7 5700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB31054937",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB31054937"
+    ]
+  },
+  {
+    "id": "ryzen-7-5700",
+    "identity": {
+      "name": "AMD Ryzen 7 5700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 8
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB31054937",
+    "raw": "8",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB31054937"
+    ]
+  },
+  {
+    "id": "ryzen-7-5700",
+    "identity": {
+      "name": "AMD Ryzen 7 5700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 16
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB31054937",
+    "raw": "16",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB31054937"
+    ]
+  },
+  {
+    "id": "ryzen-7-5700",
+    "identity": {
+      "name": "AMD Ryzen 7 5700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 65
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB31054937",
+    "raw": "65 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB31054937"
+    ]
+  },
+  {
+    "id": "ryzen-7-5700",
+    "identity": {
+      "name": "AMD Ryzen 7 5700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB31054937",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB31054937"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800xt",
+    "identity": {
+      "name": "AMD Ryzen 7 5800XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB38775722",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775722"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800xt",
+    "identity": {
+      "name": "AMD Ryzen 7 5800XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 8
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB38775722",
+    "raw": "8",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775722"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800xt",
+    "identity": {
+      "name": "AMD Ryzen 7 5800XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 16
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB38775722",
+    "raw": "16",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775722"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800xt",
+    "identity": {
+      "name": "AMD Ryzen 7 5800XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 105
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB38775722",
+    "raw": "105 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775722"
+    ]
+  },
+  {
+    "id": "ryzen-7-5800xt",
+    "identity": {
+      "name": "AMD Ryzen 7 5800XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB38775722",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775722"
+    ]
+  },
+  {
+    "id": "ryzen-7-7700",
+    "identity": {
+      "name": "AMD Ryzen 7 7700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB69750845",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB69750845"
+    ]
+  },
+  {
+    "id": "ryzen-7-7700",
+    "identity": {
+      "name": "AMD Ryzen 7 7700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 8
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB69750845",
+    "raw": "8",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB69750845"
+    ]
+  },
+  {
+    "id": "ryzen-7-7700",
+    "identity": {
+      "name": "AMD Ryzen 7 7700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 16
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB69750845",
+    "raw": "16",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB69750845"
+    ]
+  },
+  {
+    "id": "ryzen-7-7700",
+    "identity": {
+      "name": "AMD Ryzen 7 7700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 65
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB69750845",
+    "raw": "65 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB69750845"
+    ]
+  },
+  {
+    "id": "ryzen-7-7700",
+    "identity": {
+      "name": "AMD Ryzen 7 7700",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB69750845",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB69750845"
+    ]
+  },
+  {
+    "id": "ryzen-9-7900",
+    "identity": {
+      "name": "AMD Ryzen 9 7900",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB61075833",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB61075833"
+    ]
+  },
+  {
+    "id": "ryzen-9-7900",
+    "identity": {
+      "name": "AMD Ryzen 9 7900",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 12
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB61075833",
+    "raw": "12",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB61075833"
+    ]
+  },
+  {
+    "id": "ryzen-9-7900",
+    "identity": {
+      "name": "AMD Ryzen 9 7900",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 24
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB61075833",
+    "raw": "24",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB61075833"
+    ]
+  },
+  {
+    "id": "ryzen-9-7900",
+    "identity": {
+      "name": "AMD Ryzen 9 7900",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 65
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB61075833",
+    "raw": "65 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB61075833"
+    ]
+  },
+  {
+    "id": "ryzen-9-7900",
+    "identity": {
+      "name": "AMD Ryzen 9 7900",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB61075833",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB61075833"
+    ]
+  },
+  {
+    "id": "ryzen-7-9700x",
+    "identity": {
+      "name": "AMD Ryzen 7 9700X",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB80105267",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB80105267"
+    ]
+  },
+  {
+    "id": "ryzen-7-9700x",
+    "identity": {
+      "name": "AMD Ryzen 7 9700X",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 8
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB80105267",
+    "raw": "8",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB80105267"
+    ]
+  },
+  {
+    "id": "ryzen-7-9700x",
+    "identity": {
+      "name": "AMD Ryzen 7 9700X",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 16
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB80105267",
+    "raw": "16",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB80105267"
+    ]
+  },
+  {
+    "id": "ryzen-7-9700x",
+    "identity": {
+      "name": "AMD Ryzen 7 9700X",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 65
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB80105267",
+    "raw": "65 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB80105267"
+    ]
+  },
+  {
+    "id": "ryzen-7-9700x",
+    "identity": {
+      "name": "AMD Ryzen 7 9700X",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM5"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB80105267",
+    "raw": "AM5",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB80105267"
+    ]
+  },
+  {
+    "id": "ryzen-9-5900xt",
+    "identity": {
+      "name": "AMD Ryzen 9 5900XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "compatibility.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB38775549",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775549"
+    ]
+  },
+  {
+    "id": "ryzen-9-5900xt",
+    "identity": {
+      "name": "AMD Ryzen 9 5900XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.cores": 16
+    },
+    "source": "mercado_livre.CPU_CORES_NUMBER",
+    "product_id": "MLB38775549",
+    "raw": "16",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775549"
+    ]
+  },
+  {
+    "id": "ryzen-9-5900xt",
+    "identity": {
+      "name": "AMD Ryzen 9 5900XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.threads": 32
+    },
+    "source": "mercado_livre.CPU_THREADS_NUMBER",
+    "product_id": "MLB38775549",
+    "raw": "32",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775549"
+    ]
+  },
+  {
+    "id": "ryzen-9-5900xt",
+    "identity": {
+      "name": "AMD Ryzen 9 5900XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.tdp_watts": 105
+    },
+    "source": "mercado_livre.TDP",
+    "product_id": "MLB38775549",
+    "raw": "105 W",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775549"
+    ]
+  },
+  {
+    "id": "ryzen-9-5900xt",
+    "identity": {
+      "name": "AMD Ryzen 9 5900XT",
+      "category": "cpu",
+      "brand": "AMD"
+    },
+    "fields": {
+      "technical_specs.socket": "AM4"
+    },
+    "source": "mercado_livre.COMPATIBLE_SOCKETS",
+    "product_id": "MLB38775549",
+    "raw": "AM4",
+    "urls": [
+      "https://api.mercadolibre.com/products/MLB38775549"
+    ]
+  }
+]

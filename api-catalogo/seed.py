@@ -538,6 +538,20 @@ COMPONENTS = [
 import json
 from pathlib import Path
 COMPONENTS += json.loads((Path(__file__).with_name('catalog_enrichment_v1.json')).read_text(encoding='utf-8'))
+COMPONENTS += json.loads((Path(__file__).with_name('catalog_coverage_v2.json')).read_text(encoding='utf-8'))
+
+# Only new documents receive normalized seed specs. Existing Mongo documents are
+# preserved by $setOnInsert and upgraded explicitly by backfill_demo_specs.py.
+import sys
+_shared_specs = Path(__file__).resolve().parents[1] / 'services'
+if _shared_specs.is_dir():
+    sys.path.append(str(_shared_specs))
+from catalog_specs import plan_backfill, apply_plan
+from catalog_specs.identity import identity_scope
+_spec_refs = json.loads(Path(__file__).with_name('catalog_spec_references.json').read_text(encoding='utf-8'))
+for _index, _item in enumerate(COMPONENTS):
+    COMPONENTS[_index] = apply_plan(_item, plan_backfill(_item, references=_spec_refs))
+    COMPONENTS[_index].setdefault('identity_scope', identity_scope(_item))
 
 
 def seed_components():

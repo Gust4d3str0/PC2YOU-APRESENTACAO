@@ -45,7 +45,7 @@ def test_normalized_names_use_real_catalog(category, name, expected):
 
 
 @pytest.mark.parametrize("category,name", [
-    ("cpu", "Ryzen 5 5600X AMD"), ("cpu", "Ryzen 5 5600 Intel"),
+    ("cpu", "Ryzen 5 5600 Intel"),
     ("motherboard", "Placa mae B550M AM4 DDR5"),
     ("motherboard", "Placa mae B550M AM4 DDR4 ASUS"),
     ("ram", "Kingston Fury Beast 17GB DDR4 3200MHz"),
@@ -79,7 +79,7 @@ def test_existing_brand_alias_is_reused():
 def demo_request():
     return request(components={
         "cpu": "AMD Ryzen 5 5600", "gpu": "GeForce RTX 3060 12 GB",
-        "motherboard": "Placa-mãe B550M AM4 DDR4", "ram": "Kingston Fury Beast 16GB DDR4 3200MHz",
+        "motherboard": "Placa-mãe B550M AM4 DDR4", "ram": "kingston-kf432c16bb-16",
         "storage": ["Kingston NV3 1TB NVMe M.2"], "psu": "Fonte 650W 80 Plus Bronze",
         "case": "Gabinete Gamer Rise Mode Glass",
     })
@@ -123,31 +123,21 @@ def test_alert_deduplication_does_not_change_validation_or_context(setup):
     assert post(setup, body).status_code == 502  # Validation still precedes formatting.
 
 
-def test_backfill_is_dry_by_default_and_idempotent_without_overwrites(tmp_path):
-    row = {"id": "b550m-am4-ddr4", "category": "motherboard", "technical_specs": {"memory_slots": 4}, "prices": [{"price": 99}]}
+def test_bare_demo_id_cannot_authorize_a_hardcoded_128gb_backfill(tmp_path):
+    row = {"id": "b550m-am4-ddr4", "category": "motherboard", "technical_specs": {"memory_slots": 4}}
     path = tmp_path / "components.jsonl"
     original = json.dumps(row) + "\n"
     path.write_text(original, encoding="utf-8")
-    assert backfill_jsonl(path)
+    assert backfill_jsonl(path) == []
     assert path.read_text(encoding="utf-8") == original
-    assert backfill_jsonl(path, apply=True)
-    expected = deepcopy(row)
-    expected["technical_specs"]["max_memory_gb"] = 128
-    assert json.loads(path.read_text(encoding="utf-8")) == expected
-    assert backfill_jsonl(path, apply=True) == []
-    assert missing_fields({**expected, "id": "other"}) == {}
-    assert missing_fields({**expected, "technical_specs": {"max_memory_gb": 64}}) == {}
-    assert missing_fields({**expected, "technical_specs": []}) == {}
+    assert missing_fields(row) == {}
     collection = mongomock.MongoClient().demo.components
     collection.insert_one(deepcopy(row))
-    assert backfill_collection(collection) and "max_memory_gb" not in collection.find_one()["technical_specs"]
-    assert backfill_collection(collection, apply=True)
-    assert collection.count_documents({}) == 1
     assert backfill_collection(collection, apply=True) == []
-    assert backfill_collection(mongomock.MongoClient().demo.components, apply=True) == []
-    collection.update_one({}, {"$set": {"technical_specs": None}})
-    assert backfill_collection(collection, apply=True)
-    assert collection.find_one()["technical_specs"] == {"max_memory_gb": 128}
-    collection.update_one({}, {"$set": {"technical_specs.max_memory_gb": 64}})
-    assert backfill_collection(collection, apply=True) == []
-    assert collection.find_one()["technical_specs"]["max_memory_gb"] == 64
+    assert collection.find_one()["technical_specs"] == {"memory_slots": 4}
+
+
+def test_new_5600x_is_a_distinct_real_identity():
+    catalog = SnapshotCatalog()
+    assert enrich("Ryzen 5 5600X AMD", "cpu", catalog)["catalog_id"] == "ryzen-5-5600x"
+    assert enrich("Ryzen 5 5600 AMD", "cpu", catalog)["catalog_id"] == "ryzen-5-5600"
