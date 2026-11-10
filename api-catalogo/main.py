@@ -251,6 +251,31 @@ def create_component(
         raise HTTPException(status_code=409, detail="Peça já cadastrada") from exc
 
 
+@app.get('/components/resolve-human', tags=['Catálogo'])
+def resolve_human_components(
+    category: str = Query(..., max_length=32),
+    q: str = Query(..., min_length=1, max_length=300),
+    collection: Collection = Depends(get_components_collection),
+):
+    from catalog_specs.human_input import parse_input
+    from catalog_specs.human_resolver import mongo_bundle
+    parsed = parse_input(q, category)
+    result = mongo_bundle(collection, parsed) if not parsed['errors'] else {'candidates': [], 'overflow': False, 'family': None}
+    result['candidates'] = [{**row, 'prices': [], 'price_history': []} for row in result['candidates']]
+    return result
+
+
+@app.get('/components/resolve', response_model=list[schemas.Component], tags=['Catálogo'])
+def resolve_components(
+    category: str = Query(..., max_length=32),
+    q: str = Query(..., min_length=1, max_length=300),
+    collection: Collection = Depends(get_components_collection),
+):
+    from catalog_specs.lookup import lookup_mongo
+    # Technical lookup does not fan out into price-history or Telegram collections.
+    return [{**row, 'prices': [], 'price_history': []} for row in lookup_mongo(collection, category, q)]
+
+
 @app.get("/components", response_model=list[schemas.Component], tags=["Catálogo"])
 def read_components(
     category: str | None = Query(default=None, max_length=120),

@@ -10,13 +10,16 @@ from product_matching.normalization import named_brands, normalize_brand, normal
 from product_matching.matcher import features
 from catalog_specs.coverage import RULES
 from catalog_specs.normalization import normalize_spec
+from catalog_specs.human_resolver import resolve_human
+from catalog_specs.human_input import parse_input
+from catalog_specs.identity import identity_scope
 
 
 # Only these technical fields cross the provider boundary. No descriptions, URLs or accounts.
 SPEC_FIELDS = {
     "socket", "memory_type", "memory_slots", "max_memory_gb", "capacity", "modules",
     "wattage", "tdp_watts", "power_consumption_watts", "length_mm", "interface",
-    "cores", "threads", "frequency", "speed", "memory", "vram", "type",
+    "cores", "threads", "frequency", "speed", "memory", "vram", "type", "model", "form_factor", "cas_latency", "efficiency",
 }
 COMPAT_FIELDS = {"socket", "memory_type", "form_factor", "min_psu_watts",
                  "supported_form_factors", "max_gpu_length_mm"}
@@ -126,6 +129,25 @@ def _matches_name(name, category, item):
 
 
 def enrich(name, category, catalog):
+    if callable(getattr(catalog, 'human_candidates', None)):
+        result, _ = resolve_human(name, category, catalog)
+        result['name'] = technical_text(str(result['name'])[:120])
+        result['specifications'] = _fields({'technical_specs': result['specifications']}, 'technical_specs', SPEC_FIELDS)
+        result['compatibility'] = _fields(result, 'compatibility', COMPAT_FIELDS)
+        return result
+    if callable(getattr(catalog, 'resolve_components', None)):
+        found = catalog.resolve_components(category, name)
+        # Indexed resolver returns exact keys/explicit aliases only, including SKU variants.
+        matches = [r for r in found if r.get('category') in ({'ram', 'kit-ram'} if category == 'ram' else {category})]
+        if len(matches) != 1:
+            return {'name': name, 'category': category, 'source': 'user', 'catalog_id': None,
+                    'specifications': {}, 'compatibility': {}}
+        item = matches[0]
+        return {'name': technical_text(str(item['name'])[:120]), 'category': category,
+                'source': 'catalog', 'catalog_id': technical_text(str(item['id'])[:120]),
+                'specifications': _fields(item, 'technical_specs', SPEC_FIELDS),
+                'compatibility': _fields(item, 'compatibility', COMPAT_FIELDS),
+                '_catalog_category': item['category']}
     # Keep direct IDs fast. Names also need the category snapshot: the catalog's
     # literal search can miss accents, punctuation, units or a relocated brand.
     query = name
@@ -159,12 +181,29 @@ def as_catalog(item):
             "technical_specs": item["specifications"], "compatibility": item["compatibility"]}
 
 
+def trusted_field(item, section, key):
+    if not item or item.get('source') not in {'catalog', 'derived'}:
+        return False
+    path = ('technical_specs' if section == 'technical_specs' else section) + '.' + key
+    values = item.get('specifications' if section == 'technical_specs' else section) or {}
+    if normalize_spec(key, values.get(key)) is None:
+        return False
+    # Legacy catalog adapters remain backwards-compatible; derived data always needs evidence.
+    return item['source'] == 'catalog' or item.get('field_sources', {}).get(path) in {'user_text', 'catalog_family_consensus'}
+
+
 def check_compatibility(components):
-    known = {item["category"]: as_catalog(item) for item in components if item["source"] == "catalog"}
+    trusted = {item['category']: item for item in components if item['source'] in {'catalog', 'derived'}}
+    known = {cat: as_catalog(item) for cat, item in trusted.items()}
     issues, checked, unchecked = [], [], []
     for name, fields in RULES:
-        available = all(normalize_spec(key, known.get(cat, {}).get(section, {}).get(key)) is not None
-                        for cat, section, key in fields)
+        available = all(trusted_field(trusted.get(cat), section, key) for cat, section, key in fields)
+        if name == 'board_case' and available:
+            board_form = normalize_spec('form_factor', known['motherboard']['compatibility']['form_factor'])
+            supported = normalize_spec('supported_form_factors', known['case']['compatibility']['supported_form_factors'])
+            case = trusted['case']
+            if board_form not in supported and case['source'] == 'derived' and not case.get('_support_complete'):
+                available = False  # A positive support list is not evidence excluding every other format.
         if name == "ram_slots":
             available = available and "ram" in known
         if not available:
@@ -187,7 +226,7 @@ def check_compatibility(components):
         issues.extend(result["errors"])
     warnings = []
     if unchecked:
-        warnings.append("Compatibilidade parcial: faltam dados do catálogo para uma ou mais regras.")
+        warnings.append("Compatibilidade parcial: faltam campos técnicos confiáveis para uma ou mais regras.")
     if "psu" not in known or not known["psu"]["technical_specs"].get("wattage"):
         warnings.append("Fonte desconhecida ou sem potência verificada. Confirme modelo e potência antes de upgrades.")
     ram = known.get("ram")
@@ -222,20 +261,35 @@ def build_context(payload: AnalyzePCRequest, catalog):
             if name:
                 item = enrich(name, category, catalog)
                 components.append(item)
-                if item["source"] == "user":
-                    missing.append(f"{LABELS[category]}: especificações não verificadas no catálogo")
-        if not value and category != "case":
-            missing.append(f"{LABELS[category]}: não informado")
     verdict = check_compatibility(components)
+    current = {item['category']: item for item in components}
+    field_labels = {'socket': 'socket', 'memory_type': 'tipo DDR', 'memory_slots': 'quantidade de slots',
+                    'modules': 'quantidade de módulos', 'max_memory_gb': 'capacidade máxima de RAM',
+                    'capacity': 'capacidade de RAM', 'min_psu_watts': 'potência de fonte recomendada',
+                    'wattage': 'potência da fonte', 'form_factor': 'formato da placa-mãe',
+                    'supported_form_factors': 'formatos suportados', 'length_mm': 'comprimento da GPU',
+                    'max_gpu_length_mm': 'espaço máximo para GPU'}
+    for rule, fields in RULES:
+        if rule not in verdict['unchecked_rules']:
+            continue
+        added = False
+        for cat, section, key in fields:
+            if not trusted_field(current.get(cat), section, key):
+                message = f'{LABELS[cat]}: confirmar {field_labels.get(key, key)}'
+                if message not in missing:
+                    missing.append(message)
+                added = True
+        if not added and rule == 'board_case':
+            missing.append('Gabinete: confirmar suporte ao formato da placa-mãe')
     candidates = []
     # Only supply specific replacements when all existing rule checks are possible.
     # This deliberately favors type-level advice for incomplete builds.
     if verdict["valid"] is True:
         current_ids = {item["catalog_id"] for item in components}
         for category in ("gpu", "ram", "cpu", "storage", "psu"):
-            options = catalog.list_components(category)
+            options = catalog.upgrade_candidates(category) if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components(category)[:24]
             if category == "ram":
-                options += catalog.list_components("kit-ram")
+                options += catalog.upgrade_candidates('kit-ram') if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components('kit-ram')[:24]
             for raw in options:
                 allowed_categories = {"ram", "kit-ram"} if category == "ram" else {category}
                 if raw.get("id") in current_ids or raw.get("category") not in allowed_categories:

@@ -5,6 +5,8 @@ _shared = Path(__file__).resolve().parents[1] / 'services'
 if _shared.is_dir():
     sys.path.append(str(_shared))
 from product_matching.quality import catalog_offers, best_known_price, history_observation
+from catalog_specs.external_identity import search_metadata
+from catalog_specs.human_input import human_keys
 
 import re
 
@@ -55,7 +57,10 @@ def _public_component(document: dict | None, database=None):
 
 
 def create_component(collection: Collection, component: dict):
+    component.update(search_metadata(component))
+    component['human_lookup_keys'] = human_keys(component)
     collection.insert_one(component)
+    collection.database.catalog_human_index_meta.update_one({'_id': 'active'}, {'$set': {'valid': False}}, upsert=True)
     return component
 
 
@@ -97,7 +102,14 @@ def get_component(collection: Collection, component_id: str):
 
 
 def update_component(collection: Collection, component_id: str, data: dict):
+    current = collection.find_one({'id': component_id})
+    identity_changed = bool(set(data) & {'name','category','brand','technical_specs','compatibility','aliases','mpn','identity_scope','identity_variant'})
+    if current is not None and identity_changed:
+        prospective = {**current, **data}
+        data = {**data, **search_metadata(prospective), 'human_lookup_keys': human_keys(prospective)}
     collection.update_one({"id": component_id}, {"$set": data})
+    if current is not None and identity_changed:
+        collection.database.catalog_human_index_meta.update_one({'_id': 'active'}, {'$set': {'valid': False}}, upsert=True)
     return get_component(collection, component_id)
 
 
@@ -106,6 +118,7 @@ def delete_component(collection: Collection, component_id: str):
     if not component:
         return None
     collection.delete_one({"id": component_id})
+    collection.database.catalog_human_index_meta.update_one({'_id': 'active'}, {'$set': {'valid': False}}, upsert=True)
     return component
 
 

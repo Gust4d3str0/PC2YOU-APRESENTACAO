@@ -58,6 +58,12 @@ class ComponentBase(BaseModel):
     identity_scope: str | None = None
     spec_provenance: dict[str, Any] | None = None
     aliases: list[str] = Field(default_factory=list)
+    external_ids: dict[str, Any] = Field(default_factory=dict)
+    normalized_name: str | None = None
+    normalized_identity: str | None = None
+    model: str | None = None
+    mpn: list[str] = Field(default_factory=list)
+    identity_variant: str | None = None
 
 
 class ComponentCreate(ComponentBase):

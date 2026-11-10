@@ -84,7 +84,7 @@ class AIService:
         missing = trusted["missing_information"]
         if missing or trusted["compatibility"]["unchecked_rules"]:
             analysis.primary_limit.confidence = "low"
-        analysis.missing_information = unique_messages(missing + analysis.missing_information)[:15]
+        analysis.missing_information = unique_messages(missing)[:15]
         analysis.warnings = unique_messages(trusted["compatibility"]["warnings"] + analysis.warnings)[:12]
         if trusted["compatibility"]["issues"]:
             analysis.overall_rating = "attention"
@@ -96,6 +96,8 @@ class AIService:
             upgrade_budget=context["user_context"]["upgrade_budget"],
             metadata={"provider": self.provider.name, "model": self.settings.model,
                       "catalog_matches": sum(item["source"] == "catalog" for item in trusted["build"]),
+                      "technical_matches": sum(item['source'] in {'catalog', 'derived'} for item in trusted['build']),
+                      "derived_matches": sum(item['source'] == 'derived' for item in trusted['build']),
                       "compatibility_checked": True, "cached": False, "prompt_version": PROMPT_VERSION},
         )
         return result

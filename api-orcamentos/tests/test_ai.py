@@ -120,7 +120,7 @@ def test_missing_optional_component_produces_partial_verification(setup, field):
     assert response.status_code == 200, response.text
     data = response.json()
     assert data["compatibility"]["valid"] is (True if field == "storage" else None)
-    assert data["analysis"]["primary_limit"]["confidence"] == "low"
+    assert data["analysis"]["primary_limit"]["confidence"] == ('high' if field == 'storage' else 'low')
     if field == "psu":
         assert any("Fonte desconhecida" in note for note in data["compatibility_notes"])
 

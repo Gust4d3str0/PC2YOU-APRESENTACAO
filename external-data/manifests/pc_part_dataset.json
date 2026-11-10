@@ -1,0 +1,15 @@
+{
+  "source": "pc_part_dataset",
+  "repository": "docyx/pc-part-dataset",
+  "commit": "c52a04ca9465c83997ed335f7767b09a2005dd26",
+  "license": "MIT",
+  "downloaded_at": "2026-11-10T12:13:30.376907+00:00",
+  "archive_sha256": "e72cb77e525e526f1e8711f89f984f056bfa06671fa7b8546a579523cdde9abe",
+  "download_bytes": 5180943,
+  "file_count": 27,
+  "schema_sha256": {},
+  "licensing_sha256": {
+    "LICENSE": "0ed75814ad6b202903d90ea1597800d2a4687cf76cb620ee0b4a91e362bf60e2",
+    "README.md": "6dd0608de369a932fe53c3013365bc1cb6c2f9cadde535a976fbd5b2cb7e1b7d"
+  }
+}

@@ -116,5 +116,25 @@ class CatalogClient:
             raise HTTPException(status_code=503, detail="Resposta inválida do catálogo")
         return body
 
+    def resolve_components(self, category: str, query: str) -> list[dict]:
+        body = self._checked_json(self._request('GET', '/components/resolve', params={'category': category, 'q': query}))
+        if not isinstance(body, list) or len(body) > 32 or any(not isinstance(item, dict) for item in body):
+            raise HTTPException(status_code=503, detail='Resposta inválida do resolver do catálogo')
+        return body
+
+    def human_candidates(self, category: str, query: str) -> dict:
+        body = self._checked_json(self._request('GET', '/components/resolve-human', params={'category': category, 'q': query}))
+        if (not isinstance(body, dict) or not isinstance(body.get('candidates'), list)
+                or len(body['candidates']) > 32 or any(not isinstance(r, dict) for r in body['candidates'])
+                or not isinstance(body.get('overflow'), bool) or (body.get('family') is not None and not isinstance(body['family'], dict))):
+            raise HTTPException(status_code=503, detail='Resposta inválida do resolver técnico')
+        return body
+
+    def upgrade_candidates(self, category: str, limit: int = 24) -> list[dict]:
+        body = self._checked_json(self._request('GET', '/components', params={'category': category, 'limit': min(limit, 24)}))
+        if not isinstance(body, list) or len(body) > 24 or any(not isinstance(item, dict) for item in body):
+            raise HTTPException(status_code=503, detail='Resposta inválida do catálogo')
+        return body
+
 
 catalog_client = CatalogClient()
