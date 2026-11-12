@@ -22,6 +22,8 @@ const categories = [
   { id: 'cooler', label: 'Coolers' },
 ];
 
+const PAGE_SIZE = 24;
+
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get('q') || '';
@@ -31,6 +33,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [reloadKey, setReloadKey] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
 
   const activeLabel = useMemo(() => (
     categories.find((item) => item.id === category)?.label || 'Todos'
@@ -43,12 +47,13 @@ export default function Home() {
       if (firstLoad) setLoading(true);
       setError('');
       try {
-        const params = {};
+        const params = { skip: 0, limit: PAGE_SIZE };
         if (q) params.q = q;
         if (category) params.category = category;
         const res = await catalogApi.get('/commerce/catalog', { params, signal:controller.signal });
         if (controller.signal.aborted) return;
-        setComponents(res.data.items.sort((a,b) => Number(['rtx-5060-ti-8gb','rtx-5060-ti-16gb','rtx-5060-8gb'].includes(b.id)) - Number(['rtx-5060-ti-8gb','rtx-5060-ti-16gb','rtx-5060-8gb'].includes(a.id))));
+        setComponents(res.data.items);
+        setTotal(res.data.total ?? res.data.items.length);
       } catch (err) {
         if (controller.signal.aborted) return;
         console.error(err);
@@ -60,9 +65,28 @@ export default function Home() {
     };
 
     fetchResults();
-    const timer = setInterval(fetchResults, 45000);
-    return () => {clearInterval(timer);controller.abort();};
+    return () => controller.abort();
   }, [q, category, reloadKey]);
+
+  const loadMore = async () => {
+    setLoadingMore(true);
+    try {
+      const params = { skip: components.length, limit: PAGE_SIZE };
+      if (q) params.q = q;
+      if (category) params.category = category;
+      const res = await catalogApi.get('/commerce/catalog', { params });
+      setComponents((current) => {
+        const seen = new Set(current.map((item) => item.id));
+        return [...current, ...res.data.items.filter((item) => !seen.has(item.id))];
+      });
+      setTotal(res.data.total ?? total);
+    } catch (err) {
+      console.error(err);
+      setError('Não foi possível carregar mais peças agora.');
+    } finally {
+      setLoadingMore(false);
+    }
+  };
 
   useEffect(() => {
     const loadFavorites = async () => {
@@ -157,6 +181,14 @@ export default function Home() {
                   onFavoriteChange={handleFavoriteChange}
                 />
               ))}
+            </div>
+          )}
+          {!loading && !error && components.length > 0 && components.length < total && (
+            <div className="load-more">
+              <button type="button" className="secondary-button" onClick={loadMore} disabled={loadingMore}>
+                {loadingMore ? 'Carregando...' : 'Carregar mais'}
+              </button>
+              <small>{components.length} de {total}</small>
             </div>
           )}
         </section>

@@ -114,6 +114,14 @@ describe('real pricing refactor', () => {
     const only = card({current_offers: [{...cond, price: 1683}]});
     expect(only).toContain('Oferta com condição a partir de'); expect(only).toContain('Somente primeira compra');
   });
+  it('renders the Home grid from the lightweight paginated payload (no offers at all)', () => {
+    const payload = {items: Array.from({length: 24}, (_, i) => ({id: `c${i}`, name: `Peça ${i}`, category: 'cpu', brand: 'AMD', description: 'd',
+      image: null, images: [], technical_specs: {cores: 6}, compatibility: {}, prices: [], current_offers: [], best_current_offer: null,
+      best_general_offer: null, best_conditional_offer: null, offers_count: 0})), total: 18213, skip: 0, limit: 24};
+    const html = renderToStaticMarkup(<MemoryRouter><div className="component-grid">{payload.items.map(c => <ComponentCard key={c.id} component={c}/>)}</div></MemoryRouter>);
+    expect(html).toContain('Peça 0'); expect(html).toContain('Peça 23'); expect(html).toContain('Sem oferta atual');
+    expect(html.match(/Sem oferta atual/g)).toHaveLength(24);
+  });
   it('formats how long ago the offer was announced', () => {
     const now = new Date('2026-11-03T12:00:00Z');
     expect(announcedAgo('2026-11-03T11:42:00Z', now)).toBe('Anunciada há 18 min');

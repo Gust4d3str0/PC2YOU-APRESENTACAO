@@ -502,22 +502,26 @@ def validate_promotion(promotion_id: str, body: schemas.OfferValidation, user: d
 
 
 @app.get('/commerce/catalog', tags=['Comércio'])
-def commerce_catalog(q: str = Query('', max_length=120), category: str = '', collection: Collection = Depends(get_components_collection)):
-    import commerce
-    data = commerce.snapshot(collection.database)
-    rows = []
-    for c in data['components']:
-        if category and (c['category'] != category and not (category == 'ram' and c['category'] == 'kit-ram')):
-            continue
-        if q.casefold() not in ' '.join([c['name'], c.get('brand', ''), c['category'], json.dumps(c.get('technical_specs', {}))]).casefold():
-            continue
-        offers = data['offers'].get(c['id'], [])
-        rows.append({k: v for k,v in {**c, 'prices': [], 'current_offers': offers,
-                     'best_current_offer': data['best'].get(c['id']),
-                     'best_general_offer': data['best_general'].get(c['id']),
-                     'best_conditional_offer': data['best_conditional'].get(c['id']), 'offers_count': len(offers)}.items()
-                     if k not in {'price_history', 'last_external_price_error'}})
-    return {'items': rows, 'total': len(rows)}
+def commerce_catalog(q: str = Query('', max_length=120), category: str = '',
+                     skip: int = Query(0, ge=0), limit: int = Query(24, ge=1, le=100),
+                     collection: Collection = Depends(get_components_collection)):
+    """Lightweight paginated hardware listing straight from MongoDB.
+
+    Deliberately does NOT build the commerce snapshot (matcher over every component, promotions, history):
+    offers are served separately by /promotions and /components/{id}/offers, so cards here carry no offers.
+    """
+    query: dict = {}
+    if category:
+        query['category'] = {'$in': ['ram', 'kit-ram']} if category == 'ram' else category
+    if q.strip():
+        pattern = re.escape(q.strip())
+        query['$or'] = [{f: {'$regex': pattern, '$options': 'i'}} for f in ('name', 'brand', 'description')]
+    projection = {'_id': 0, **{f: 1 for f in ('id', 'name', 'category', 'brand', 'description', 'image', 'images',
+                                               'technical_specs', 'compatibility', 'external_enrichment')}}
+    rows = [{**doc, 'prices': [], 'current_offers': [], 'best_current_offer': None, 'best_general_offer': None,
+             'best_conditional_offer': None, 'offers_count': 0}
+            for doc in collection.find(query, projection).sort('_id', 1).skip(skip).limit(limit)]
+    return {'items': rows, 'total': collection.count_documents(query), 'skip': skip, 'limit': limit}
 
 
 @app.get('/integrations/mercado-livre/status', tags=['Comércio'])

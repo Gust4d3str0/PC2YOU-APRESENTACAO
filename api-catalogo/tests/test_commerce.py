@@ -86,10 +86,44 @@ def test_comparison_and_catalog_api_use_lowest_current_offer_without_seed(commer
     assert [o['price'] for o in comparison['offers']] == [1900,2200]
     assert comparison['history'][0]['price'] == 1800
     assert api.get('/components/absent/offers').status_code == 404
+    # offers now live only in /promotions and /components/{id}/offers; the listing is a light Mongo query
     item = api.get('/commerce/catalog?q=5060&category=gpu').json()['items'][0]
-    assert item['prices'] == [] and item['offers_count'] == 2
-    assert item['best_current_offer']['price'] == 1900
+    assert item['prices'] == [] and item['offers_count'] == 0 and item['best_current_offer'] is None
     assert api.get('/commerce/catalog?q=unrelated').json()['total'] == 0
+
+
+def test_catalog_listing_is_paginated_filtered_and_never_builds_the_snapshot(monkeypatch):
+    db = mongomock.MongoClient(tz_aware=True).db
+    db.components.insert_many(
+        [{'id': f'cpu-{i}', 'name': f'Ryzen {i}', 'category': 'cpu', 'brand': 'AMD', 'technical_specs': {}, 'compatibility': {}} for i in range(60)]
+        + [{'id': 'gpu-1', 'name': 'RTX 5060', 'category': 'gpu', 'brand': 'NVIDIA', 'description': 'placa', 'technical_specs': {}, 'compatibility': {}},
+           {'id': 'kit', 'name': 'Kit DDR5', 'category': 'kit-ram', 'brand': 'Corsair', 'technical_specs': {}, 'compatibility': {}},
+           {'id': 'ram', 'name': 'DDR4', 'category': 'ram', 'brand': 'Kingston', 'technical_specs': {}, 'compatibility': {}}])
+
+    def boom(*a, **k):
+        raise AssertionError('commerce.snapshot must not be used by the catalog listing')
+
+    monkeypatch.setattr(commerce, 'snapshot', boom)
+    monkeypatch.setattr(commerce, 'build_snapshot', boom)
+    main.app.dependency_overrides[get_components_collection] = lambda: db.components
+    try:
+        api = TestClient(main.app)
+        page = api.get('/commerce/catalog?limit=24').json()
+        assert len(page['items']) == 24 and page['total'] == 63 and page['skip'] == 0 and page['limit'] == 24
+        assert page['items'][0]['current_offers'] == [] and page['items'][0]['best_current_offer'] is None
+        assert '_id' not in page['items'][0]
+        assert api.get('/commerce/catalog').json()['limit'] == 24
+        second = api.get('/commerce/catalog?limit=24&skip=24').json()['items']
+        assert {i['id'] for i in second}.isdisjoint({i['id'] for i in page['items']})
+        assert api.get('/commerce/catalog?category=gpu').json()['total'] == 1
+        assert api.get('/commerce/catalog?category=ram').json()['total'] == 2
+        assert [i['id'] for i in api.get('/commerce/catalog?q=5060').json()['items']] == ['gpu-1']
+        assert api.get('/commerce/catalog?q=PLACA&category=gpu').json()['total'] == 1
+        assert api.get('/commerce/catalog?q=.*').json()['total'] == 0
+        assert api.get('/commerce/catalog?limit=101').status_code == 422
+        assert api.get('/commerce/catalog?skip=-1').status_code == 422
+    finally:
+        main.app.dependency_overrides.clear()
 
 
 def test_next_snapshot_publishes_newly_collected_promotion_without_build(commerce_api):
