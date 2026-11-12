@@ -64,6 +64,21 @@ def create_component(collection: Collection, component: dict):
     return component
 
 
+# Fields the technical consumers (AI analysis) need. No commercial or history data.
+TECHNICAL_PROJECTION = {'_id': 0, 'id': 1, 'name': 1, 'category': 1, 'brand': 1, 'technical_specs': 1,
+                        'compatibility': 1, 'benchmark': 1, 'identity_scope': 1, 'aliases': 1, 'mpn': 1,
+                        'model': 1, 'normalized_name': 1, 'normalized_identity': 1, 'identity_variant': 1}
+
+
+def _technical_component(document: dict) -> dict:
+    """Light view: no Telegram snapshot and no price-history lookups."""
+    document.pop('_id', None)
+    document['prices'] = []
+    document['unverified_prices'] = []
+    document['price_history'] = []
+    return document
+
+
 def list_components(
     collection: Collection,
     category: str | None = None,
@@ -71,6 +86,7 @@ def list_components(
     brand: str | None = None,
     skip: int = 0,
     limit: int | None = None,
+    technical_only: bool = False,
 ):
     query: dict = {}
     if category:
@@ -85,9 +101,11 @@ def list_components(
             {"description": {"$regex": escaped_query, "$options": "i"}},
         ]
 
-    cursor = collection.find(query).sort("category", 1).skip(skip)
+    cursor = collection.find(query, TECHNICAL_PROJECTION if technical_only else None).sort("category", 1).skip(skip)
     if limit is not None:
         cursor = cursor.limit(limit)
+    if technical_only:
+        return [_technical_component(doc) for doc in cursor]
     return [_public_component(doc, collection.database) for doc in cursor]
 
 

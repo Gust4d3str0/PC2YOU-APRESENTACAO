@@ -11,6 +11,10 @@ from settings import Settings, get_settings
 from request_context import current_request_id
 
 
+# Upgrade suggestions are optional; they must never consume the analysis time budget.
+OPTIONAL_READ_TIMEOUT = 6
+
+
 class CatalogClient:
     def __init__(self, settings: Settings | None = None, session: requests.Session | None = None):
         self.settings = settings or get_settings()
@@ -40,11 +44,12 @@ class CatalogClient:
             headers = dict(kwargs.pop("headers", {}))
             headers["X-Request-ID"] = request_id
             kwargs["headers"] = headers
+        timeout = kwargs.pop("timeout", self.timeout)
         try:
             return self.session.request(
                 method,
                 f"{self.base_url}{path}",
-                timeout=self.timeout,
+                timeout=timeout,
                 **kwargs,
             )
         except requests.RequestException as exc:
@@ -131,7 +136,8 @@ class CatalogClient:
         return body
 
     def upgrade_candidates(self, category: str, limit: int = 24) -> list[dict]:
-        body = self._checked_json(self._request('GET', '/components', params={'category': category, 'limit': min(limit, 24)}))
+        body = self._checked_json(self._request('GET', '/components', params={'category': category, 'limit': min(limit, 24), 'technical_only': True},
+                                                       timeout=(self.timeout[0], min(self.timeout[1], OPTIONAL_READ_TIMEOUT))))
         if not isinstance(body, list) or len(body) > 24 or any(not isinstance(item, dict) for item in body):
             raise HTTPException(status_code=503, detail='Resposta inválida do catálogo')
         return body

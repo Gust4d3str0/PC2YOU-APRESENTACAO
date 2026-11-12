@@ -11,6 +11,7 @@ from urllib.parse import urljoin, urlparse
 
 import requests
 from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from pymongo.collection import Collection
@@ -283,6 +284,7 @@ def read_components(
     brand: str | None = Query(default=None),
     skip: int = Query(default=0, ge=0),
     limit: int | None = Query(default=None, ge=1),
+    technical_only: bool = Query(default=False),
     collection: Collection = Depends(get_components_collection),
     config: Settings = Depends(get_settings),
 ):
@@ -293,14 +295,19 @@ def read_components(
     if limit is not None and limit > config.max_page_size:
         raise HTTPException(status_code=422, detail=f"limit deve ser no máximo {config.max_page_size}")
     effective_limit = config.max_page_size if limit is None else limit
-    return services.list_components(
+    rows = services.list_components(
         collection,
         category=category,
         q=q,
         brand=brand,
         skip=skip,
         limit=effective_limit,
+        technical_only=technical_only,
     )
+    if technical_only:
+        # Light technical view for the AI: not a full Component (no image/description), so it bypasses that model.
+        return JSONResponse(jsonable_encoder(rows))
+    return rows
 
 
 @app.post("/components/batch", response_model=list[schemas.Component], tags=["Catálogo"])

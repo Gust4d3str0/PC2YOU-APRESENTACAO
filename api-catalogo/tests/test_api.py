@@ -225,3 +225,25 @@ def test_ml_failure_keeps_seed_prices(collection):
     persisted = services.get_component(collection, "one")
     assert result["updated_external"] is False
     assert persisted["prices"] == original["prices"]
+
+
+def test_technical_only_skips_commercial_layers_and_keeps_technical_fields(client, collection, monkeypatch):
+    import services
+    collection.update_one({"id": "one"}, {"$set": {"technical_specs": {"cores": 6}, "compatibility": {"socket": "AM4"}}})
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError("commercial layer must not run for technical_only")
+    monkeypatch.setattr(services, "_telegram_prices", forbidden)
+    monkeypatch.setattr(services, "real_price_history", forbidden)
+    response = client.get("/components", params={"category": "cpu", "limit": 2, "technical_only": "true"})
+    assert response.status_code == 200
+    rows = {row["id"]: row for row in response.json()}
+    assert rows["one"]["technical_specs"] == {"cores": 6} and rows["one"]["compatibility"] == {"socket": "AM4"}
+    assert rows["one"]["prices"] == [] and rows["one"]["price_history"] == []
+    assert "image" not in rows["one"] and "description" not in rows["one"]
+
+
+def test_default_components_route_still_returns_commercial_data(client):
+    response = client.get("/components", params={"category": "cpu", "limit": 2})
+    assert response.status_code == 200
+    assert "description" in response.json()[0] and "image" in response.json()[0]  # Full Component shape is unchanged.

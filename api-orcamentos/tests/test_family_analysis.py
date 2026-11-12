@@ -350,7 +350,7 @@ def test_optional_upgrade_lookup_failure_still_returns_the_technical_analysis(er
         response = post_route(catalog, Provider())
     assert response.status_code == 200, response.text
     body = response.json()
-    assert catalog.upgrade_calls >= 1
+    assert catalog.upgrade_calls == 1  # A failing catalog costs one attempt, not one per category.
     assert body["recommended_candidates"] == []
     assert body["compatibility"]["checked_rules"] and body["upgrade_assessment"]["status"]
     assert body["analysis"]["summary"] and body["readiness"]["status"] == "sufficient"

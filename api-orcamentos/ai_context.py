@@ -397,14 +397,18 @@ def price_of(item):
     return round(min(values), 2) if values else None
 
 
-def _optional_options(catalog, category):
-    """Specific-product lookup is OPTIONAL: a failing or slow catalog skips the category, never the analysis."""
+def _optional_options(catalog, category, state):
+    """Specific-product lookup is OPTIONAL: a failing or slow catalog skips the category, never the analysis.
+    After the first failure the remaining categories are skipped so a down catalog costs one timeout, not six."""
+    if state.get('failed'):
+        return []
     try:
         if callable(getattr(catalog, 'upgrade_candidates', None)):
             return list(catalog.upgrade_candidates(category))
         return list(catalog.list_components(category)[:24])
     except (HTTPException, requests.RequestException) as exc:
-        logger.warning("upgrade candidate lookup failed category=%s error_type=%s", category, type(exc).__name__)
+        state['failed'] = True
+        logger.warning("upgrade candidate lookup failed category=%s error_type=%s; skipping remaining upgrade lookups", category, type(exc).__name__)
         return []
 
 
@@ -440,13 +444,14 @@ def build_context(payload: AnalyzePCRequest, catalog):
     candidates = []
     # Specific products are judged per replacement: only the rules relevant to that category must
     # be verified, and unrelated pending rules (e.g. case clearance for a RAM swap) do not block it.
+    lookup_state = {}
     baseline_issues = set(verdict["issues"])
     current_ids = {item["catalog_id"] for item in components}
     sufficient = readiness(components, verdict, payload.usage)
     for category in (("gpu", "ram", "cpu", "storage", "psu") if sufficient["status"] == "sufficient" else ()):
-        options = _optional_options(catalog, category)
+        options = _optional_options(catalog, category, lookup_state)
         if category == "ram":
-            options += _optional_options(catalog, 'kit-ram')
+            options += _optional_options(catalog, 'kit-ram', lookup_state)
         for raw in options:
             allowed_categories = {"ram", "kit-ram"} if category == "ram" else {category}
             if raw.get("id") in current_ids or raw.get("category") not in allowed_categories:

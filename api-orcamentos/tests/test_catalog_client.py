@@ -97,3 +97,11 @@ def test_ai_search_invalid_catalog_response_is_controlled():
     with pytest.raises(Exception) as error:
         client.search_components("cpu", "Ryzen")
     assert error.value.status_code == 503
+
+
+def test_upgrade_candidates_request_the_light_technical_view():
+    session = FakeSession(response=FakeResponse(body=[{"id": "gpu-1"}]))
+    rows = CatalogClient(SETTINGS, session).upgrade_candidates("gpu")
+    assert rows == [{"id": "gpu-1"}]
+    assert session.last_request["params"] == {"category": "gpu", "limit": 24, "technical_only": True}
+    assert session.last_request["timeout"][1] <= 6
