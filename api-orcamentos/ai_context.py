@@ -1,8 +1,12 @@
 """Deterministic catalog enrichment and compatibility, before any AI call."""
 
+import logging
 import math
 import re
 from copy import deepcopy
+
+import requests
+from fastapi import HTTPException
 
 import compatibility
 from ai.schemas import AnalyzePCRequest, technical_text
@@ -16,6 +20,9 @@ from catalog_specs.normalization import normalize_spec
 from catalog_specs.human_resolver import resolve_human
 from catalog_specs.human_input import parse_input
 from catalog_specs.identity import identity_scope
+
+
+logger = logging.getLogger("pc2you.ai")
 
 
 # Only these technical fields cross the provider boundary. No descriptions, URLs or accounts.
@@ -390,6 +397,17 @@ def price_of(item):
     return round(min(values), 2) if values else None
 
 
+def _optional_options(catalog, category):
+    """Specific-product lookup is OPTIONAL: a failing or slow catalog skips the category, never the analysis."""
+    try:
+        if callable(getattr(catalog, 'upgrade_candidates', None)):
+            return list(catalog.upgrade_candidates(category))
+        return list(catalog.list_components(category)[:24])
+    except (HTTPException, requests.RequestException) as exc:
+        logger.warning("upgrade candidate lookup failed category=%s error_type=%s", category, type(exc).__name__)
+        return []
+
+
 def build_context(payload: AnalyzePCRequest, catalog):
     components, missing = [], []
     for category, value in payload.components.model_dump().items():
@@ -426,9 +444,9 @@ def build_context(payload: AnalyzePCRequest, catalog):
     current_ids = {item["catalog_id"] for item in components}
     sufficient = readiness(components, verdict, payload.usage)
     for category in (("gpu", "ram", "cpu", "storage", "psu") if sufficient["status"] == "sufficient" else ()):
-        options = catalog.upgrade_candidates(category) if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components(category)[:24]
+        options = _optional_options(catalog, category)
         if category == "ram":
-            options += catalog.upgrade_candidates('kit-ram') if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components('kit-ram')[:24]
+            options += _optional_options(catalog, 'kit-ram')
         for raw in options:
             allowed_categories = {"ram", "kit-ram"} if category == "ram" else {category}
             if raw.get("id") in current_ids or raw.get("category") not in allowed_categories:

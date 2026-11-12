@@ -303,3 +303,67 @@ def test_fallback_reports_real_conflicts_first():
 def test_invalid_model_output_is_still_rejected_not_masked():
     with pytest.raises(AIInvalidResponseError):
         service(Provider({"surprise": True})).analyze_pc(context(pc()))
+
+
+# ---- optional upgrade-candidate lookup must not take the analysis down -------------------------
+
+class FlakyCatalog(LocalCatalog):
+    """Resolves the build normally; the OPTIONAL upgrade lookup fails like a slow/unavailable catalog."""
+    def __init__(self, rows, error=None, resolve_error=None):
+        super().__init__(rows)
+        self.error, self.resolve_error, self.upgrade_calls = error, resolve_error, 0
+
+    def human_candidates(self, category, name):
+        if self.resolve_error:
+            raise self.resolve_error
+        return super().human_candidates(category, name)
+
+    def upgrade_candidates(self, category, limit=24):
+        self.upgrade_calls += 1
+        raise self.error
+
+
+def post_route(catalog, provider):
+    from fastapi.testclient import TestClient
+    import ai_routes
+    from main import app
+    original = ai_routes.get_ai_service
+    ai_routes.get_ai_service = lambda: service(provider)
+    app.dependency_overrides[ai_routes.get_ai_catalog] = lambda: catalog
+    try:
+        return TestClient(app).post("/ai/analyze-pc", json={"components": pc(), "usage": ["gaming"], "resolution": "1080p"})
+    finally:
+        ai_routes.get_ai_service = original
+        app.dependency_overrides.pop(ai_routes.get_ai_catalog, None)
+
+
+def unavailable():
+    from fastapi import HTTPException
+    return HTTPException(status_code=503, detail="Catálogo temporariamente indisponível")
+
+
+@pytest.mark.parametrize("error", [None, "requests"])
+def test_optional_upgrade_lookup_failure_still_returns_the_technical_analysis(error, caplog):
+    import requests
+    catalog = FlakyCatalog(rows(), error=unavailable() if error is None else requests.Timeout("slow"))
+    with caplog.at_level("WARNING", logger="pc2you.ai"):
+        response = post_route(catalog, Provider())
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert catalog.upgrade_calls >= 1
+    assert body["recommended_candidates"] == []
+    assert body["compatibility"]["checked_rules"] and body["upgrade_assessment"]["status"]
+    assert body["analysis"]["summary"] and body["readiness"]["status"] == "sufficient"
+    assert "upgrade candidate lookup failed" in caplog.text and "category" in caplog.text
+
+
+def test_critical_resolution_failure_is_still_503():
+    response = post_route(FlakyCatalog(rows(), error=unavailable(), resolve_error=unavailable()), Provider())
+    assert response.status_code == 503
+
+
+def test_gemini_outage_with_failing_upgrade_lookup_still_falls_back():
+    catalog = FlakyCatalog(rows(), error=unavailable())
+    response = post_route(catalog, Provider(error=AIError("timeout", "x", 504)))
+    assert response.status_code == 200
+    assert response.json()["metadata"]["analysis_source"] == "deterministic_fallback"

@@ -42,9 +42,9 @@ def get_settings() -> Settings:
     if jwt_algorithm not in {"HS256", "HS384", "HS512"}:
         raise RuntimeError("JWT_ALGORITHM deve usar HS256, HS384 ou HS512")
     try:
-        catalog_connect_timeout = float(os.getenv("CATALOG_CONNECT_TIMEOUT", "2"))
-        catalog_read_timeout = float(os.getenv("CATALOG_READ_TIMEOUT", "8"))
-        catalog_retries = int(os.getenv("CATALOG_RETRIES", "2"))
+        catalog_connect_timeout = float(os.getenv("CATALOG_CONNECT_TIMEOUT", "5"))
+        catalog_read_timeout = float(os.getenv("CATALOG_READ_TIMEOUT", "20"))
+        catalog_retries = int(os.getenv("CATALOG_RETRIES", "1"))
     except ValueError as exc:
         raise RuntimeError("Configuração numérica do catálogo inválida") from exc
     if catalog_connect_timeout <= 0 or catalog_read_timeout <= 0 or catalog_retries < 0:
