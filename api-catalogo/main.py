@@ -386,7 +386,9 @@ def read_price_summary(component_id: str, collection: Collection = Depends(get_c
 @app.get("/components/{component_id}/price-history", tags=["Preços"])
 def read_price_history(component_id: str, collection: Collection = Depends(get_components_collection)):
     component = _component_or_404(collection, component_id)
-    return {"component_id": component_id, "history": component.get("price_history", []), "source": "real_observations"}
+    # One indexed lookup by component_id in product_price_history; never the commerce snapshot.
+    history = services.real_price_history(collection.database, component)
+    return {"component_id": component_id, "history": history, "source": "real_observations"}
 
 
 @app.post("/seed", tags=["Administração"])

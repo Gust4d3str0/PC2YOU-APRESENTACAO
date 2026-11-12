@@ -143,6 +143,7 @@ export default function ComponentDetails() {
       const componentRes = await catalogApi.get(`/components/${id}`);
       nextComponent = componentRes.data;
       setComponent(nextComponent);
+      setLoading(false); // show the technical sheet now; prices/history/favorites fill in afterwards
     } catch {
       setComponent(null);
       return;

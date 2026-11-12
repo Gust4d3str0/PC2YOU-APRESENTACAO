@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, it, expect, vi } from 'vitest';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
@@ -168,5 +169,14 @@ describe('Mercado Livre product enrichment', () => {
   it('shows nothing without trusted enrichment', () => {
     expect(renderToStaticMarkup(<ExternalSpecs component={{name: 'x'}}/>)).toBe('');
     expect(renderToStaticMarkup(<ExternalSpecs component={enriched({match_status: 'conflict'})}/>)).toBe('');
+  });
+});
+
+describe('component sheet loading', () => {
+  it('leaves the loading state as soon as the technical document arrives, before prices/history', () => {
+    const src = readFileSync(new URL('../pages/ComponentDetails.jsx', import.meta.url), 'utf8');
+    const afterSheet = src.slice(src.indexOf('setComponent(nextComponent)'));
+    expect(afterSheet.indexOf('setLoading(false)')).toBeGreaterThan(-1);
+    expect(afterSheet.indexOf('setLoading(false)')).toBeLessThan(afterSheet.indexOf('fetchPriceSummary(id)'));
   });
 });

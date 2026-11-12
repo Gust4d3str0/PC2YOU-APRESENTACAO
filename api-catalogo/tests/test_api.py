@@ -247,3 +247,30 @@ def test_default_components_route_still_returns_commercial_data(client):
     response = client.get("/components", params={"category": "cpu", "limit": 2})
     assert response.status_code == 200
     assert "description" in response.json()[0] and "image" in response.json()[0]  # Full Component shape is unchanged.
+
+
+def test_component_sheet_and_basic_price_routes_never_build_the_commerce_snapshot(client, collection, monkeypatch):
+    import commerce
+    collection.update_one({"id": "one"}, {"$set": {
+        "technical_specs": {"cores": 6}, "compatibility": {"socket": "AM4"},
+        "benchmark": {"gaming_score": 70, "workstation_score": 60, "ai_score": 50},
+        "external_enrichment": {"mercado_livre": {"match_status": "matched", "product_id": "MLB1"}}}})
+
+    def boom(*args, **kwargs):
+        raise AssertionError("commerce snapshot must not run for the technical sheet / basic price routes")
+    monkeypatch.setattr(commerce, "snapshot", boom)
+    monkeypatch.setattr(commerce, "build_snapshot", boom)
+    monkeypatch.setattr(services, "_telegram_prices", boom)
+
+    sheet = client.get("/components/one")
+    assert sheet.status_code == 200
+    body = sheet.json()
+    assert body["technical_specs"] == {"cores": 6} and body["compatibility"] == {"socket": "AM4"}
+    assert body["benchmark"]["gaming_score"] == 70
+    assert body["external_enrichment"]["mercado_livre"]["product_id"] == "MLB1"
+    assert body["prices"] == [] and body["price_history"] == []     # seed prices are never shown as current
+    assert client.get("/components/one/price-summary").status_code == 200
+    assert client.get("/components/one/price-history").json()["history"] == []
+    assert client.get("/components/one/prices").status_code == 200
+    for path in ("", "/price-summary", "/price-history"):
+        assert client.get(f"/components/absent{path}").status_code == 404

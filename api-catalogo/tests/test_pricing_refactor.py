@@ -106,11 +106,10 @@ def test_seed_never_becomes_best_offer_even_beside_real_offers():
 def test_telegram_promotion_becomes_the_current_price_of_the_component(api):
     client, db = api
     db.telegram_promotions.insert_one(promo(2000, url=KABUM))
-    component = client.get('/components/gpu').json()
-    assert [(p['source'], p['price']) for p in component['prices']] == [('telegram', 2000.0)]
-    assert component['prices'][0]['conditional'] is False and component['prices'][0]['status'] == 'announced'
-    assert client.get('/components/gpu/best-price').json()['best_price']['price'] == 2000
-    assert client.get('/components/gpu/price-summary').json()['best_offer']['price'] == 2000
+    # The technical sheet no longer rebuilds the commerce snapshot: Telegram prices come from the offers route.
+    assert client.get('/components/gpu').json()['prices'] == []
+    offers = client.get('/components/gpu/offers').json()
+    assert offers['best_offer']['price'] == 2000 and offers['best_offer']['source'] == 'telegram' and offers['best_offer']['status'] == 'announced'
 
 
 def test_real_history_comes_from_observations_not_from_curves(api):
@@ -222,7 +221,7 @@ def test_manual_working_confirms_and_unknown_clears_it(api):
     offer_id = client.get('/promotions').json()['items'][0]['id']
     client.post(f'/promotions/{offer_id}/validation', json={'status': 'valid'})
     assert client.get('/promotions').json()['items'][0]['status'] == 'confirmed'
-    assert client.get('/components/gpu').json()['prices'][0]['status'] == 'confirmed'
+    assert client.get('/components/gpu/offers').json()['best_offer']['status'] == 'confirmed'
     client.post(f'/promotions/{offer_id}/validation', json={'status': 'unknown'})
     assert client.get('/promotions').json()['items'][0]['status'] == 'announced'
 

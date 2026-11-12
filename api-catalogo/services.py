@@ -115,8 +115,21 @@ def get_components_batch(collection: Collection, component_ids: list[str]):
     return [by_id[component_id] for component_id in component_ids if component_id in by_id]
 
 
+def _local_component(document: dict | None):
+    """Technical lookup: only data stored in the component document. No Telegram snapshot, no other collection.
+    Live offers / observed history are separate routes (/offers, /price-history)."""
+    if not document:
+        return None
+    document.pop('_id', None)
+    qualified = catalog_offers(document)
+    document['prices'] = [p for p in qualified if p['quality']['verified'] and p['quality']['source'] != 'seed']
+    document['unverified_prices'] = [p for p in qualified if not p['quality']['verified'] and p['quality']['source'] != 'seed']
+    document['price_history'] = [h for h in document.get('price_history') or [] if isinstance(h, dict) and h.get('source', 'seed') != 'seed']
+    return document
+
+
 def get_component(collection: Collection, component_id: str):
-    return _public_component(collection.find_one({"id": component_id}), collection.database)
+    return _local_component(collection.find_one({"id": component_id}))
 
 
 def update_component(collection: Collection, component_id: str, data: dict):
