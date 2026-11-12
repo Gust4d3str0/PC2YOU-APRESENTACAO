@@ -1,7 +1,7 @@
 import { useContext, useEffect, useId, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PresentationContext } from './context';
-import { SECTIONS, LIMITATIONS, QUALITY } from './data';
+import { SECTIONS, QUALITY } from './data';
 import snippets from './snippets.json';
 import verification from './verification.json';
 import Code from './highlight';
@@ -66,7 +66,6 @@ function SectionContent({ id, selectedCode, selectCode }) {
     case 'codigo': return <><p className="pz-lead">Trechos dos arquivos reais, ligados aos diagramas e às demonstrações.</p><CodeExplorer selectedId={selectedCode} onSelect={selectCode} /></>;
     case 'demo': return <><p className="pz-lead">Execute o fluxo real. Os estados são exibidos depois da resposta do backend; chamadas externas podem falhar ou retornar cache.</p><LiveAi /><IntegrationStatus /></>;
     case 'qualidade': return <><p className="pz-lead">Evidências da cópia: <code>docs/demo/FINAL_DEMO_REPORT.md</code>.</p><article className="pz-card"><h3>Execução verificada da cópia · {verification.date}</h3><p><b>{verification.passed} testes passaram · {verification.skipped} skipped</b></p><p>{Object.entries(verification.suites).map(([suite, count]) => `${suite}: ${count}`).join(" · ")}</p><p>Lint: {verification.lint} · Build: {verification.build}</p><p className="pz-note">Registro desta execução. Não é um monitor de testes em tempo real.</p></article><article className="pz-card"><h3>Referência histórica: projeto original</h3><p>{QUALITY.date} · docs/reverse-engineering/FINAL_REPORT.md. Estes números não representam uma execução atual da demo.</p><table><thead><tr><th>Suíte</th><th>Passaram</th><th>Observação</th></tr></thead><tbody>{QUALITY.suites.map(s => <tr key={s.name}><td>{s.name}</td><td>{s.count}</td><td>{s.note}</td></tr>)}</tbody></table><p>Total histórico: {QUALITY.total}. Resultado atual no relatório desta cópia.</p></article></>;
-    case 'limitacoes': return <><p className="pz-lead">Limites explícitos fazem parte da arquitetura.</p>{cards(LIMITATIONS)}</>;
     case 'conclusao': return <><div className="pz-eyebrow">DO USUÁRIO AO CÓDIGO</div><h2>O sistema também<br /><em>explica como funciona.</em></h2><p className="pz-lead">Regras definem o que é possível. Dados comerciais mostram o que foi anunciado. A IA organiza e explica as opções. Cada etapa pode ser inspecionada.</p><FlowSection /><Link className="pz-btn primary" to="/">Voltar ao PC2YOU</Link></>;
     default: return null;
   }

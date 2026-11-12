@@ -6,7 +6,7 @@ export const SECTIONS = [
   ['arquitetura', 'Arquitetura'], ['fluxo', 'Fluxo completo'], ['ia', 'Inteligência Artificial'],
   ['ia-analise', 'IA de análise'], ['ia-upgrades', 'IA de upgrades'], ['matcher', 'Product Matcher'],
   ['telegram', 'Telegram'], ['mercadolivre', 'Mercado Livre'], ['mongodb', 'MongoDB'], ['codigo', 'Código real'],
-  ['demo', 'Demonstração ao vivo'], ['qualidade', 'Testes e qualidade'], ['limitacoes', 'Limitações'], ['conclusao', 'Conclusão'],
+  ['demo', 'Demonstração ao vivo'], ['qualidade', 'Testes e qualidade'], ['conclusao', 'Conclusão'],
 ].map(([id, title], index) => ({ id, title, number: String(index + 1).padStart(2, '0') }));
 
 // ---- architecture graph (viewBox 1060 x 580) ---------------------------------------------------------
@@ -172,13 +172,3 @@ export const QUALITY = {
   demoSuites: [],
 };
 
-export const LIMITATIONS = [
-  ['Preços do Telegram são anúncios', 'Não há confirmação oficial do preço; por isso os rótulos “anunciada”, “condicional” e “confirmada”. Ofertas envelhecem (72 h).'],
-  ['Item/Price API do Mercado Livre restrita', 'Itens de terceiros respondem 403 (PolicyAgent). Não fazemos scraping nem contornamos a política: o Telegram segue como fonte comercial.'],
-  ['Matcher deliberadamente conservador', 'Prefere não casar a casar errado: ambiguidade vira “variant_ambiguous”; sem a marca, CPUs caem para Medium.'],
-  ['Links afiliados nem sempre revelam o PRODUCT_ID', 'Encurtadores (meli.la) escondem o /p/MLB…; só enriquecemos quando o ID é inequívoco.'],
-  ['Alguns componentes usam fallback visual', 'Sem imagem oficial/real, a interface usa imagem padrão por categoria.'],
-  ['Rotas de IA são públicas no projeto original', 'Sem login, só o limite global por worker protege a cota do Gemini. Na demo, nenhuma escrita é exposta.'],
-  ['Dependência operacional de PostgreSQL', 'A API IA roda Alembic no boot (api-orcamentos). Conceitualmente a IA não precisa dele; foi mantido para reduzir risco.'],
-  ['Dados de banco são um snapshot', 'O MongoDB da demo carrega um recorte anonimizado das promoções reais; só o coletor Telegram (opcional) traz dados novos.'],
-];
