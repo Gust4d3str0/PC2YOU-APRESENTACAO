@@ -115,7 +115,7 @@ def test_alert_deduplication_does_not_change_validation_or_context(setup):
     assert data["analysis"]["warnings"] == [warning, "Confira os conectores."]
     assert data['analysis']['missing_information'] == setup.provider.calls[0]['context']['trusted_context']['missing_information']
     assert all('confirmar' in m for m in data['analysis']['missing_information'])
-    assert data["analysis"]["primary_limit"]["confidence"] == "low"
+    assert data["analysis"]["primary_limit"]["confidence"] == "high"  # Unrelated pending rules do not lower it.
     assert data["compatibility"]["valid"] is None
     assert setup.provider.calls[0]["context"]["trusted_context"]["compatibility"] == data["compatibility"]
     setup.provider.output["warnings"].append("Compre RTX 6070 Ultra.")

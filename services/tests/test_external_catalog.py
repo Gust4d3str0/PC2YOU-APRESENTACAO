@@ -3,6 +3,8 @@ from copy import deepcopy
 from datetime import date
 import hashlib
 import json
+import os
+import subprocess
 from types import SimpleNamespace
 from pathlib import Path
 import sys
@@ -307,6 +309,47 @@ def test_review_digest_changes_with_data_but_not_timestamps():
     assert plan_digest(report) == plan_digest(changed)
     changed['candidates'][0]['component']['technical_specs']['cores'] = 99
     assert plan_digest(report) != plan_digest(changed)
+
+
+def test_pc_part_dry_run_is_stable_across_hash_seeds(tmp_path):
+    dataset = tmp_path / 'data/json/power-supply.json'
+    dataset.parent.mkdir(parents=True)
+    records = [
+        {'name': 'ASUS PRIME 650W', 'wattage': 650, 'type': 'ATX'},
+        {'name': 'ASUS PRIME 750W', 'wattage': 750, 'type': 1, 'form_factor': 2},
+    ]
+    encoded = json.dumps(records).encode()
+    dataset.write_bytes(encoded)
+    (tmp_path / 'snapshot.json').write_text(json.dumps({
+        **META, 'source': 'pc_part_dataset', 'license': 'MIT',
+        'files': {'data/json/power-supply.json': hashlib.sha256(encoded).hexdigest()},
+    }), encoding='utf-8')
+    seed_catalog = tmp_path / 'catalog.jsonl'
+    seed_catalog.write_text('', encoding='utf-8')
+    script = Path(__file__).resolve().parents[2] / 'scripts/import_pc_part_dataset.py'
+
+    def run_plan(hash_seed):
+        output = tmp_path / f'plan-{hash_seed}.json'
+        subprocess.run([
+            sys.executable, str(script), '--snapshot', str(tmp_path), '--jsonl', str(seed_catalog),
+            '--category', 'psu', '--dry-run', '--output', str(output),
+        ], env={**os.environ, 'PYTHONHASHSEED': hash_seed}, check=True, capture_output=True, text=True)
+        return json.loads(output.read_text(encoding='utf-8'))
+
+    def stable_normalized(value):
+        if isinstance(value, dict):
+            return {key: stable_normalized(item) for key, item in value.items()
+                    if key not in {'imported_at', 'downloaded_at'}}
+        if isinstance(value, list):
+            return [stable_normalized(item) for item in value]
+        return value
+
+    report_a, report_b = run_plan('1'), run_plan('8')
+    assert report_a['summary'] == report_b['summary']
+    assert plan_digest(report_a) == plan_digest(report_b)
+    assert stable_normalized(report_a) == stable_normalized(report_b)
+    assert [candidate['status'] for candidate in report_a['candidates']] == ['accepted', 'rejected']
+    assert report_a['candidates'][1]['reason'] == 'schema:form_factor:type'
 
 
 def test_snapshot_checksum_schema_size_and_path_checks(tmp_path):

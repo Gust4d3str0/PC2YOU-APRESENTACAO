@@ -123,12 +123,14 @@ class ProseDouble:
     name = 'local-prose-double-no-gemini'
 
     def generate(self, **kwargs):
-        verdict = kwargs['context']['trusted_context']['compatibility']
-        state = 'attention' if verdict['issues'] else 'insufficient_data' if verdict['unchecked_rules'] else 'good'
+        trusted = kwargs['context']['trusted_context']
+        verdict = trusted['compatibility']
+        insufficient = trusted['analysis_readiness']['status'] != 'sufficient'
+        state = 'attention' if verdict['issues'] else 'insufficient_data' if insufficient else 'good'
         return {'summary':'Avaliação técnica produzida localmente.', 'overall_rating':state,
-                'balance':{'status':'attention' if verdict['issues'] else 'insufficient_data' if verdict['unchecked_rules'] else 'balanced',
+                'balance':{'status':'attention' if verdict['issues'] else 'insufficient_data' if insufficient else 'balanced',
                            'explanation':'Confira as verificações do sistema.'},
-                'primary_limit':{'component':'unknown','confidence':'low','explanation':'Este teste não mede desempenho.'},
+                'primary_limit':None,
                 'strengths':[], 'weaknesses':[], 'upgrade_priorities':[], 'warnings':[], 'missing_information':[],
                 'final_recommendation':'Consulte os resultados técnicos antes de decidir uma troca.'}
 

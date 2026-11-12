@@ -103,7 +103,8 @@ class PCAnalysis(StrictModel):
     summary: Text
     overall_rating: Literal["good", "attention", "insufficient_data"]
     balance: Balance
-    primary_limit: PrimaryLimit
+    # None means: no principal limit confirmed. It does NOT mean the analysis was impossible.
+    primary_limit: PrimaryLimit | None = None
     strengths: list[Text] = Field(default_factory=list, max_length=8)
     weaknesses: list[Text] = Field(default_factory=list, max_length=8)
     upgrade_priorities: list[UpgradePriority] = Field(default_factory=list, max_length=7)
@@ -130,6 +131,7 @@ class TechnicalComponent(StrictModel):
     compatibility: dict = Field(default_factory=dict)
     resolution_scope: Literal['sku', 'model', 'family', 'generic', 'unresolved'] | None = None
     field_sources: dict[str, str] = Field(default_factory=dict)
+    family_bounds: dict = Field(default_factory=dict)
 
 
 class CompatibilityResult(StrictModel):
@@ -139,6 +141,9 @@ class CompatibilityResult(StrictModel):
     warnings: list[str]
     checked_rules: list[str]
     unchecked_rules: list[str]
+    failed_rules: list[str] = Field(default_factory=list)
+    rule_sources: dict[str, str] = Field(default_factory=dict)
+    evidence: list[dict] = Field(default_factory=list)
 
 
 class UpgradeCandidate(StrictModel):
@@ -157,6 +162,23 @@ class AnalysisMetadata(StrictModel):
     compatibility_checked: bool
     cached: bool
     prompt_version: str
+    analysis_source: Literal["gemini", "deterministic_fallback"] = "gemini"
+    fallback_reason: str | None = None
+
+
+class AnalysisReadiness(StrictModel):
+    status: Literal["sufficient", "insufficient"]
+    reasons: list[str]
+    recognized_components: int
+    checked_rules: int
+    note: str
+
+
+class UpgradeAssessment(StrictModel):
+    status: Literal["priorities_available", "no_priority", "partial", "insufficient"]
+    blocked_types: list[str] = Field(default_factory=list)
+    pending_rules: list[str] = Field(default_factory=list)
+    readiness_reasons: list[str] = Field(default_factory=list)
 
 
 class AnalyzePCResponse(StrictModel):
@@ -166,4 +188,6 @@ class AnalyzePCResponse(StrictModel):
     components: list[TechnicalComponent]
     recommended_candidates: list[UpgradeCandidate]
     upgrade_budget: float | None
+    readiness: AnalysisReadiness
+    upgrade_assessment: UpgradeAssessment
     metadata: AnalysisMetadata

@@ -19,3 +19,24 @@ describe('human technical resolution', () => {
     expect(html).not.toContain('especificações não verificadas');
   });
 });
+
+describe('upgrade assessment states', () => {
+  const base = { ...saved.response, analysis: { ...saved.response.analysis, upgrade_priorities: [], primary_limit: null } };
+  const render = (status, extra = {}) => renderToStaticMarkup(<PCAnalysisResult result={{ ...base, ...extra, upgrade_assessment: { status } }} />);
+
+  it('says no priority instead of asking to confirm data', () => {
+    const html = render('no_priority');
+    expect(html).toContain('Nenhum upgrade prioritário identificado para o cenário informado.');
+    expect(html).not.toContain('Confirme os dados antes de decidir uma troca');
+    expect(html).toContain('Nenhum limitante principal confirmado');
+  });
+
+  it('explains partial state without hiding the analysis', () => {
+    expect(render('partial')).toContain('algumas opções específicas dependem da confirmação de informações adicionais');
+  });
+
+  it('labels a deterministic fallback as not coming from the model', () => {
+    const html = render('no_priority', { metadata: { ...base.metadata, analysis_source: 'deterministic_fallback' } });
+    expect(html).toContain('gerada pelo sistema');
+  });
+});

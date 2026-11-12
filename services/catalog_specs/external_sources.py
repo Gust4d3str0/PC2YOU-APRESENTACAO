@@ -105,11 +105,12 @@ def validate_dataset(row, category):
     from jsonschema import Draft7Validator
     numeric = {'type': ['number', 'null'], 'minimum': 0}
     properties = {'name': {'type': 'string', 'minLength': 3, 'maxLength': 1000}}
-    for key in {'core_count', 'core_clock', 'boost_clock', 'tdp', 'memory', 'length', 'capacity', 'max_memory', 'memory_slots', 'wattage', 'cas_latency'}:
+    # The first schema error is recorded in the plan, so property order must be stable.
+    for key in ('core_count', 'core_clock', 'boost_clock', 'tdp', 'memory', 'length', 'capacity', 'max_memory', 'memory_slots', 'wattage', 'cas_latency'):
         properties[key] = numeric
-    for key in {'socket', 'form_factor', 'chipset', 'type', 'interface', 'color', 'microarchitecture'}:
+    for key in ('socket', 'form_factor', 'chipset', 'type', 'interface', 'color', 'microarchitecture'):
         properties[key] = {'type': ['string', 'null'], 'maxLength': 1000}
-    for key in {'speed', 'modules'}:
+    for key in ('speed', 'modules'):
         properties[key] = {'type': ['array', 'null'], 'minItems': 2, 'maxItems': 2, 'items': {'type': 'number', 'exclusiveMinimum': 0}}
     error = next(Draft7Validator({'type': 'object', 'required': ['name'], 'properties': properties}).iter_errors(row), None)
     if error:

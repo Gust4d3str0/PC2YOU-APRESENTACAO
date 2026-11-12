@@ -25,7 +25,7 @@ from test_ai import setup, post, request, analysis, transport_response
     ({"primary_limit": {**analysis()["primary_limit"], "confidence": "HIGH"}}, 200),
     ({"upgrade_priorities": [{**analysis()["upgrade_priorities"][0], "priority": "1"}]}, 502),
     ({"upgrade_priorities": [{**analysis()["upgrade_priorities"][0], "priority": 1}]}, 200),
-    ({"primary_limit": None}, 502),
+    ({"primary_limit": None}, 200),  # No confirmed limit is a valid answer, not missing data.
     ({"warnings": None}, 502),
     ({"warnings": []}, 200),
     ({"unknown_field": "extra"}, 502),
@@ -41,7 +41,7 @@ def test_realistic_model_contract_variations(setup, change, status):
     assert response.status_code == status, response.text
     if status == 200:
         data = response.json()["analysis"]
-        assert data["primary_limit"]["confidence"] in {"low", "medium", "high"}
+        assert data["primary_limit"] is None or data["primary_limit"]["confidence"] in {"low", "medium", "high"}
         assert data["overall_rating"] in {"good", "attention", "insufficient_data"}
 
 
@@ -93,6 +93,10 @@ def test_generation_contract_derives_from_pydantic_without_forked_shape(setup):
     modified = deepcopy(schema)
     modified["$defs"]["UpgradePriority"]["properties"]["candidate_id"] = base["$defs"]["UpgradePriority"]["properties"]["candidate_id"]
     modified["$defs"]["UpgradePriority"]["properties"]["budget_relevance"] = base["$defs"]["UpgradePriority"]["properties"]["budget_relevance"]
+    # A backend-sufficient context removes insufficient_data from the two rating enums (and only those).
+    assert "insufficient_data" not in schema["properties"]["overall_rating"]["enum"]
+    modified["properties"]["overall_rating"] = base["properties"]["overall_rating"]
+    modified["$defs"]["Balance"]["properties"]["status"] = base["$defs"]["Balance"]["properties"]["status"]
     assert modified == base
     assert set(schema["properties"]) == set(PCAnalysis.model_fields)
 

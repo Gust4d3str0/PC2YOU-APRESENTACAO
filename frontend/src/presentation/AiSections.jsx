@@ -188,7 +188,7 @@ function AnalysisBody({ analysis, compatibility }) {
     <div className="pz-analysis">
       <p className={`pz-verdict ${compatibility.status}`}>Compatibilidade (backend): {verdict}</p>
       <h4>Resumo</h4><p>{analysis.summary}</p>
-      <h4>Limitante provável</h4><p>{analysis.primary_limit.component} · confiança {analysis.primary_limit.confidence} — {analysis.primary_limit.explanation}</p>
+      <h4>Limitante provável</h4><p>{analysis.primary_limit ? `${analysis.primary_limit.component} · confiança ${analysis.primary_limit.confidence} — ${analysis.primary_limit.explanation}` : 'Nenhum limitante principal confirmado.'}</p>
       <h4>Prioridades</h4>
       <ul>{analysis.upgrade_priorities.map((p) => <li key={p.priority}><b>{p.priority}. {p.component_type}</b> — {p.reason}</li>)}</ul>
       <h4>Recomendação final</h4><p>{analysis.final_recommendation}</p>

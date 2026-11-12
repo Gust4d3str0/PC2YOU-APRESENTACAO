@@ -27,6 +27,10 @@ def analysis_schema(context):
         "a selected candidate_id with a real catalog price. A type-level priority with "
         "candidate_id=null has no verified price: use price_unavailable or save_budget."
     )
+    if context["trusted_context"].get("analysis_readiness", {}).get("status") == "sufficient":
+        # The backend, not the model, decides sufficiency: a sufficient context cannot be rated insufficient.
+        for node in (schema["properties"]["overall_rating"], schema["$defs"]["Balance"]["properties"]["status"]):
+            node["enum"] = [v for v in node["enum"] if v != "insufficient_data"]
     return schema
 
 
@@ -40,6 +44,9 @@ def normalize_enums(value, schema):
     """Only case variations of known enum values; never translations or number coercion."""
     def visit(item, node):
         node = resolve_schema(node, schema)
+        options = [option for option in node.get("anyOf", []) if option.get("type") != "null"]
+        if item is not None and len(options) == 1:  # Optional objects, e.g. primary_limit: PrimaryLimit | None
+            node = resolve_schema(options[0], schema)
         if isinstance(item, dict):
             return {key: visit(val, node["properties"][key]) if key not in {"candidate_id", "promotion_id"} and key in node.get("properties", {}) else val
                     for key, val in item.items()}

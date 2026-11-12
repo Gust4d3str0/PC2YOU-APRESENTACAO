@@ -6,6 +6,7 @@ from .human_input import parse_input, cpu_features, gpu_features, model_key
 from .normalization import normalize_human_text, normalize_spec
 from .external_identity import lookup_name, category_of, valid_mpn
 from .identity import identity_scope
+from .family_bounds import usable, proves
 from product_matching.normalization import normalize_brand
 
 LIMIT = 32
@@ -151,6 +152,25 @@ def _catalog_component(row, parsed):
             '_catalog_category': row['category'], '_support_complete': True}
 
 
+def attach_family_bounds(result, parsed, projection):
+    """Expose offline family statistics on a family-scope component, never as scalar specs."""
+    bounds = (projection or {}).get('bounds')
+    if (not parsed['generic'] or parsed['category'] not in {'motherboard', 'gpu'}
+            or result.get('resolution_scope') != 'family' or not isinstance(bounds, dict)):
+        return result
+    kept = {path: stats for path, stats in bounds.items() if usable(stats)}
+    if not kept:
+        return result
+    result['family_bounds'] = deepcopy(kept)
+    result['_family_label'] = projection.get('model') or projection.get('key')
+    for path, stats in kept.items():
+        section, key = path.split('.')
+        values = result['specifications'] if section == 'technical_specs' else result['compatibility']
+        if key not in values and proves(stats, 'catalog_family_bound'):
+            result['field_sources'][path] = 'catalog_family_bound'
+    return result
+
+
 def resolve_input(parsed, bundle):
     trace = {'input': parsed['original'], 'normalized': parsed['normalized'], 'features': parsed['features'],
              'candidates': [], 'overflow': bundle.get('overflow', False), 'rejections': list(parsed['errors']),
@@ -175,7 +195,7 @@ def resolve_input(parsed, bundle):
             if parsed['category'] == 'gpu' and resolved['resolution_scope'] == 'family' and not parsed['features'].get('vram') and len(projection.get('vram_options', [])) > 1:
                 resolved['specifications'].pop('memory', None)
                 resolved['field_sources'].pop('technical_specs.memory', None)
-            return resolved, trace
+            return attach_family_bounds(resolved, parsed, projection), trace
         trace['rejections'].append('ambiguous_best_candidates')
     elif trace['overflow']:
         trace['rejections'].append('candidate_limit_exceeded')
@@ -202,9 +222,10 @@ def resolve_input(parsed, bundle):
             specs['model'] = projection['model']
             field_sources['technical_specs.model'] = 'catalog_family_consensus'
     if specs or compat:
-        return {'name': parsed['original'], 'category': parsed['category'], 'source': 'derived', 'catalog_id': None,
-                'resolution_scope': scope, 'specifications': specs, 'compatibility': compat,
-                'field_sources': field_sources, '_support_complete': parsed.get('support_complete', False)}, trace
+        derived = {'name': parsed['original'], 'category': parsed['category'], 'source': 'derived', 'catalog_id': None,
+                   'resolution_scope': scope, 'specifications': specs, 'compatibility': compat,
+                   'field_sources': field_sources, '_support_complete': parsed.get('support_complete', False)}
+        return attach_family_bounds(derived, parsed, projection), trace
     trace['rejections'].append('no_unique_identity_or_explicit_technical_fields')
     return unknown, trace
 

@@ -9,6 +9,9 @@ from ai.schemas import AnalyzePCRequest, technical_text
 from product_matching.normalization import named_brands, normalize_brand, normalize_text
 from product_matching.matcher import features
 from catalog_specs.coverage import RULES
+from catalog_specs.family_bounds import FAMILY_SOURCES, proves, usable, complete
+from ai.assessment import CANDIDATE_REQUIRED, blockers, readiness
+from ai.technical_profile import technical_assessment
 from catalog_specs.normalization import normalize_spec
 from catalog_specs.human_resolver import resolve_human
 from catalog_specs.human_input import parse_input
@@ -181,23 +184,158 @@ def as_catalog(item):
             "technical_specs": item["specifications"], "compatibility": item["compatibility"]}
 
 
+FAMILY_CATEGORICAL = {'socket', 'memory_type', 'form_factor'}
+# rule -> (category, section, key, bound that PROVES the rule, bound that REFUTES it)
+BOUND_RULES = {
+    'ram_slots': ('motherboard', 'technical_specs', 'memory_slots', 'safe_min', 'safe_max'),
+    'ram_capacity': ('motherboard', 'technical_specs', 'max_memory_gb', 'safe_min', 'safe_max'),
+    'gpu_power': ('gpu', 'compatibility', 'min_psu_watts', 'safe_max', 'safe_min'),
+    'gpu_case': ('gpu', 'technical_specs', 'length_mm', 'safe_max', 'safe_min'),
+}
+BOUND_FAILURE = {
+    'ram_slots': 'A memória exige mais slots do que qualquer placa-mãe da família informada oferece.',
+    'ram_capacity': 'A memória excede a capacidade máxima de qualquer placa-mãe da família informada.',
+}
+PENDING_HINTS = {
+    'ram_slots': 'Placa-mãe: confirmar o modelo exato (a quantidade de slots varia dentro da família)',
+    'ram_capacity': 'Placa-mãe: confirmar o modelo exato (a capacidade máxima varia dentro da família)',
+    'gpu_power': 'Placa de vídeo: confirmar o modelo exato (a potência recomendada varia dentro da família)',
+}
+
+
 def trusted_field(item, section, key):
     if not item or item.get('source') not in {'catalog', 'derived'}:
         return False
-    path = ('technical_specs' if section == 'technical_specs' else section) + '.' + key
+    path = f'{section}.{key}'
+    source = (item.get('field_sources') or {}).get(path)
+    stats = (item.get('family_bounds') or {}).get(path)
+    if source in FAMILY_SOURCES and source != 'catalog_family_consensus':
+        # min/max/bound evidence carries no scalar: valid only if the family statistics prove it.
+        return proves(stats, source)
     values = item.get('specifications' if section == 'technical_specs' else section) or {}
     if normalize_spec(key, values.get(key)) is None:
         return False
-    # Legacy catalog adapters remain backwards-compatible; derived data always needs evidence.
-    return item['source'] == 'catalog' or item.get('field_sources', {}).get(path) in {'user_text', 'catalog_family_consensus'}
+    if stats is not None and key in FAMILY_CATEGORICAL and source != 'user_text' and not proves(stats, 'catalog_family_consensus'):
+        return False  # The family disagrees (or is incompletely known): one row's value is not a family fact.
+    if item['source'] == 'catalog':
+        return True
+    return source == 'user_text' or (source == 'catalog_family_consensus' and (stats is None or proves(stats, source)))
+
+
+def _run_engine(fields, known, overrides=None):
+    overrides = overrides or {}
+    selected = {}
+    for cat, section, key in fields:
+        value = overrides.get((cat, section, key), known[cat][section].get(key))
+        selected.setdefault(cat, {"id": known[cat]["id"], "category": known[cat]["category"],
+                                  "technical_specs": {}, "compatibility": {}})[section][key] = normalize_spec(key, value)
+    return compatibility.check_components(list(selected.values()))
+
+
+def _bound_target(name, trusted):
+    spec = BOUND_RULES.get(name)
+    if not spec:
+        return None
+    cat, section, key = spec[:3]
+    item = trusted.get(cat)
+    path = f'{section}.{key}'
+    stats = ((item or {}).get('family_bounds') or {}).get(path)
+    if not item or not usable(stats) or (item.get('field_sources') or {}).get(path) == 'user_text':
+        return None
+    return cat, section, key, stats, spec[3], spec[4]
+
+
+def _rule_source(fields, trusted):
+    order = ['catalog_family_bound', 'catalog_family_consensus', 'user_text', 'catalog']
+    found = set()
+    for cat, section, key in fields:
+        item = trusted[cat]
+        source = (item.get('field_sources') or {}).get(f'{section}.{key}') or item['source']
+        found.add(source if source in order else ('catalog' if item['source'] == 'catalog' else 'derived'))
+    return next((s for s in order if s in found), 'derived')
+
+
+def _bound_rule(name, fields, trusted, known):
+    """Return (outcome, errors, evidence) when the family bound decides the rule, else None."""
+    target = _bound_target(name, trusted)
+    if not target:
+        return None
+    cat, section, key, stats, prove_attr, refute_attr = target
+    others = [f for f in fields if f != (cat, section, key)]
+    # Every other operand must be a trusted scalar; only the family operand may be a bound.
+    if not all(trusted_field(trusted.get(c), s, k) for c, s, k in others) or (name == 'ram_slots' and 'ram' not in known):
+        return None
+    proof, refutation = stats.get(prove_attr), stats.get(refute_attr)
+    if proof is None and refutation is None:
+        return None
+    outcome, errors = None, []
+    try:
+        if proof is not None and not _run_engine(fields, known, {(cat, section, key): proof})['errors']:
+            outcome = 'pass'
+        elif refutation is not None:
+            errors = _run_engine(fields, known, {(cat, section, key): refutation})['errors']
+            outcome = 'fail' if errors else None
+    except (TypeError, ValueError):
+        return None
+    evidence = {'rule': name, 'source': 'catalog_family_bound', 'result': outcome or 'undetermined',
+                'evidence': {'family': trusted[cat].get('_family_label'), 'field': f'{section}.{key}',
+                             'candidate_count': stats['candidate_count'], 'known_count': stats['known_count'],
+                             'coverage': stats.get('coverage'), 'min': stats.get('min'), 'max': stats.get('max'),
+                             'coverage_basis': 'full' if complete(stats) else 'model_level_family_row',
+                             'bound_used': proof if outcome == 'pass' else refutation}}
+    return outcome, ([BOUND_FAILURE[name]] if name in BOUND_FAILURE and errors else errors), evidence
+
+
+def _board_case_bound(trusted):
+    board, case = trusted.get('motherboard'), trusted.get('case')
+    stats = ((board or {}).get('family_bounds') or {}).get('compatibility.form_factor')
+    if not complete(stats) or not stats.get('values') or not trusted_field(case, 'compatibility', 'supported_form_factors'):
+        return None
+    supported = set(normalize_spec('supported_form_factors', case['compatibility']['supported_form_factors']))
+    forms = set(stats['values'])
+    support_is_complete = case['source'] == 'catalog' or bool(case.get('_support_complete'))
+    if forms <= supported:
+        outcome = 'pass'
+    elif support_is_complete and not forms & supported:
+        outcome = 'fail'
+    else:
+        return None
+    return outcome, {'rule': 'board_case', 'source': 'catalog_family_bound', 'result': outcome,
+                     'evidence': {'family': board.get('_family_label'), 'field': 'compatibility.form_factor',
+                                  'values': sorted(forms), 'candidate_count': stats['candidate_count'],
+                                  'known_count': stats['known_count']}}
 
 
 def check_compatibility(components):
     trusted = {item['category']: item for item in components if item['source'] in {'catalog', 'derived'}}
     known = {cat: as_catalog(item) for cat, item in trusted.items()}
-    issues, checked, unchecked = [], [], []
+    issues, checked, unchecked, failed, sources, evidence = [], [], [], [], {}, []
     for name, fields in RULES:
+        decided = _bound_rule(name, fields, trusted, known)
+        if decided:
+            outcome, errors, detail = decided
+            if outcome is None:
+                unchecked.append(name)  # The family is known but straddles the threshold.
+                continue
+            checked.append(name)
+            sources[name] = 'catalog_family_bound'
+            evidence.append(detail)
+            if outcome == 'fail':
+                failed.append(name)
+                issues.extend(errors)
+            continue
         available = all(trusted_field(trusted.get(cat), section, key) for cat, section, key in fields)
+        if name == 'board_case' and not available:
+            board_case = _board_case_bound(trusted)
+            if board_case:
+                outcome, detail = board_case
+                checked.append(name)
+                sources[name] = 'catalog_family_bound'
+                evidence.append(detail)
+                if outcome == 'fail':
+                    failed.append(name)
+                    issues.append('O gabinete não suporta o formato da placa-mãe.')
+                continue
         if name == 'board_case' and available:
             board_form = normalize_spec('form_factor', known['motherboard']['compatibility']['form_factor'])
             supported = normalize_spec('supported_form_factors', known['case']['compatibility']['supported_form_factors'])
@@ -211,18 +349,15 @@ def check_compatibility(components):
             continue
         # Call the existing engine per rule. Exclude unavailable properties so its defaults
         # cannot turn a missing spec into a false incompatibility or a false pass.
-        selected = {}
-        for cat, section, key in fields:
-            selected.setdefault(cat, {"id": known[cat]["id"], "category": known[cat]["category"],
-                                      "technical_specs": {}, "compatibility": {}})[section][key] = normalize_spec(key, known[cat][section][key])
-        if name == "ram_slots":
-            selected['ram']['technical_specs']['modules'] = normalize_spec('modules', known['ram']['technical_specs']['modules'])
         try:
-            result = compatibility.check_components(list(selected.values()))
+            result = _run_engine(fields, known)
         except (TypeError, ValueError):
             unchecked.append(name)
             continue
         checked.append(name)
+        sources[name] = _rule_source(fields, trusted)
+        if result["errors"]:
+            failed.append(name)
         issues.extend(result["errors"])
     warnings = []
     if unchecked:
@@ -237,7 +372,8 @@ def check_compatibility(components):
     return {"valid": False if issues else (None if unchecked else True),
             "status": "incompatible" if issues else ("partial" if unchecked else "compatible"),
             "issues": list(dict.fromkeys(issues)), "warnings": warnings,
-            "checked_rules": checked, "unchecked_rules": unchecked}
+            "checked_rules": checked, "unchecked_rules": unchecked, "failed_rules": failed,
+            "rule_sources": sources, "evidence": evidence}
 
 
 def price_of(item):
@@ -281,40 +417,49 @@ def build_context(payload: AnalyzePCRequest, catalog):
                 added = True
         if not added and rule == 'board_case':
             missing.append('Gabinete: confirmar suporte ao formato da placa-mãe')
+        elif not added and rule in PENDING_HINTS and PENDING_HINTS[rule] not in missing:
+            missing.append(PENDING_HINTS[rule])
     candidates = []
-    # Only supply specific replacements when all existing rule checks are possible.
-    # This deliberately favors type-level advice for incomplete builds.
-    if verdict["valid"] is True:
-        current_ids = {item["catalog_id"] for item in components}
-        for category in ("gpu", "ram", "cpu", "storage", "psu"):
-            options = catalog.upgrade_candidates(category) if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components(category)[:24]
-            if category == "ram":
-                options += catalog.upgrade_candidates('kit-ram') if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components('kit-ram')[:24]
-            for raw in options:
-                allowed_categories = {"ram", "kit-ram"} if category == "ram" else {category}
-                if raw.get("id") in current_ids or raw.get("category") not in allowed_categories:
+    # Specific products are judged per replacement: only the rules relevant to that category must
+    # be verified, and unrelated pending rules (e.g. case clearance for a RAM swap) do not block it.
+    baseline_issues = set(verdict["issues"])
+    current_ids = {item["catalog_id"] for item in components}
+    sufficient = readiness(components, verdict, payload.usage)
+    for category in (("gpu", "ram", "cpu", "storage", "psu") if sufficient["status"] == "sufficient" else ()):
+        options = catalog.upgrade_candidates(category) if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components(category)[:24]
+        if category == "ram":
+            options += catalog.upgrade_candidates('kit-ram') if callable(getattr(catalog, 'upgrade_candidates', None)) else catalog.list_components('kit-ram')[:24]
+        for raw in options:
+            allowed_categories = {"ram", "kit-ram"} if category == "ram" else {category}
+            if raw.get("id") in current_ids or raw.get("category") not in allowed_categories:
+                continue
+            price = price_of(raw)
+            if payload.upgrade_budget is not None and price is not None and price > payload.upgrade_budget:
+                continue
+            try:
+                candidate = {"name": technical_text(str(raw["name"])[:120]), "category": category,
+                             "source": "catalog", "catalog_id": technical_text(str(raw["id"])[:120]),
+                             "_catalog_category": raw["category"],
+                             "specifications": _fields(raw, "technical_specs", SPEC_FIELDS),
+                             "compatibility": _fields(raw, "compatibility", COMPAT_FIELDS)}
+                replaced = [deepcopy(item) for item in components if item["category"] != category] + [candidate]
+                outcome = check_compatibility(replaced)
+                if set(outcome["issues"]) - baseline_issues:
                     continue
-                price = price_of(raw)
-                if payload.upgrade_budget is not None and price is not None and price > payload.upgrade_budget:
+                if not CANDIDATE_REQUIRED.get(category, set()).issubset(outcome["checked_rules"]):
                     continue
-                try:
-                    candidate = {"name": technical_text(str(raw["name"])[:120]), "category": category,
-                                 "source": "catalog", "catalog_id": technical_text(str(raw["id"])[:120]),
-                                 "_catalog_category": raw["category"],
-                                 "specifications": _fields(raw, "technical_specs", SPEC_FIELDS),
-                                 "compatibility": _fields(raw, "compatibility", COMPAT_FIELDS)}
-                    replaced = [deepcopy(item) for item in components if item["category"] != category] + [candidate]
-                    if check_compatibility(replaced)["valid"] is not True:
-                        continue
-                except (ValueError, KeyError):
-                    continue
-                candidates.append({"component_id": candidate["catalog_id"], "name": candidate["name"],
-                                   "component_type": category, "price": price})
-                if sum(c["component_type"] == category for c in candidates) >= 3:
-                    break
+            except (ValueError, KeyError):
+                continue
+            candidates.append({"component_id": candidate["catalog_id"], "name": candidate["name"],
+                               "component_type": category, "price": price})
+            if sum(c["component_type"] == category for c in candidates) >= 3:
+                break
     public_components = [{key: value for key, value in item.items() if not key.startswith("_")} for item in components]
     return {
         "trusted_context": {"build": public_components, "compatibility": verdict,
+                            "analysis_readiness": sufficient,
+                            "technical_assessment": technical_assessment(public_components, payload.usage),
+                            "upgrade_blockers": blockers(verdict["unchecked_rules"]),
                             "missing_information": missing, "upgrade_candidates": candidates,
                             "benchmarks": [], "currency": "BRL"},
         "user_context": {"usage": payload.usage, "games": payload.games,

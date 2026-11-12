@@ -6,6 +6,7 @@ import re
 
 from .human_input import human_keys, parse_input, model_key
 from .normalization import normalize_human_text, normalize_spec
+from .family_bounds import summarize
 
 
 def family_projections(rows):
@@ -32,7 +33,8 @@ def family_projections(rows):
             if values and all(v is not None for v in values) and all(v == values[0] for v in values):
                 fields['compatibility.' + field] = values[0]
         projections.append({'key': key, 'category': 'motherboard', 'fields': fields, 'members': len(members),
-                            'method': 'complete_catalog_unanimous_fields', 'version': 1})
+                            'bounds': summarize(members, 'motherboard'),
+                            'method': 'complete_catalog_unanimous_fields', 'version': 2})
     for key, members in gpus.items():
         f = parse_input(members[0]['name'], 'gpu')['features']
         name = ' '.join(p for p in (f['series'].upper(), f['number'], f.get('suffix')) if p)
@@ -42,8 +44,8 @@ def family_projections(rows):
             if memory:
                 memories.append(normalize_spec('capacity', memory[1]))
         projections.append({'key': key, 'category': 'gpu', 'model': name, 'fields': {}, 'members': len(members),
-                            'vram_options': sorted(set(memories)),
-                            'method': 'model_presence_only_no_physical_specs', 'version': 1})
+                            'vram_options': sorted(set(memories)), 'bounds': summarize(members, 'gpu'),
+                            'method': 'model_presence_only_no_physical_specs', 'version': 2})
     return projections
 
 

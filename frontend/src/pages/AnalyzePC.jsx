@@ -79,8 +79,8 @@ export default function AnalyzePC() {
       <form onSubmit={submit} className="analyze-form" aria-busy={loading}>
         <fieldset disabled={loading} className="summary-panel analyze-section">
           <legend><Cpu size={20} /> Configuração atual</legend>
-          <p className="analyze-hint">Use o nome completo da peça para facilitar a identificação no catálogo.
-            Se não souber algum dado, deixe em branco. Não inclua dados pessoais.</p>
+          <p className="analyze-hint">Informe o modelo como você conhece. O sistema tenta reconhecer modelos, famílias e especificações técnicas automaticamente.
+            Quanto mais específico, mais verificações podem ser realizadas. Se não souber algum dado, deixe em branco. Não inclua dados pessoais.</p>
           <div className="analyze-fields">
             {fields.map(([key, label, placeholder]) => <label key={key}>
               {label}{key === 'cpu' ? ' *' : ''}

@@ -40,9 +40,9 @@ class ValidationProseProvider:
     name = 'offline-validation-double'
 
     def generate(self, **kwargs):
-        return {'summary': 'Execução local de validação técnica do catálogo.', 'overall_rating': 'insufficient_data',
-                'balance': {'status': 'insufficient_data', 'explanation': 'Não foram feitas medições de desempenho.'},
-                'primary_limit': {'component': 'unknown', 'confidence': 'low', 'explanation': 'Este teste avalia somente os dados técnicos.'},
+        return {'summary': 'Execução local de validação técnica do catálogo.', 'overall_rating': 'good',
+                'balance': {'status': 'balanced', 'explanation': 'Não foram feitas medições de desempenho.'},
+                'primary_limit': None,
                 'strengths': [], 'weaknesses': [], 'upgrade_priorities': [], 'warnings': [], 'missing_information': [],
                 'final_recommendation': 'Consulte os resultados determinísticos de compatibilidade.'}
 

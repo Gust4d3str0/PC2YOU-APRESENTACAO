@@ -5,6 +5,11 @@ const labels = { cpu: 'Processador', gpu: 'Placa de vídeo', motherboard: 'Placa
 const confidence = { low: 'Baixa', medium: 'Média', high: 'Alta' };
 const balance = { balanced: 'Bom equilíbrio', attention: 'Pontos de atenção', insufficient_data: 'Dados insuficientes' };
 const verdict = { compatible: 'Sem incompatibilidades nas regras verificadas', incompatible: 'Incompatibilidade detectada', partial: 'Verificação parcial' };
+const upgradeNotes = {
+  no_priority: 'Nenhum upgrade prioritário identificado para o cenário informado.',
+  partial: 'A análise foi realizada; algumas opções específicas dependem da confirmação de informações adicionais.',
+  insufficient: 'As informações reconhecidas ainda não permitem priorizar upgrades. Informe mais detalhes das peças principais.',
+};
 const budgetLabels = { within_budget: 'Dentro do orçamento informado', no_budget: 'Sem orçamento definido',
   price_unavailable: 'Preço não disponível', save_budget: 'Considere reservar o orçamento' };
 const ruleLabels = { cpu_socket: 'Socket do processador', ram_type: 'Tipo de memória', ram_slots: 'Slots de RAM',
@@ -36,15 +41,20 @@ export default function PCAnalysisResult({ result }) {
   return <section className="analysis-result" aria-label="Análise do seu PC" aria-live="polite">
     <div className="section-title"><div><span className="eyebrow">Análise do seu PC</span><h2>Seu cenário, com mais clareza</h2></div>
       {result.metadata.cached && <span className="compat-note">Análise recente reutilizada</span>}</div>
+    {result.metadata.analysis_source === 'deterministic_fallback' && <p className="compat-note" role="status">
+      Análise técnica gerada pelo sistema (a IA está indisponível no momento). As verificações e os dados técnicos são os mesmos.</p>}
     <div className="summary-panel analysis-overview"><span className="eyebrow">Visão geral</span>
       <h3>{balance[a.balance.status]}</h3><p>{a.summary}</p><p>{a.balance.explanation}</p>
-      <div className="analysis-highlight"><strong>Principal limitante provável: {labels[a.primary_limit.component]}</strong>
-        <span>Confiança: {confidence[a.primary_limit.confidence]}</span><p>{a.primary_limit.explanation}</p></div>
+      {a.primary_limit
+        ? <div className="analysis-highlight"><strong>Principal limitante provável: {labels[a.primary_limit.component]}</strong>
+          <span>Confiança: {confidence[a.primary_limit.confidence]}</span><p>{a.primary_limit.explanation}</p></div>
+        : <div className="analysis-highlight"><strong>Nenhum limitante principal confirmado</strong></div>}
       <p>Orçamento informado: <strong>{result.upgrade_budget === null ? 'Não informado' : formatCurrency(result.upgrade_budget)}</strong></p>
     </div>
     <div className="analysis-grid"><TextList title="Pontos fortes" items={a.strengths} /><TextList title="O que pode melhorar" items={a.weaknesses} /></div>
     <section className="summary-panel analysis-card"><h3>Prioridade de upgrade</h3>
-      {a.upgrade_priorities.length === 0 && <p>Confirme os dados antes de decidir uma troca.</p>}
+      {a.upgrade_priorities.length === 0 && upgradeNotes[result.upgrade_assessment?.status] && <p>{upgradeNotes[result.upgrade_assessment.status]}</p>}
+      {a.upgrade_priorities.length > 0 && result.upgrade_assessment?.status === 'partial' && <p>{upgradeNotes.partial}</p>}
       <ol className="analysis-priorities">{a.upgrade_priorities.map((p) => {
         const candidate = result.recommended_candidates.find((item) => item.component_id === p.candidate_id);
         return <li key={p.component_type}><h4>{labels[p.component_type]}</h4><p>{p.reason}</p>

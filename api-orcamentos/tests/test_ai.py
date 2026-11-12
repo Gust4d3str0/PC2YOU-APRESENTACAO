@@ -120,7 +120,9 @@ def test_missing_optional_component_produces_partial_verification(setup, field):
     assert response.status_code == 200, response.text
     data = response.json()
     assert data["compatibility"]["valid"] is (True if field == "storage" else None)
-    assert data["analysis"]["primary_limit"]["confidence"] == ('high' if field == 'storage' else 'low')
+    # Confidence follows the evidence behind the claim: only missing data about the limit's own
+    # component (or insufficient context) lowers it; an unrelated pending rule does not.
+    assert data["analysis"]["primary_limit"]["confidence"] == ('low' if field in {'gpu', 'psu', 'ram'} else 'high')
     if field == "psu":
         assert any("Fonte desconhecida" in note for note in data["compatibility_notes"])
 
@@ -304,7 +306,7 @@ def test_jwt_not_forwarded_from_http_headers(setup):
     assert "a-private-jwt" not in json.dumps(setup.provider.calls)
 
 
-@pytest.mark.parametrize("code,status", [("unavailable", 503), ("rate_limit", 429), ("timeout", 504), ("invalid_response", 502)])
+@pytest.mark.parametrize("code,status", [("rate_limit", 429), ("invalid_response", 502)])
 def test_provider_failures_are_friendly_and_not_cached(setup, code, status):
     setup.provider.error = AIError(code, "Tente novamente mais tarde.", status)
     response = post(setup)
@@ -312,6 +314,24 @@ def test_provider_failures_are_friendly_and_not_cached(setup, code, status):
     assert response.json()["detail"]["code"] == code
     assert not setup.service._cache
     assert setup.client.get("/health/live").status_code == 200
+
+
+@pytest.mark.parametrize("code,status", [("unavailable", 503), ("timeout", 504), ("overloaded", 503)])
+def test_provider_outage_returns_labelled_deterministic_fallback_not_cached(setup, code, status):
+    setup.provider.error = AIError(code, "Tente novamente mais tarde.", status)
+    response = post(setup)
+    assert response.status_code == 200, response.text
+    data = response.json()
+    assert data["metadata"]["analysis_source"] == "deterministic_fallback"
+    assert data["metadata"]["fallback_reason"] == code
+    assert data["metadata"]["provider"] == "backend"
+    assert data["analysis"]["primary_limit"] is None
+    assert data["compatibility"]["checked_rules"]
+    assert data["upgrade_assessment"]["status"] in {"no_priority", "partial", "priorities_available", "insufficient"}
+    assert not setup.service._cache
+    setup.provider.error = None
+    again = post(setup).json()
+    assert again["metadata"]["analysis_source"] == "gemini"  # Recovery is immediate: the fallback was not cached.
 
 
 @pytest.mark.parametrize("output", [{}, {**analysis(), "surprise": True}, {**analysis(), "overall_rating": "excellent"},
