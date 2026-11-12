@@ -505,17 +505,23 @@ def validate_promotion(promotion_id: str, body: schemas.OfferValidation, user: d
 def commerce_catalog(q: str = Query('', max_length=120), category: str = '',
                      skip: int = Query(0, ge=0), limit: int = Query(24, ge=1, le=100),
                      collection: Collection = Depends(get_components_collection)):
-    """Lightweight paginated hardware listing straight from MongoDB.
+    """Lightweight paginated COMMERCIAL catalog straight from MongoDB (Telegram-matched or accepted Mercado Livre components only).
 
     Deliberately does NOT build the commerce snapshot (matcher over every component, promotions, history):
     offers are served separately by /promotions and /components/{id}/offers, so cards here carry no offers.
     """
-    query: dict = {}
+    # Commercial catalog only: the technical base (BuildCores / PC Part Dataset) is never listed without commercial evidence.
+    promoted_ids = [cid for cid in collection.database['telegram_promotions'].distinct(
+        'product.component_id', {'is_demo': {'$ne': True}, 'product.match_level': 'high', 'offer.price': {'$ne': None}}) if cid]
+    conditions: list[dict] = [{'$or': [
+        {'id': {'$in': promoted_ids}},
+        {'external_enrichment.mercado_livre.match_status': 'matched', 'external_enrichment.mercado_livre.external_conflict': {'$ne': True}}]}]
     if category:
-        query['category'] = {'$in': ['ram', 'kit-ram']} if category == 'ram' else category
+        conditions.append({'category': {'$in': ['ram', 'kit-ram']} if category == 'ram' else category})
     if q.strip():
         pattern = re.escape(q.strip())
-        query['$or'] = [{f: {'$regex': pattern, '$options': 'i'}} for f in ('name', 'brand', 'description')]
+        conditions.append({'$or': [{f: {'$regex': pattern, '$options': 'i'}} for f in ('name', 'brand', 'description')]})
+    query = {'$and': conditions}
     projection = {'_id': 0, **{f: 1 for f in ('id', 'name', 'category', 'brand', 'description', 'image', 'images',
                                                'technical_specs', 'compatibility', 'external_enrichment')}}
     rows = [{**doc, 'prices': [], 'current_offers': [], 'best_current_offer': None, 'best_general_offer': None,

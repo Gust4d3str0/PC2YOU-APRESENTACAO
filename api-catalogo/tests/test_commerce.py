@@ -20,7 +20,7 @@ def database():
 
 
 def promo(price=2000, days=0, **offer):
-    return {'raw_text': 'INNO3D RTX 5060 Ti 8GB', 'product': {'component_type':'gpu'}, 'status':'parsed',
+    return {'raw_text': 'INNO3D RTX 5060 Ti 8GB', 'product': {'component_type':'gpu', 'component_id':'gpu', 'match_level':'high'}, 'status':'parsed',
             'telegram':{'sent_at': NOW-timedelta(days=days)}, 'created_at': NOW-timedelta(days=days),
             'offer':{'price':price, 'url':'https://www.kabum.com.br/produto/123', 'store':'KaBuM', **offer}}
 
@@ -92,13 +92,21 @@ def test_comparison_and_catalog_api_use_lowest_current_offer_without_seed(commer
     assert api.get('/commerce/catalog?q=unrelated').json()['total'] == 0
 
 
-def test_catalog_listing_is_paginated_filtered_and_never_builds_the_snapshot(monkeypatch):
+def test_catalog_is_commercial_only_paginated_and_never_builds_the_snapshot(monkeypatch):
     db = mongomock.MongoClient(tz_aware=True).db
+    ml = lambda status, conflict=False: {'mercado_livre': {'match_status': status, 'external_conflict': conflict}}
+    base = lambda i, **k: {'id': i, 'name': f'Peca {i}', 'category': 'cpu', 'brand': 'AMD', 'technical_specs': {}, 'compatibility': {}, **k}
     db.components.insert_many(
-        [{'id': f'cpu-{i}', 'name': f'Ryzen {i}', 'category': 'cpu', 'brand': 'AMD', 'technical_specs': {}, 'compatibility': {}} for i in range(60)]
-        + [{'id': 'gpu-1', 'name': 'RTX 5060', 'category': 'gpu', 'brand': 'NVIDIA', 'description': 'placa', 'technical_specs': {}, 'compatibility': {}},
-           {'id': 'kit', 'name': 'Kit DDR5', 'category': 'kit-ram', 'brand': 'Corsair', 'technical_specs': {}, 'compatibility': {}},
-           {'id': 'ram', 'name': 'DDR4', 'category': 'ram', 'brand': 'Kingston', 'technical_specs': {}, 'compatibility': {}}])
+        [base(f'tech-{i}') for i in range(200)]                                    # technical base only: never listed
+        + [base(f'ml-{i}', external_enrichment=ml('matched')) for i in range(30)]  # accepted Mercado Livre enrichment
+        + [base('ml-conflict', external_enrichment=ml('matched', True)), base('ml-ambiguous', external_enrichment=ml('ambiguous')),
+           base('tg-gpu', name='RTX 5060', category='gpu', description='placa'),
+           base('tg-demo', category='gpu'), base('tg-low', category='gpu'),
+           base('kit', name='Kit DDR5', category='kit-ram', external_enrichment=ml('matched'))])
+    db.telegram_promotions.insert_many([
+        {'product': {'component_id': 'tg-gpu', 'match_level': 'high'}, 'offer': {'price': 2000}},
+        {'product': {'component_id': 'tg-demo', 'match_level': 'high'}, 'offer': {'price': 2000}, 'is_demo': True},
+        {'product': {'component_id': 'tg-low', 'match_level': 'low'}, 'offer': {'price': 2000}}])
 
     def boom(*a, **k):
         raise AssertionError('commerce.snapshot must not be used by the catalog listing')
@@ -108,20 +116,20 @@ def test_catalog_listing_is_paginated_filtered_and_never_builds_the_snapshot(mon
     main.app.dependency_overrides[get_components_collection] = lambda: db.components
     try:
         api = TestClient(main.app)
-        page = api.get('/commerce/catalog?limit=24').json()
-        assert len(page['items']) == 24 and page['total'] == 63 and page['skip'] == 0 and page['limit'] == 24
-        assert page['items'][0]['current_offers'] == [] and page['items'][0]['best_current_offer'] is None
-        assert '_id' not in page['items'][0]
-        assert api.get('/commerce/catalog').json()['limit'] == 24
-        second = api.get('/commerce/catalog?limit=24&skip=24').json()['items']
-        assert {i['id'] for i in second}.isdisjoint({i['id'] for i in page['items']})
-        assert api.get('/commerce/catalog?category=gpu').json()['total'] == 1
-        assert api.get('/commerce/catalog?category=ram').json()['total'] == 2
-        assert [i['id'] for i in api.get('/commerce/catalog?q=5060').json()['items']] == ['gpu-1']
-        assert api.get('/commerce/catalog?q=PLACA&category=gpu').json()['total'] == 1
-        assert api.get('/commerce/catalog?q=.*').json()['total'] == 0
-        assert api.get('/commerce/catalog?limit=101').status_code == 422
-        assert api.get('/commerce/catalog?skip=-1').status_code == 422
+        get = lambda path: api.get('/commerce/catalog' + path).json()
+        page = get('?limit=24')
+        assert len(page['items']) == 24 and page['total'] == 32 and page['skip'] == 0 and page['limit'] == 24   # 30 ML + tg-gpu + kit
+        assert page['items'][0]['current_offers'] == [] and page['items'][0]['best_current_offer'] is None and '_id' not in page['items'][0]
+        everything = {i['id'] for p in ('?limit=24', '?limit=24&skip=24') for i in get(p)['items']}
+        assert len(everything) == 32 and not any(i.startswith('tech-') for i in everything)
+        assert {'tg-gpu', 'kit', 'ml-0'} <= everything
+        assert not everything & {'ml-conflict', 'ml-ambiguous', 'tg-demo', 'tg-low'}
+        assert get('?limit=24&skip=24')['items'] and len(get('?limit=24&skip=24')['items']) == 8
+        assert get('')['limit'] == 24
+        assert get('?category=gpu')['total'] == 1 and get('?category=ram')['total'] == 1 and get('?category=cpu')['total'] == 30
+        assert [i['id'] for i in get('?q=5060')['items']] == ['tg-gpu'] and get('?q=PLACA&category=gpu')['total'] == 1
+        assert get('?q=.*')['total'] == 0 and get('?q=Peca tech')['total'] == 0
+        assert api.get('/commerce/catalog?limit=101').status_code == 422 and api.get('/commerce/catalog?skip=-1').status_code == 422
     finally:
         main.app.dependency_overrides.clear()
 

@@ -75,7 +75,7 @@ def test_component_without_prices_or_history_fields_loads_everywhere(api):
     assert client.get('/components/gpu/price-history').json()['history'] == []
     assert client.get('/components/gpu/price-summary').json()['offers_count'] == 0
     assert client.get('/components/gpu/best-price').status_code == 404
-    assert client.get('/commerce/catalog').json()['items'][0]['best_general_offer'] is None
+    assert all(i['best_general_offer'] is None for i in client.get('/commerce/catalog').json()['items'])
     assert client.get('/components/gpu/offers').json()['best_offer'] is None
 
 
@@ -88,7 +88,7 @@ def test_legacy_seed_entries_in_the_database_are_never_shown_as_current(api):
     assert component['prices'] == [] and component['price_history'] == []
     assert client.get('/components/gpu/best-price').status_code == 404
     assert client.get('/components/gpu/offers').json()['best_offer'] is None
-    assert client.get('/commerce/catalog').json()['items'][0]['best_current_offer'] is None
+    assert all(i['best_current_offer'] is None for i in client.get('/commerce/catalog').json()['items'])
     assert db.components.find_one({'id': 'gpu'})['prices']          # the database itself is untouched
 
 
